@@ -1,0 +1,56 @@
+.App {
+  text-align: center;
+}
+
+.logo {
+  margin-right: 1rem;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.brand a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  font-size: 1.2rem;
+}
+
+.header nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.header nav a::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+}
+
+.header nav a.active::after,
+.header nav a:hover::after {
+  background-color: var(--pink);
+}
+
+.main {
+  padding: 3rem 2%;
+  border-top: 3px solid var(--cream);
+}
