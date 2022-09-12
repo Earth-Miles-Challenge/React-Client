@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Client App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The platform frontend is created using React, with Redux used for state management. We will use functional components with hooks and React Router for routing.
 
-## Available Scripts
+## Current Project
 
-In the project directory, you can run:
+The current frontend project is to create version 0.1 of the client app. The purpose of this initial version is to create a working model of the frontend application without worrying about any backend components. When this project is complete, a user would be able to experience the key aspects of the system:
 
-### `npm start`
+- Profile creation for athletes (including Strava connection)
+- Creating pledges to athletes
+- Viewing the status of pledges
+- Browsing and searching for athletes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Instead of wiring up a backend, we will use `localStorage` for persistent user data (including any pledges made by the user) and a hard-coded array of sample athletes. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can find the project status here: 
 
-### `npm test`
+https://github.com/orgs/Earth-Miles-Challenge/projects/2
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Folder Structure
 
-### `npm run build`
+We will implement the feature-driven project structure outlined in [this article](https://profy.dev/article/react-folder-structure) from Profy. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+src
+|
++-- assets            # assets folder can contain all the static files such as images, fonts, etc.
+|
++-- components        # shared components used across the entire application
+|
++-- config            # all the global configuration, env variables etc. get exported from here and used in the app
+|
++-- features          # feature based modules
+|
++-- pages             # individual pages
+|
++-- test              # test utilities and mock server
+|
++-- utils             # shared utility functions
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Additional root-level folders may be necessary as the application grows, though initially the above should suffice and is simple enough to work with. Where a new file appears to require a new folder, we can find inspiration from the [Bulletproof React project structure](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md), which is a more detailed breakdown of the feature-driven project structure.
