@@ -1,6 +1,7 @@
 //import { Provider } from 'react';
 import { Router, Routes, Route, NavLink, Link } from 'react-router-dom';
-import { SignUpPage } from '../features/signUp/SignUp';
+import { SignUpPage } from './features/users/SignUp';
+import { SearchForm } from './components';
 
 import './App.css';
 
@@ -22,6 +23,9 @@ function App() {
         </nav>
       </header>
       <main className="main">
+        <SearchForm onSearch={(val) => {
+          console.log(val);
+        }} />
         <Routes>
           <Route path="join" element={<SignUpPage />} />
         </Routes>
