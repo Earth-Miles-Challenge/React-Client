@@ -1,0 +1,1 @@
+export { StravaConnectButton } from './strava-connect-button/strava-connect-button';
