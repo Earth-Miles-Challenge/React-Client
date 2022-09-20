@@ -1,4 +1,4 @@
-import { StravaConnectButton } from '../features/users/components';
+import { StravaConnectButton } from 'features/users';
 
 export const JoinChallengePage = () => {
 

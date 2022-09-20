@@ -1,0 +1,1 @@
+export { getAthletes } from './get-athletes';
