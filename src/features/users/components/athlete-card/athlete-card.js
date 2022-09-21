@@ -1,8 +1,8 @@
 export const AthleteCard = ({ athlete }) => {
 	const { name } = athlete.profile;
 	return (
-		<div className="athlete">
+		<li className="athlete-card">
 			<h3>{ name }</h3>
-		</div>
+		</li>
 	)
 }

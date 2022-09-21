@@ -11,7 +11,7 @@ export const StravaConnectButton = () => {
 
 	return (
 		<div className="strava-connect">
-			<a href={authorizeUri} target="_blank" rel="noreferrer">
+			<a href={authorizeUri} target="_blank" rel="noreferrer" role="button">
 				<StravaConnectSvg />
 			</a>
 		</div>
