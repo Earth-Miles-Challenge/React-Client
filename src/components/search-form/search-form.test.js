@@ -30,6 +30,6 @@ describe('Search Form', () => {
 		await userEvent.click(screen.getByRole('button'));
 
 		expect(handleSearch).toBeCalledTimes(1);
-		expect(handleSearch.mock.calls[0][0]).toBe(searchPhrase);
+		expect(handleSearch).toBeCalledWith(searchPhrase);
 	});
 });
