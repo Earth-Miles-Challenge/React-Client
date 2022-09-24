@@ -1,6 +1,14 @@
 import { StravaConnectButton } from 'features/users';
+import { FormProgressBar } from 'components';
+
+const STEPS = [
+	'Connect Strava',
+	'Join Challenge',
+	'Complete Profile'
+];
 
 export const JoinChallengePage = () => {
+
 
 	// State
 	// 1. If user has not connected Strava yet, that is step 1
@@ -8,6 +16,9 @@ export const JoinChallengePage = () => {
 	// 3. If a user has already created a challenge, show details
 
 	return (
-		<StravaConnectButton />
+		<div>
+			<FormProgressBar steps={STEPS} activeStep='Connect Strava' />
+			<StravaConnectButton />
+		</div>
 	)
 }

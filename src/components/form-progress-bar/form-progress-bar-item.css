@@ -1,0 +1,8 @@
+.form-progress-bar-item {
+	color: #444444;
+}
+
+.form-progress-bar-item--active {
+	background-color: #1D8D0B;
+	color: #FFFFFF;
+}
