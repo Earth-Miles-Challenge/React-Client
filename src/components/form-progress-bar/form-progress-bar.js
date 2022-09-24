@@ -1,5 +1,7 @@
 import { FormProgressBarItem } from "./form-progress-bar-item";
 
+import './form-progress-bar.css';
+
 export const FormProgressBar = (props) => {
 	const {steps, activeStep} = props;
 	const getStepKey = step => step.toLowerCase().replace(' ', '-');
