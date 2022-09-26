@@ -6,22 +6,34 @@ import { renderWithProviders } from 'utils/test-utils'
 import { setupStore } from 'store';
 import { goToStep } from 'features/users';
 
+const store = setupStore();
+
+beforeEach(() => {
+	store.dispatch(goToStep('Join Challenge'));
+});
+
 describe('Join Challenge Form', () => {
 	test('has an input for user to select their challenge', () => {
-		const store = setupStore();
-		store.dispatch(goToStep('Join Challenge'));
 		renderWithProviders(<JoinChallengeForm />, store);
-
 		const inputNode = screen.getByLabelText('Which challenge would you like to join?');
 		expect(inputNode).toBeInTheDocument();
 	});
 
 	test('has an input for user to select their activity type', () => {
-		const store = setupStore();
-		store.dispatch(goToStep('Join Challenge'));
 		renderWithProviders(<JoinChallengeForm />, store);
+		const inputNode = screen.getByLabelText('Will you be running or riding for this challenge?');
+		expect(inputNode).toBeInTheDocument();
+	});
 
-		const inputNode = screen.getByLabelText('Which challenge would you like to join?');
+	test('has an input for user to set their distance goal', () => {
+		renderWithProviders(<JoinChallengeForm />, store);
+		const inputNode = screen.getByLabelText(/How many [kilometres|miles]/);
+		expect(inputNode).toBeInTheDocument();
+	});
+
+	test('has a field for users to share their motivation', () => {
+		renderWithProviders(<JoinChallengeForm />, store);
+		const inputNode = screen.getByLabelText('Share a little about why you are participating in this challenge');
 		expect(inputNode).toBeInTheDocument();
 	});
 });
