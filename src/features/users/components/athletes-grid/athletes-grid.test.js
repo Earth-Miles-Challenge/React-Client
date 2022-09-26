@@ -50,19 +50,19 @@ const ATHLETES = [
 ]
 
 describe('Athletes Grid', () => {
-	it('has a list', () => {
+	test('has a list', () => {
 		render(<AthletesGrid athletes={ATHLETES} />)
 		const list = screen.getByRole('list');
 		expect(list).toBeInTheDocument();
 	});
 
-	it('has three list items', () => {
+	test('has three list items', () => {
 		render(<AthletesGrid athletes={ATHLETES} />)
 		const listitems = screen.getAllByRole('listitem');
 		expect(listitems).toHaveLength(3);
 	});
 
-	it('empty list has no list', () => {
+	test('empty list has no list', () => {
 		render(<AthletesGrid athletes={[]} />)
 		const message = screen.getByText(/No athletes found/i);
 		expect(message).toBeInTheDocument();

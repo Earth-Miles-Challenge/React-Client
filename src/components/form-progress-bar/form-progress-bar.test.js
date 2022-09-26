@@ -6,7 +6,7 @@ const STEPS = ['Connect Strava', 'Join Challenge', 'Complete Profile'];
 const ACTIVE_STEP_INDEX = 1;
 
 describe('Form Progress Bar', () => {
-	it('has a list with three list items', () => {
+	test('has a list with three list items', () => {
 		render(<FormProgressBar steps={STEPS} activeStep={STEPS[ACTIVE_STEP_INDEX]} />);
 		const list = screen.getByRole('list');
 		expect(list).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe('Form Progress Bar', () => {
 		expect(items.length).toBe(3);
 	});
 
-	it('has one active step', () => {
+	test('has one active step', () => {
 		render(<FormProgressBar steps={STEPS} activeStep={STEPS[ACTIVE_STEP_INDEX]} />);
 		const items = screen.getAllByRole('listitem');
 		expect(items[ACTIVE_STEP_INDEX]).toHaveClass('form-progress-bar-item--active');
