@@ -12,20 +12,22 @@ export const Select = props => {
 		value,
 		id = '',
 		className = '',
-		options = []
+		options = [],
+		onChange
 	} = props;
 
 	const htmlId = id || label.toLowerCase().replace(' ', '-');
 
+	const handleChange = e => onChange(e.target.value);
+
 	return (
 		<div className={className}>
 			<label htmlFor={htmlId} key="label">{label}</label>
-			<select id={htmlId} key="select">
-				{options.map((option) => {
-					const { optionValue, optionLabel } = getOptionDetails(option);
-					const selectedAttribute = optionValue === value ? 'selected' : '';
+			<select id={htmlId} key="select" value={value} onChange={handleChange}>
+				{options.map(option => {
+					const [ optionValue, optionLabel ] = getOptionDetails(option);
 					return (
-						<option key={value} value={value} {...selectedAttribute}>{optionLabel}</option>
+						<option key={optionValue} value={optionValue}>{optionLabel}</option>
 					)
 				})}
 			</select>
