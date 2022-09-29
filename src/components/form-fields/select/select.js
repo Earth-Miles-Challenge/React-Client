@@ -1,10 +1,4 @@
-const getOptionDetails = option => {
-	if (Array.isArray(option)) {
-		return option.length === 2 ? option : [ option[0], option[0] ];
-	} else {
-		return [option, option]
-	}
-}
+import { getOptionDetails } from 'utils/form-utils';
 
 export const Select = props => {
 	const {
