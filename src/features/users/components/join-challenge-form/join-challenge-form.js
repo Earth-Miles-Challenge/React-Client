@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Select, Radio } from 'components';
 
+import 'components/form-fields/forms.css';
+
 const CHALLENGES = [
 	[ 'christmas-2022', 'Christmas 2022 - ending December 25, 2022' ]
 ];

@@ -1,0 +1,24 @@
+.radio-list {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+.radio-list legend {
+	font-weight: bold;
+	display: block;
+}
+
+.radio-list label {
+	font-weight: normal;
+}
+
+.radio-list ul {
+	display: flex;
+	list-style: none;
+	gap: 1rem;
+}
+
+.radio-list li {
+	display: flex;
+}
