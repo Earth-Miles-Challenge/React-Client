@@ -22,9 +22,12 @@ describe('NumberField component', () => {
 	test('the updated value is sent to the callback', async () => {
 		const initialValue = '3';
 		const updatedValue = '7';
-		const onChange = jest.fn();
 
-		render(<NumberField label={LABEL} value={initialValue} onChange={onChange} />);
+		let changedValue = initialValue;
+
+		const onChange = jest.fn(val => changedValue = val);
+
+		const { rerender } = render(<NumberField label={LABEL} value={initialValue} onChange={onChange} />);
 
 		const input = screen.getByRole('spinbutton');
 
@@ -32,14 +35,17 @@ describe('NumberField component', () => {
 		expect(onChange).toBeCalledTimes(1);
 		expect(onChange).toBeCalledWith('');
 
+		rerender(<NumberField label={LABEL} value={changedValue} onChange={onChange} />)
+		expect(input).toHaveValue('');
+
 		await userEvent.type(input, updatedValue);
 		expect(onChange).toBeCalledTimes(2);
-		expect(onChange).toBeCalledWith(updatedValue);
+		expect(onChange).toHaveBeenLastCalledWith(updatedValue);
 	});
 
 	test('the value can be changed with arrow up & down', async () => {
 		const initialValue = '7';
-		const minValue = 5;
+		const minValue = '5';
 		const onChange = jest.fn();
 
 		render(<NumberField label={LABEL} value={initialValue} onChange={onChange} min={minValue} />);
