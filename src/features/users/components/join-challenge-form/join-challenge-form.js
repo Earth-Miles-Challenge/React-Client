@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { SelectField, RadioField } from 'components';
+import { useEffect, useState } from 'react';
+import { SelectField, RadioField, NumberField } from 'components';
 
 import 'components/form-fields/forms.css';
 
@@ -11,6 +11,18 @@ export const JoinChallengeForm = props => {
 
 	const [ challenge, setChallenge ] = useState('');
 	const [ activityType, setActivityType ] = useState('run');
+	const [ distanceGoal, setDistanceGoal ] = useState();
+	const [ distanceFieldLabel, setDistanceFieldLabel ] = useState('How many kilometres are you aiming to run for this challenge?');
+
+	useEffect(() => {
+		setDistanceFieldLabel(() => {
+			if ('run' === activityType) {
+				return 'How many kilometres are you aiming to run for this challenge?';
+			} else {
+				return 'How many kilometres are you aiming to ride for this challenge?';
+			}
+		})
+	}, [activityType])
 
 	return (
 		<>
@@ -27,6 +39,14 @@ export const JoinChallengeForm = props => {
 				id="activity-type"
 				value={activityType}
 				onChange={setActivityType}
+			/>
+			<NumberField
+				label={distanceFieldLabel}
+				id="distance-goal"
+				min={0}
+				step={1}
+				value={distanceGoal}
+				onChange={setDistanceGoal}
 			/>
 		</>
 	);

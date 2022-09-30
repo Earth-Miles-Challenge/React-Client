@@ -13,27 +13,29 @@ beforeEach(() => {
 });
 
 describe('Join Challenge Form', () => {
-	test('has an input for user to select their challenge', () => {
+	test('has a select input for user to select their challenge', () => {
 		renderWithProviders(<JoinChallengeForm />, store);
-		const inputNode = screen.getByLabelText('Which challenge would you like to join?');
+		const inputNode = screen.getByLabelText('Which challenge would you like to join?', {selector: 'select'});
 		expect(inputNode).toBeInTheDocument();
 	});
 
-	test('has an input for user to select their activity type', () => {
+	test('has a radio input for user to select their activity type', () => {
 		renderWithProviders(<JoinChallengeForm />, store);
-		const inputNode = screen.getByLabelText('Will you be running or riding for this challenge?');
+		const inputNode = screen.getByLabelText('Will you be running or riding for this challenge?', {selector: 'input'});
 		expect(inputNode).toBeInTheDocument();
+		expect(inputNode.type).toBe('radio');
 	});
 
-	test('has an input for user to set their distance goal', () => {
+	test('has a number input for user to set their distance goal', () => {
 		renderWithProviders(<JoinChallengeForm />, store);
-		const inputNode = screen.getByLabelText(/How many [kilometres|miles]/);
+		const inputNode = screen.getByLabelText(/How many [kilometres|miles]/, {selector: 'input'});
 		expect(inputNode).toBeInTheDocument();
+		expect(inputNode.type).toBe('number');
 	});
 
-	test('has a field for users to share their motivation', () => {
+	test('has a textarea for users to share their motivation', () => {
 		renderWithProviders(<JoinChallengeForm />, store);
-		const inputNode = screen.getByLabelText('Share a little about why you are participating in this challenge');
+		const inputNode = screen.getByLabelText('Share a little about why you are participating in this challenge', {selector: 'textarea'});
 		expect(inputNode).toBeInTheDocument();
 	});
 });
