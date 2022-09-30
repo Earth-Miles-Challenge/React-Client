@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Select, Radio } from 'components';
+import { SelectField, RadioField } from 'components';
 
 import 'components/form-fields/forms.css';
 
@@ -14,14 +14,14 @@ export const JoinChallengeForm = props => {
 
 	return (
 		<>
-			<Select
+			<SelectField
 				label="Which challenge would you like to join?"
 				options={CHALLENGES}
 				id="challenge"
 				value={challenge}
 				onChange={setChallenge}
 			/>
-			<Radio
+			<RadioField
 				label="Will you be running or riding for this challenge?"
 				options={[['run', 'Running'], ['ride', 'Riding']]}
 				id="activity-type"

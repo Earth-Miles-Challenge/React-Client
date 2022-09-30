@@ -1,6 +1,6 @@
 import { getOptionDetails } from 'utils/form-utils';
 
-export const Select = props => {
+export const SelectField = props => {
 	const {
 		label,
 		value,

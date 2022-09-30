@@ -2,7 +2,7 @@ import { getOptionDetails, getIdFromLabel } from 'utils/form-utils';
 
 import './radio.css';
 
-export const Radio = props => {
+export const RadioField = props => {
 	const {
 		label,
 		value,
