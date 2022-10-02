@@ -12,6 +12,12 @@ const OPTIONS = [
 ];
 
 describe('RadioField component', () => {
+	test('it has a radiogroup element', () => {
+		render(<RadioField label={LABEL} options={OPTIONS} />);
+		const group = screen.getByRole('radiogroup');
+		expect(group).toBeInTheDocument();
+	});
+
 	test('it has a label with the correct text', () => {
 		render(<RadioField label={LABEL} options={OPTIONS} />);
 		const legend = screen.getByText(LABEL, {selector: 'legend'});

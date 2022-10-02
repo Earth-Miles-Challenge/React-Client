@@ -21,9 +21,9 @@ describe('Join Challenge Form', () => {
 
 	test('has a radio input for user to select their activity type', () => {
 		renderWithProviders(<JoinChallengeForm />, store);
-		const inputNode = screen.getByLabelText('Will you be running or riding for this challenge?', {selector: 'input'});
-		expect(inputNode).toBeInTheDocument();
-		expect(inputNode.type).toBe('radio');
+		const radiogroup = screen.getByRole('radiogroup');
+		expect(radiogroup).toBeInTheDocument();
+
 	});
 
 	test('has a number input for user to set their distance goal', () => {

@@ -19,8 +19,8 @@ export const TextareaField = (props) => {
 				id={htmlId}
 				name={htmlName}
 				onChange={handleChange}
-			>{ value }
-			</textarea>
+				value={value}
+			/>
 		</div>
 	)
 }

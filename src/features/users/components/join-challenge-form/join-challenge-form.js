@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SelectField, RadioField, NumberField } from 'components';
+import { SelectField, RadioField, NumberField, TextareaField } from 'components';
 
 import 'components/form-fields/forms.css';
 
@@ -8,11 +8,11 @@ const CHALLENGES = [
 ];
 
 export const JoinChallengeForm = props => {
-
 	const [ challenge, setChallenge ] = useState('');
 	const [ activityType, setActivityType ] = useState('run');
 	const [ distanceGoal, setDistanceGoal ] = useState();
 	const [ distanceFieldLabel, setDistanceFieldLabel ] = useState('How many kilometres are you aiming to run for this challenge?');
+	const [ motivation, setMotivation ] = useState('');
 
 	useEffect(() => {
 		setDistanceFieldLabel(() => {
@@ -47,6 +47,12 @@ export const JoinChallengeForm = props => {
 				step={1}
 				value={distanceGoal}
 				onChange={setDistanceGoal}
+			/>
+			<TextareaField
+				label="Share a little about why you are participating in this challenge"
+				id="motivation"
+				value={motivation}
+				onChange={setMotivation}
 			/>
 		</>
 	);

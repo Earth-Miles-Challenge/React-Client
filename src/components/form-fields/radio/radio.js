@@ -19,7 +19,7 @@ export const RadioField = props => {
 	const classes = 'radio-list ' + className;
 
 	return (
-		<fieldset className={classes}>
+		<fieldset className={classes} role="radiogroup">
 			<legend>{label}</legend>
 			<ul>
 				{options.map(option => {
