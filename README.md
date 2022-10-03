@@ -4,18 +4,19 @@ The platform frontend is created using React, with Redux used for state manageme
 
 ## Current Project
 
-The current frontend project is to create version 0.1 of the client app. The purpose of this initial version is to create a working model of the frontend application without worrying about any backend components. When this project is complete, a user would be able to experience the key aspects of the system:
+The current frontend project is to build the initial version of the Commutes feature. When this project is complete, people can use the platform to link their Strava account and track the CO2 emissions savings they are generating by swapping their fossil fuel-powered commute for a human-powered commute.
 
-- Profile creation for athletes (including Strava connection)
-- Creating pledges to athletes
-- Viewing the status of pledges
-- Browsing and searching for athletes
+The purpose of this initial version is to build a working model of the front-end application while keeping the back-end as slim as possible. When finished, you will be able to use the platform like this:
 
-Instead of wiring up a backend, we will use `localStorage` for persistent user data (including any pledges made by the user) and a hard-coded array of sample athletes. 
+1. Connect your Strava account. 
+2. See a list of your past Commute activities and calculate the CO2 emissions savings for each of those activities.
+3. Return to the site after adding a new Commute activity in Strava and get your CO2 emissions by clicking a button. 
+
+Instead of wiring up a backend, we will use `localStorage` for persistent user data. We will also not use Strava webhooks yet but will save that for the second iteration.
 
 You can find the project status here: 
 
-https://github.com/orgs/Earth-Miles-Challenge/projects/2
+https://github.com/orgs/Earth-Miles-Challenge/projects/4
 
 ## Folder Structure
 
