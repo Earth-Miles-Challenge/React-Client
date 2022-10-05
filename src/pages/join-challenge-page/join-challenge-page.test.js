@@ -4,16 +4,17 @@ import { renderWithProviders } from 'utils/test-utils';
 import { setupStore } from 'store';
 import { goToStep } from 'features/users';
 
+const store = setupStore();
+
 describe('Join Challenge Page', () => {
 	test('shows the Connect Strava step initially', () => {
-		renderWithProviders(<JoinChallengePage />);
+		renderWithProviders(<JoinChallengePage />, store);
 
 		const activeStep = screen.getByRole('listitem', {current: true});
 		expect(activeStep.textContent).toBe('Connect Strava');
 	});
 
 	test('shows the Join Challenge step', () => {
-		const store = setupStore();
 		store.dispatch(goToStep('Join Challenge'));
 		renderWithProviders(<JoinChallengePage />, store);
 
@@ -22,7 +23,6 @@ describe('Join Challenge Page', () => {
 	});
 
 	test('shows the Complete Profile step', () => {
-		const store = setupStore();
 		store.dispatch(goToStep('Complete Profile'));
 		renderWithProviders(<JoinChallengePage />, store);
 
