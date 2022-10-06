@@ -1,17 +1,27 @@
+import { useEffect } from 'react';
 import { ReactComponent as StravaConnectSvg } from './strava-connect.svg'
+import { requestToken, getStravaAuthorizeUri } from 'utils/strava-utils';
 
-const STRAVA_CLIENT_ID = 93532;
+export const StravaConnectButton = props => {
+	const { onConnected } = props;
 
-export const StravaConnectButton = () => {
-	// https://www.strava.com/oauth/authorize?client_id=93532&response_type=code&redirect_uri=https://www.strafforts.com/auth/exchange-token&approval_prompt=auto&scope=read,profile:read_all,activity:read,activity:read_all
-	const redirectUri = 'https://localhost:3000/auth/strava';
-	const approvalPrompt = 'auto';
-	const scope = 'profile:read_all,activity:read_all';
-	const authorizeUri = `https://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${redirectUri}&approval_prompt=${approvalPrompt}&scope=${scope}`;
+	useEffect(() => {
+		return async () => {
+			const url = new URL(window.location);
+
+			// Missing code and scope.
+			if (url.searchParams.has('code') && url.searchParams.has('scope')) {
+				const connected = await requestToken(url);
+				if (connected) {
+					onConnected(connected);
+				}
+			}
+		}
+	}, [onConnected]);
 
 	return (
 		<div className="strava-connect">
-			<a href={authorizeUri} target="_blank" rel="noreferrer" role="button">
+			<a href={getStravaAuthorizeUri()} target="_blank" rel="noreferrer" role="button">
 				<StravaConnectSvg />
 			</a>
 		</div>

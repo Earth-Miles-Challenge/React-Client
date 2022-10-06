@@ -12,14 +12,13 @@ import i18n from './i18n';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <Router>
-        <Provider store={setupStore()}>
-          <I18nextProvider i18n={i18n}>
-            <App/>
-          </I18nextProvider>
-        </Provider>
-      </Router>
-
+    <Router>
+      <Provider store={setupStore()}>
+        <I18nextProvider i18n={i18n}>
+          <App/>
+        </I18nextProvider>
+      </Provider>
+    </Router>
   </React.StrictMode>
 );
 

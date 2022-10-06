@@ -1,9 +1,11 @@
-import { useSelector } from 'react-redux';
+// import { Suspense, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { StravaConnectButton, ProfileForm, selectSignUpFormActiveStep } from 'features/users';
+import { StravaConnectButton, ProfileForm, selectSignUpFormActiveStep, goToSignUpFormStep } from 'features/users';
 import { FormProgressBar } from 'components';
 
 export const SignUpPage = () => {
+	const dispatch = useDispatch();
 	const { t } = useTranslation('main');
 	const activeStep = useSelector(selectSignUpFormActiveStep);
 
@@ -12,6 +14,10 @@ export const SignUpPage = () => {
 		t('signup.progress-bar-2'),
 		t('signup.progress-bar-3')
 	];
+
+	const handleStravaConnected = (athlete) => {
+		dispatch(goToSignUpFormStep(t('signup.progress-bar-2')))
+	}
 
 	// State
 	// 1. If user has not connected Strava yet, that is step 1
@@ -25,7 +31,9 @@ export const SignUpPage = () => {
 			{
 				activeStep === t('signup.progress-bar-1') &&
 				<div className="strava-connect-wrapper">
-					<StravaConnectButton />
+					<StravaConnectButton
+						onConnected={handleStravaConnected}
+					/>
 				</div>
 			}
 			{
