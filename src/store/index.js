@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-import { challengeFormReducer, currentUserReducer } from 'features/users'
+import { challengeFormReducer, currentUserReducer, signUpFormReducer } from 'features/users'
 
 const rootReducer = combineReducers({
 	challengeForm: challengeFormReducer,
-	currentUser: currentUserReducer
+	currentUser: currentUserReducer,
+	signUpForm: signUpFormReducer
 })
 
 export const setupStore = preloadedState => {

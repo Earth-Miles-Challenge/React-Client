@@ -1,8 +1,14 @@
 export {
 	default as challengeFormReducer,
-	selectActiveStep,
-	goToStep
+	selectChallengeFormActiveStep,
+	goToChallengeFormStep
 } from './challenge-form';
+
+export {
+	default as signUpFormReducer,
+	selectSignUpFormActiveStep,
+	goToSignUpFormStep
+} from './sign-up-form';
 
 export {
 	default as currentUserReducer,

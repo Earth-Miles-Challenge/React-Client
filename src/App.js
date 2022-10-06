@@ -1,6 +1,6 @@
 //import { Provider } from 'react';
-import { Routes, Route, NavLink, Link } from 'react-router-dom';
-import { JoinChallengePage, AthletesPage } from './pages';
+import { Routes, Route, Link } from 'react-router-dom';
+import { JoinChallengePage, AthletesPage, SignUpPage } from './pages';
 
 import './App.css';
 
@@ -16,15 +16,17 @@ function App() {
         </div>
         <nav>
           <ul>
-            <li><NavLink to="athletes" className={({isActive}) => isActive ? 'active' : ''}>Athletes</NavLink></li>
-            <li><NavLink to="join" className={({isActive}) => isActive ? 'active' : ''}>Sign Up</NavLink></li>
+            {/* <li><NavLink to="athletes" className={({isActive}) => isActive ? 'active' : ''}>Athletes</NavLink></li> */}
+            {/* <li><NavLink to="start" className={({isActive}) => isActive ? 'active' : ''}>Sign Up</NavLink></li> */}
           </ul>
         </nav>
       </header>
       <main className="main">
         <Routes>
-          <Route path="join" element={<JoinChallengePage />} />
+          <Route path="/" element={<SignUpPage />} />
+          {/* <Route path="start" element={<SignUpPage />} /> */}
           <Route path="athletes" element={<AthletesPage />} />
+          <Route path="join-challenge" element={<JoinChallengePage />} />
         </Routes>
       </main>
     </div>

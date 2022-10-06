@@ -14,6 +14,6 @@ const challengeFormSlice = createSlice({
 	},
 })
 
-export const selectActiveStep = state => state.challengeForm.activeStep
-export const { goToStep } = challengeFormSlice.actions;
+export const selectChallengeFormActiveStep = state => state.challengeForm.activeStep
+export const { goToChallengeFormStep } = challengeFormSlice.actions;
 export default challengeFormSlice.reducer;

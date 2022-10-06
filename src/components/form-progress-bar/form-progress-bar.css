@@ -6,12 +6,13 @@
 	margin: 0 0 1rem;
 	text-transform: uppercase;
 	font-weight: bolder;
+	font-size: 0.8rem;
 	border-radius: 1.11rem;
 }
 
 .form-progress-bar li {
 	flex: 1 1 33%;
-	padding: 1rem 0;
+	padding: 0.5rem 0;
 }
 
 .form-progress-bar-item {
