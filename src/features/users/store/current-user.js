@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	profile: {
-		name: '',
+		first_name: '',
+		last_name: '',
 		email: '',
 		picture: '',
 		strava_id: '',

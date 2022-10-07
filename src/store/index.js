@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-
 import { challengeFormReducer, currentUserReducer, signUpFormReducer } from 'features/users'
 
 const rootReducer = combineReducers({
