@@ -8,27 +8,27 @@ import { Provider } from 'react-redux';
 import { setupStore } from 'store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
-// import { getProfile } from 'features/users';
+import { getProfile } from 'features/users';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// const profile = getProfile();
-// const preloadedState = profile.length
-// 	? {
-// 		currentUser: {
-// 			profile: {
-// 				first_name: profile.first_name || '',
-// 				last_name: profile.last_name || '',
-// 				email: profile.email || '',
-// 				picture: profile.picture || '',
-// 				strava_id: profile.strava_id || '',
-// 			}
-// 		}
-// 	}
-// 	: {};
+const profile = getProfile();
+const preloadedState = profile.length
+	? {
+		currentUser: {
+			profile: {
+				first_name: profile.first_name || '',
+				last_name: profile.last_name || '',
+				email: profile.email || '',
+				picture: profile.picture || '',
+				strava_id: profile.strava_id || '',
+			}
+		}
+	}
+	: {};
 
-// const store = setupStore(preloadedState);
-const store = setupStore();
+const store = setupStore(preloadedState);
+// const store = setupStore();
 
 root.render(
 	<React.StrictMode>
