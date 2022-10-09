@@ -6,7 +6,7 @@ import { FormProgressBar } from 'components';
 
 export const SignUpPage = () => {
 	const dispatch = useDispatch();
-	const { t } = useTranslation('main');
+	const { t } = useTranslation();
 	const activeStep = useSelector(selectSignUpFormActiveStep);
 
 	const STEPS = [
