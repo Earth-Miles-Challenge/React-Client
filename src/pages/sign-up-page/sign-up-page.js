@@ -1,13 +1,13 @@
-// import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { StravaConnectButton, ProfileForm, selectSignUpFormActiveStep, goToSignUpFormStep } from 'features/users';
+import { StravaConnectButton, ProfileForm, selectProfile, updateProfile } from 'features/users';
 import { FormProgressBar } from 'components';
 
 export const SignUpPage = () => {
 	const dispatch = useDispatch();
 	const { t } = useTranslation();
-	const activeStep = useSelector(selectSignUpFormActiveStep);
+	const profile = useSelector(selectProfile);
 
 	const STEPS = [
 		t('signup.progress-bar-1'),
@@ -15,14 +15,11 @@ export const SignUpPage = () => {
 		t('signup.progress-bar-3')
 	];
 
-	const handleStravaConnected = (athlete) => {
-		dispatch(goToSignUpFormStep(t('signup.progress-bar-2')))
-	}
+	const [ activeStep, setActiveStep ] = useState(profile.strava_id !== '' ? STEPS[1] : STEPS[0]);
 
-	// State
-	// 1. If user has not connected Strava yet, that is step 1
-	// 2. If user has connected Strava but has not yet created a challenge, display link to create a challenge
-	// 3. If a user has already created a challenge, show details
+	const onProfileChange = (field, value) => {
+		dispatch(updateProfile({field, value}))
+	}
 
 	return (
 		<div className="form-container">
@@ -31,15 +28,17 @@ export const SignUpPage = () => {
 			{
 				activeStep === t('signup.progress-bar-1') &&
 				<div className="strava-connect-wrapper">
-					<StravaConnectButton
-						onConnected={handleStravaConnected}
-					/>
+					<StravaConnectButton />
 				</div>
 			}
 			{
 				activeStep === t('signup.progress-bar-2') &&
 				<div className="profile-form-wrapper">
-					<ProfileForm />
+					<ProfileForm
+						profile={profile}
+						onChange={onProfileChange}
+						onContinue={() => setActiveStep(STEPS[2])}
+					/>
 				</div>
 			}
 			{

@@ -1,11 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { challengeFormReducer, currentUserReducer, signUpFormReducer, getProfile } from 'features/users'
-import { getI18n } from 'react-i18next';
+import { currentUserReducer, getProfile } from 'features/users'
 
 const rootReducer = combineReducers({
-	challengeForm: challengeFormReducer,
-	currentUser: currentUserReducer,
-	signUpForm: signUpFormReducer
+	currentUser: currentUserReducer
 })
 
 export const setupStore = preloadedState => {
@@ -37,18 +34,8 @@ const hydrateProfile = async (preloadedState) => {
 	};
 }
 
-const hydrateSignUpForm = (preloadedState) => {
-	const t = getI18n.t;
-	return {
-		...preloadedState,
-		signUpForm: {
-			activeStep: preloadedState.currentUser.profile.strava_id !== '' ? t('signup.progress-bar-1') : t('signup.progress-bar-2')
-		}
-	}
-}
-
 export const setupStoreWithAsyncState = async () => {
 	const profileState = await hydrateProfile({});
-	const preloadedState = hydrateSignUpForm(profileState);
+	const preloadedState = profileState;
 	return setupStore(preloadedState);
 }

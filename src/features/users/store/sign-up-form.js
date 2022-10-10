@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getI18n } from 'react-i18next';
+import i18next from 'i18next';
 
 const initialState = {
-	activeStep: getI18n().t('signup.progress-bar-1')
+	activeStep: i18next.t('signup.progress-bar-1')
 }
 
 const signUpFormSlice = createSlice({

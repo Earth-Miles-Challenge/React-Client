@@ -12,7 +12,7 @@ describe('Profile Form', () => {
 
 	test('has a email input for user to enter their email address', () => {
 		render(<ProfileForm />);
-		const emailField = screen.getByRole('textbox', {name: 'Your email'});
+		const emailField = screen.getByRole('textbox', {name: 'Your email address'});
 		expect(emailField).toBeInTheDocument();
 		expect(emailField.type).toBe('email');
 	});
