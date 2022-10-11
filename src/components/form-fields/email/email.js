@@ -15,9 +15,10 @@ export const EmailField = props => {
 		onChange(e.target.value);
 	}
 	const htmlName = name || htmlId;
+	const classes = 'form-field form-field-email ' + className;
 
 	return (
-		<div className={className}>
+		<div className={classes}>
 			<label htmlFor={htmlId} key="label">{label}</label>
 			<input type="email"
 				id={htmlId}

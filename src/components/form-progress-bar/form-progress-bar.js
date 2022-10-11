@@ -1,6 +1,6 @@
 import { FormProgressBarItem } from "./form-progress-bar-item";
 
-import './form-progress-bar.css';
+import './form-progress-bar.scss';
 
 export const FormProgressBar = (props) => {
 	const {steps, activeStep} = props;

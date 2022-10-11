@@ -2,7 +2,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import { JoinChallengePage, AthletesPage, SignUpPage } from './pages';
 
-import './App.css';
+import './assets/style/style.scss';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <div className="brand">
           <Link to="/">
             <img src='/logo54.png' className="logo" alt="logo" />
-            <h1>Earth Miles Challenge</h1>
+            <div className="site-title">Earth Miles Challenge</div>
           </Link>
         </div>
         <nav>

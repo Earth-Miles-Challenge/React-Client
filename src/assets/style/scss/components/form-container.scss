@@ -1,0 +1,14 @@
+/*------------------------------------*\
+    #FORM CONTAINER
+\*------------------------------------*/
+.form-container {
+	width: 96%;
+	max-width: 60rem;
+	margin: 0 auto;
+	padding: 1rem;
+	border: 1px solid var(--borderGray);
+	border-radius: 0.4rem;
+	h1 {
+		text-align: center;
+	}
+}

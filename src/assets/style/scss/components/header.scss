@@ -1,0 +1,55 @@
+/*------------------------------------*\
+    #HEADER
+\*------------------------------------*/
+.header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 0;
+	max-width: 60rem;
+	margin: 0 auto;
+	nav {
+		ul {
+			list-style: none;
+			display: flex;
+			gap: 2rem;
+			font-size: 1.2rem;
+		}
+		a {
+			text-decoration: none;
+			text-transform: uppercase;
+			font-weight: bolder;
+			letter-spacing: 1px;
+			&::after {
+				content: "";
+				display: block;
+				height: 2px;
+				width: 100%;
+			}
+			&.active::after,
+			&:hover::after {
+				background-color: var(--pink);
+			}
+		}
+	}
+}
+
+.logo {
+	margin-right: 1rem;
+	pointer-events: none;
+}
+
+.brand {
+	.site-title {
+		font-size: 2rem;
+		font-weight: bold;
+		margin: 0;
+	}
+	a {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		color: #333;
+	}
+}

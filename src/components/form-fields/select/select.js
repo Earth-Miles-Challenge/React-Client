@@ -11,11 +11,11 @@ export const SelectField = props => {
 	} = props;
 
 	const htmlId = id || label.toLowerCase().replace(' ', '-');
-
 	const handleChange = e => onChange(e.target.value);
+	const classes = 'form-field form-field-select ' + className;
 
 	return (
-		<div className={className}>
+		<div className={classes}>
 			<label htmlFor={htmlId} key="label">{label}</label>
 			<select id={htmlId} key="select" value={value} onChange={handleChange}>
 				{options.map(option => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SelectField, RadioField, NumberField, TextareaField } from 'components';
 
-import 'components/form-fields/forms.css';
+import 'assets/style/form.scss';
 
 const CHALLENGES = [
 	[ 'christmas-2022', 'Christmas 2022 - ending December 25, 2022' ]

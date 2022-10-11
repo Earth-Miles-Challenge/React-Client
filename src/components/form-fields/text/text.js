@@ -15,9 +15,10 @@ export const TextField = props => {
 		onChange(e.target.value);
 	}
 	const htmlName = name || htmlId;
+	const classes = 'form-field form-field-text ' + className;
 
 	return (
-		<div className={className}>
+		<div className={classes}>
 			<label htmlFor={htmlId} key="label">{label}</label>
 			<input type="text"
 				id={htmlId}

@@ -18,9 +18,10 @@ export const NumberField = props => {
 		onChange(e.target.value);
 	}
 	const htmlName = name || htmlId;
+	const classes = 'form-field form-field-number ' + className;
 
 	return (
-		<div className={className}>
+		<div className={classes}>
 			<label htmlFor={htmlId} key="label">{label}</label>
 			<input type="number"
 				id={htmlId}

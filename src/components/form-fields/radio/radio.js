@@ -16,7 +16,7 @@ export const RadioField = props => {
 	const htmlId = id || getIdFromLabel(label)
 	const handleChange = e => e.target.checked && onChange(e.target.value);
 	const htmlName = name || htmlId;
-	const classes = 'radio-list ' + className;
+	const classes = 'fieldset form-field radio-list ' + className;
 
 	return (
 		<fieldset className={classes} role="radiogroup">
