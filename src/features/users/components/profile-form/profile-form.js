@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { TextField, EmailField, Fieldset } from 'components';
 
 export const ProfileForm = props => {
-	const { profile, onChange, onContinue } = props;
+	const { profile = {}, onChange, onContinue } = props;
 	const { t } = useTranslation();
 
 	const handleProfileChange = (field, value) => onChange(field, value)
@@ -35,3 +35,5 @@ export const ProfileForm = props => {
 		</>
 	)
 }
+
+// export default withTranslation('translation')(ProfileForm);
