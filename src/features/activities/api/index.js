@@ -1,0 +1,1 @@
+export { getAthleteActivities } from './get-athlete-activities';

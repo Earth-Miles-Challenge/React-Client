@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StravaConnectButton, ProfileForm, selectProfile, updateProfile } from 'features/users';
+import { EmissionsByActivitySummary, withActivities } from 'features/activities';
 import { FormProgressBar } from 'components';
+
+const ActivitySummary = withActivities(EmissionsByActivitySummary);
 
 export const SignUpPage = () => {
 	const dispatch = useDispatch();
@@ -44,6 +47,7 @@ export const SignUpPage = () => {
 			{
 				activeStep === t('signup.progress-bar-3') &&
 				<div className="emissions-savings-wrapper">
+					{ActivitySummary}
 				</div>
 			}
 		</div>

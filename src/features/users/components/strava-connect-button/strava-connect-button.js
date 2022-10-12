@@ -21,7 +21,7 @@ export const StravaConnectButton = props => {
 
 	return (
 		<div className="strava-connect">
-			<a href={getStravaAuthorizeUri(window.location)} target="_blank" rel="noreferrer" role="button">
+			<a href={getStravaAuthorizeUri(window.location)} rel="noreferrer" role="button">
 				<StravaConnectSvg />
 			</a>
 		</div>

@@ -5,5 +5,7 @@ export const EmissionsByActivitySummary = props => {
 		activities
 	} = props;
 
-	return null;
+	return (
+		activities.map((activity) => <EmissionsByActivitySummaryItem activity={activity} />)
+	);
 }
