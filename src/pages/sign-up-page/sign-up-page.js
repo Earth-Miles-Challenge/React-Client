@@ -20,11 +20,12 @@ export const SignUpPage = () => {
 
 	const [ activeStep, setActiveStep ] = useState(profile.strava_id !== '' ? STEPS[1] : STEPS[0]);
 
+
 	const onProfileChange = (field, value) => {
 		dispatch(updateProfile({field, value}))
 	}
 
-	
+
 
 	return (
 		<div className="form-container">

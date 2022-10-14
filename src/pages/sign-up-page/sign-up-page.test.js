@@ -1,45 +1,68 @@
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { SignUpPage } from './sign-up-page';
 import { renderWithProviders } from 'utils/test-utils';
 import { setupStore } from 'store';
-import { updateProfile } from 'features/users';
+import { useSelector } from 'react-redux';
+import { updateProfile, selectProfile } from 'features/users';
 
-const store = setupStore();
+// const store = setupStore();
+
+jest.mock('react-i18next', () => ({
+	// this mock makes sure any components using the translate hook can use it without a warning being shown
+	useTranslation: () => {
+	  return {
+		t: (str) => str,
+		i18n: {
+		  changeLanguage: () => new Promise(() => {}),
+		},
+	  };
+	},
+  }));
 
 describe('Sign Up Page', () => {
 	test('shows the Connect Strava step initially', () => {
-		renderWithProviders(<SignUpPage />, store);
+		renderWithProviders(<SignUpPage />);
 
 		const list = screen.getByRole('list');
 		expect(list).toBeInTheDocument();
 
-		const items = screen.getAllByRole('listitem');
-		expect(items.length).toBe(3);
-		// expect(items.count).toBe(3);
-		// const activeStep = screen.getByText('list', {current: true});
-		// expect(activeStep.textContent).toBe('signup.progress-bar-1');
+		const activeStep = screen.getByRole('listitem', {current: true});
+		expect(activeStep.textContent).toBe('signup.progress-bar-1');
 	});
 
-	xtest('shows the Complete Profile step', () => {
-		store.dispatch(updateProfile({
-			field: 'strava_id',
-			value: 'abc123def456'
-		}));
-		renderWithProviders(<SignUpPage />, store);
+	test('shows the Complete Profile step', () => {
+		renderWithProviders(<SignUpPage />, {
+			preloadedState: {
+				currentUser: {
+					profile: {
+						strava_id: 'abc123def456'
+					}
+				}
+			}
+		});
 
 		const activeStep = screen.getByRole('listitem', {current: true});
 		expect(activeStep.textContent).toBe('signup.progress-bar-2');
 	});
 
-	xtest('shows the Emissions Savings step', () => {
-		store.dispatch(updateProfile({
-			field: 'strava_id',
-			value: 'abc123def456'
-		}));
-		renderWithProviders(<SignUpPage />, store);
+	test('shows the Emissions Savings step', async () => {
+		const user = userEvent.setup();
+
+		renderWithProviders(<SignUpPage />, {
+			preloadedState: {
+				currentUser: {
+					profile: {
+						strava_id: 'abc123def456'
+					}
+				}
+			}
+		});
 
 		const continueButton = screen.getByRole('button');
-		continueButton.click();
+		expect(continueButton).toBeInTheDocument();
+
+		await user.click(continueButton);
 
 		const activeStep = screen.getByRole('listitem', {current: true});
 		expect(activeStep.textContent).toBe('signup.progress-bar-3');
