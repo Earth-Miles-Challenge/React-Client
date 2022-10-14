@@ -24,6 +24,8 @@ export const SignUpPage = () => {
 		dispatch(updateProfile({field, value}))
 	}
 
+	
+
 	return (
 		<div className="form-container">
 			<h1>{t('signup.top-header')}</h1>
