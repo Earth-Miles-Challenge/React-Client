@@ -1,64 +1,32 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { StravaConnectButton, ProfileForm, selectProfile, updateProfile } from 'features/users';
-import { EmissionsByActivitySummary, getAthleteActivities } from 'features/activities';
+import { StravaConnectStep, ProfileStep, EmissionsStep } from './steps';
+import { selectProfile } from 'features/users';
 import { FormProgressBar } from 'components';
 
 export const SignUpPage = () => {
-	const dispatch = useDispatch();
 	const { t } = useTranslation();
-	const profile = useSelector(selectProfile);
-
 	const STEPS = [
 		t('signup.progress-bar-1'),
 		t('signup.progress-bar-2'),
 		t('signup.progress-bar-3')
 	];
-
-	const [ activeStep, setActiveStep ] = useState(profile.strava_id !== '' ? STEPS[1] : STEPS[0]);
-	const [ activities, setActivities ] = useState([]);
+	const profile = useSelector(selectProfile);
+	const [ activeStep, setActiveStep ] = useState(0);
 
 	useEffect(() => {
-		if (activeStep === t('signup.progress-bar-3')) {
-			(async () => {
-				const activities = await getAthleteActivities();
-				setActivities(activities);
-			})();
-		}
-	}, [activeStep, t]);
-
-	const onProfileChange = (field, value) => {
-		dispatch(updateProfile({field, value}))
-	}
+		return profile.strava_id !== '' && setActiveStep(1);
+	}, [profile]);
 
 	return (
 		<div className="form-container">
 			<h1>{t('signup.top-header')}</h1>
-			<FormProgressBar steps={STEPS} activeStep={activeStep} />
+			<FormProgressBar steps={STEPS} activeStep={STEPS[activeStep]} />
 			{
-				activeStep === t('signup.progress-bar-1') &&
-				<div className="strava-connect-wrapper">
-					<StravaConnectButton />
-				</div>
-			}
-			{
-				activeStep === t('signup.progress-bar-2') &&
-				<div className="profile-form-wrapper">
-					<ProfileForm
-						profile={profile}
-						onChange={onProfileChange}
-						onContinue={() => setActiveStep(STEPS[2])}
-					/>
-				</div>
-			}
-			{
-				activeStep === t('signup.progress-bar-3') &&
-				<div className="emissions-savings-wrapper">
-					<EmissionsByActivitySummary
-						activities={activities}
-					/>
-				</div>
+				( activeStep === 0 && <StravaConnectStep /> )
+				|| ( activeStep === 1 && <ProfileStep profile={profile} onCompleteStep={() => setActiveStep(2)} /> )
+				|| ( activeStep === 2 && <EmissionsStep /> )
 			}
 		</div>
 	)
