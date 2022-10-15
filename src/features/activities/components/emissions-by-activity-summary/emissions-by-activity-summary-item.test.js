@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-
+import { setupWorker, rest } from 'msw'
 import { EmissionsByActivitySummaryItem } from './emissions-by-activity-summary-item';
 
 const ACTIVITY = {

@@ -44,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "msw": "^0.47.4",
     "react-test-renderer": "^18.2.0",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
