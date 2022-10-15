@@ -47,8 +47,6 @@ describe('Sign Up Page', () => {
 	});
 
 	test('shows the Emissions Savings step', async () => {
-		const user = userEvent.setup();
-
 		renderWithProviders(<SignUpPage />, {
 			preloadedState: {
 				currentUser: {
@@ -62,7 +60,7 @@ describe('Sign Up Page', () => {
 		const continueButton = screen.getByRole('button');
 		expect(continueButton).toBeInTheDocument();
 
-		await user.click(continueButton);
+		await userEvent.click(continueButton);
 
 		const activeStep = screen.getByRole('listitem', {current: true});
 		expect(activeStep.textContent).toBe('signup.progress-bar-3');

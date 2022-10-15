@@ -1,11 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StravaConnectButton, ProfileForm, selectProfile, updateProfile } from 'features/users';
-import { EmissionsByActivitySummary, withActivities } from 'features/activities';
+import { EmissionsByActivitySummary, getAthleteActivities } from 'features/activities';
 import { FormProgressBar } from 'components';
-
-const ActivitySummary = withActivities(EmissionsByActivitySummary);
 
 export const SignUpPage = () => {
 	const dispatch = useDispatch();
@@ -19,13 +17,20 @@ export const SignUpPage = () => {
 	];
 
 	const [ activeStep, setActiveStep ] = useState(profile.strava_id !== '' ? STEPS[1] : STEPS[0]);
+	const [ activities, setActivities ] = useState([]);
 
+	useEffect(() => {
+		if (activeStep === t('signup.progress-bar-3')) {
+			(async () => {
+				const activities = await getAthleteActivities();
+				setActivities(activities);
+			})();
+		}
+	}, [activeStep, t]);
 
 	const onProfileChange = (field, value) => {
 		dispatch(updateProfile({field, value}))
 	}
-
-
 
 	return (
 		<div className="form-container">
@@ -50,7 +55,9 @@ export const SignUpPage = () => {
 			{
 				activeStep === t('signup.progress-bar-3') &&
 				<div className="emissions-savings-wrapper">
-					{ActivitySummary}
+					<EmissionsByActivitySummary
+						activities={activities}
+					/>
 				</div>
 			}
 		</div>
