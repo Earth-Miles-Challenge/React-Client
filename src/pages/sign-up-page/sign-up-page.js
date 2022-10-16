@@ -16,7 +16,7 @@ export const SignUpPage = () => {
 	const [ activeStep, setActiveStep ] = useState(0);
 
 	useEffect(() => {
-		return profile.strava_id !== '' && setActiveStep(1);
+		if (profile.strava_id !== '') setActiveStep(1);
 	}, [profile]);
 
 	return (
