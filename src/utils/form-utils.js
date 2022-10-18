@@ -6,4 +6,4 @@ export const getOptionDetails = option => {
 	}
 }
 
-export const getIdFromLabel = label => label.toLowerCase().replace(' ', '-');
+export const getIdFromLabel = label => label.toLowerCase().replace(/ /g, '-');

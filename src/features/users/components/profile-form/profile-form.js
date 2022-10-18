@@ -18,17 +18,20 @@ export const ProfileForm = props => {
 				<TextField
 					label={t('signup.profile-first-name-field-label')}
 					onChange={value => handleProfileChange('first_name', value)}
+					id="first-name"
 					value={profile.first_name}
 				/>
 				<TextField
 					label={t('signup.profile-last-name-field-label')}
 					onChange={value => handleProfileChange('last_name', value)}
+					id="last-name"
 					value={profile.last_name}
 				/>
 			</Fieldset>
 			<EmailField
 				label={t('signup.profile-email-field-label')}
 				onChange={value => handleProfileChange('email', value)}
+				id="email"
 				value={profile.email}
 			/>
 			<input type="submit" value={t('signup.profile-continue-button')} onClick={handleContinueClick} />

@@ -25,6 +25,11 @@ const render = async () => {
 			</Router>
 		</React.StrictMode>
 	);
+
+	// Make store available to Cypress
+	if (window.Cypress) {
+		window.store = store
+	}
 }
 
 render();
