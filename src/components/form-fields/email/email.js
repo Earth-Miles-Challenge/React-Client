@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form';
 import { getIdFromLabel } from 'utils/form-utils';
 
 export const EmailField = props => {
@@ -7,8 +8,11 @@ export const EmailField = props => {
 		name = '',
 		id = '',
 		className = '',
-		onChange
+		onChange,
+		required = false
 	} = props;
+
+	const { register, formState: { errors } } = useFormContext;
 
 	const htmlId = id || getIdFromLabel(label)
 	const handleChange = e => {
@@ -22,10 +26,13 @@ export const EmailField = props => {
 			<label htmlFor={htmlId} key="label">{label}</label>
 			<input type="email"
 				id={htmlId}
-				name={htmlName}
-				value={value}
-				onChange={handleChange}
+				{...register(htmlName, {
+					required: required,
+					onChange: handleChange,
+					value: value
+				})}
 			/>
+			{errors[htmlId] && <span className="error">This field is required.</span>}
 		</div>
 	)
 }
