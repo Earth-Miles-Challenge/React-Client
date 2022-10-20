@@ -20,9 +20,9 @@ describe('The Sign Up Page - Profile Form', function() {
     });
 
     it('contains first name, last name and email fields', function() {
-        cy.get('input#first-name')
+        cy.get('input#firstName')
           .should('have.value', this.profile_data.first_name);
-        cy.get('input[name=last-name]')
+        cy.get('input[name=lastName]')
           .should('have.value', this.profile_data.last_name);
         cy.get('input[name=email]')
           .should('have.value', this.profile_data.email);
@@ -52,18 +52,33 @@ describe('The Sign Up Page - Profile Form', function() {
     });
 
     it('shows appropriate error message for unfilled fields', () => {
-        cy.get('input[name=first-name]')
+        cy.get('input[name=firstName]')
           .clear();
-        cy.get('input[name=last-name]')
+        cy.get('input[name=lastName]')
           .clear();
         cy.get('input[name=email]')
           .clear();
+
         cy.get('input[type=submit]')
           .click();
 
         cy.get('.profile-form-wrapper')
-          .contains('First name field should not be empty')
-          .contains('Last name field should not be empty')
-          .contains('Email address field should not be empty');
+          .contains('Please provide your first name.')
+        cy.get('.profile-form-wrapper')
+          .contains('Please provide your last name.')
+        cy.get('.profile-form-wrapper')
+          .contains('Please provide your email address.');
+    });
+
+    it('shows appropriate error message for invalid email address', () => {
+        cy.get('input[name=email]')
+          .clear()
+          .type('notavalidemail');
+
+        cy.get('input[type=submit]')
+          .click();
+
+        cy.get('.profile-form-wrapper')
+          .contains('Please provide a valid email address.');
     });
 });

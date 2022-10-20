@@ -1,6 +1,6 @@
 export const Fieldset = props => {
 	const {
-		label,
+		legend,
 		className = ''
 	} = props;
 
@@ -8,7 +8,7 @@ export const Fieldset = props => {
 
 	return (
 		<fieldset className={classes}>
-			<legend>{label}</legend>
+			<legend>{legend}</legend>
 			{props.children}
 		</fieldset>
 	)

@@ -1,45 +1,70 @@
 import { useTranslation } from 'react-i18next';
-import { useForm, FormProvider } from 'react-hook-form';
-import { TextField, EmailField, Fieldset } from 'components';
+import { useForm } from 'react-hook-form';
+import { FormField, Fieldset } from 'components';
 
 export const ProfileForm = props => {
-	const formMethods = useForm();
-	const { handleSubmit } = formMethods;
-
-	const onSubmit = data => onContinue();
 	const { profile = {}, onChange, onContinue } = props;
 	const { t } = useTranslation();
+	const { register, handleSubmit, formState: { errors } } = useForm();
 
-	const handleProfileChange = (field, value) => onChange(field, value)
+	const onSubmit = data => onContinue();
+	const handleChange = (field, event) => onChange(field, event.target.value);
+
+	const displayErrors = (errors, field) => {
+		const MESSAGES = {
+			'firstName': t("signup.profile.notices.firstNameRequired"),
+			'lastName': t("signup.profile.notices.lastNameRequired"),
+			'email': {
+				'required': t("signup.profile.notices.emailRequired"),
+				'pattern': t("signup.profile.notices.emailInvalid")
+			}
+		}
+
+		return errors[field] && <p className="error">{MESSAGES[field][errors[field].type] || MESSAGES[field]}</p>;
+	}
 
 	return (
-		<FormProvider {...formMethods}>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<Fieldset label={t('signup.profile-name-field-label')}>
-					<TextField
-						label={t('signup.profile-first-name-field-label')}
-						onChange={value => handleProfileChange('first_name', value)}
-						id="first-name"
-						value={profile.first_name}
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<Fieldset legend={t('signup.profile.fieldLabels.name')}>
+				<FormField label={t('signup.profile.fieldLabels.firstName')} id="firstName">
+					<input type="text"
+						id="firstName"
+						{...register('firstName', {
+							required: true,
+							value: profile.first_name,
+							onChange: event => handleChange('first_name', event)
+						} ) }
+						aria-invalid={errors.firstName ? true : false}
 					/>
-					<TextField
-						label={t('signup.profile-last-name-field-label')}
-						onChange={value => handleProfileChange('last_name', value)}
-						id="last-name"
-						value={profile.last_name}
+					{displayErrors(errors, 'firstName')}
+				</FormField>
+				<FormField label={t('signup.profile.fieldLabels.lastName')} id="lastName">
+					<input type="text"
+						id="lastName"
+						{...register('lastName', {
+							required: true,
+							value: profile.last_name,
+							onChange: event => handleChange('last_name', event)
+						} ) }
+						aria-invalid={errors.lastName ? true : false}
 					/>
-				</Fieldset>
-				<EmailField
-					label={t('signup.profile-email-field-label')}
-					onChange={value => handleProfileChange('email', value)}
+					{displayErrors(errors, 'lastName')}
+				</FormField>
+			</Fieldset>
+			<FormField label={t('signup.profile.fieldLabels.email')} id="email">
+				<input type="email"
 					id="email"
-					value={profile.email}
-					required={t('signup.profile-email-field-required-field')}
+					{...register('email', {
+						required: true,
+						pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+						value: profile.email,
+						onChange: event => handleChange('email', event)
+					} ) }
+					aria-invalid={errors.email ? true : false}
 				/>
-				<input type="submit" value={t('signup.profile-continue-button')} />
-			</form>
-		</FormProvider>
+				{displayErrors(errors, 'email')}
+			</FormField>
+			<input type="submit" value={t('signup.profile.continueButton')} />
+		</form>
 	)
 }
-
-// export default withTranslation('translation')(ProfileForm);

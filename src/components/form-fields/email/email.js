@@ -12,12 +12,13 @@ export const EmailField = props => {
 		required = false
 	} = props;
 
-	const { register, formState: { errors } } = useFormContext;
-
-	const htmlId = id || getIdFromLabel(label)
-	const handleChange = e => {
-		onChange(e.target.value);
+	const { register, formState: { errors } } = useFormContext();
+	const registerOptions = {
+		required,
+		value,
+		onChange: e => onChange(e.target.value),
 	}
+	const htmlId = id || getIdFromLabel(label)
 	const htmlName = name || htmlId;
 	const classes = 'form-field form-field-email ' + className;
 
@@ -26,13 +27,10 @@ export const EmailField = props => {
 			<label htmlFor={htmlId} key="label">{label}</label>
 			<input type="email"
 				id={htmlId}
-				{...register(htmlName, {
-					required: required,
-					onChange: handleChange,
-					value: value
-				})}
+				aria-invalid={errors[htmlId] ? "true" : "false"}
+				{...register(htmlName, registerOptions)}
 			/>
-			{errors[htmlId] && <span className="error">This field is required.</span>}
+			{errors[htmlId] && errors[htmlId]}
 		</div>
 	)
 }

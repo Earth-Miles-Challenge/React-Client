@@ -53,4 +53,17 @@ fieldset {
 
 .form-field {
 	margin: 0 0 2rem;
+	input[aria-invalid=true] {
+		border: 1px solid #ffbebe;
+	}
+	.error {
+		display: inline-block;
+		padding: 0.5rem;
+		margin-top: 0.3rem;
+		border-radius: 0.5rem;
+		font-size: .8rem;
+		color: #ba3939;
+		background: #ffe0e0;
+		border: 1px solid #ffbebe;
+	}
 }
