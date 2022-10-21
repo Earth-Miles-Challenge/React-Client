@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { EmissionsByActivitySummary, getAthleteActivities } from 'features/activities';
+import { useTranslation } from 'react-i18next';
 
 export const Emissions = () => {
-	const [ activities, setActivities ] = useState([]);
+	const { t } = useTranslation();
 
+	const [ activities, setActivities ] = useState([]);
 	useEffect(() => {
 		(async () => {
 			const activities = await getAthleteActivities();
@@ -11,11 +13,20 @@ export const Emissions = () => {
 		})();
 	}, []);
 
+	const [ showNonCommuteActivites, setShowNonCommuteActivities ] = useState(false);
+	const toggle = () => setShowNonCommuteActivities(prev => !! prev);
+
 	return (
 		<div className="emissions-savings-wrapper">
-			<EmissionsByActivitySummary
-				activities={activities}
-			/>
+			<div className="emissions-savings-summary"></div>
+			<div className="emissions-savings-by-activity">
+				<h2>{t('signup.emissions.activityHeader')}</h2>
+				{! showNonCommuteActivites && <button className="toggle" onClick={toggle}>{t('signup.emissions.toggleAll')}</button>}
+				{showNonCommuteActivites && <button className="toggle" onClick={toggle}>{t('signup.emissions.toggleSavers')}</button>}
+				<EmissionsByActivitySummary
+					activities={activities}
+				/>
+			</div>
 		</div>
 	)
 }

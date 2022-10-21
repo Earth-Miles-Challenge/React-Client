@@ -1,5 +1,6 @@
 [
 	{
+		"id": 132,
 		"activity_type": "run",
 		"description": "Evening Run",
 		"start_date" : "2018-02-20T18:02:13Z",
@@ -13,6 +14,7 @@
 		"emissions_avoided": 0
 	},
 	{
+		"id": 139,
 		"activity_type": "ride",
 		"description": "Ride to work",
 		"start_date" : "2022-03-01T18:02:13Z",
@@ -26,6 +28,7 @@
 		"co2_avoided_grams": 425
 	},
 	{
+		"id": 162,
 		"activity_type": "ride",
 		"description": "Ride home via shop",
 		"start_date" : "2022-03-04T18:02:13Z",

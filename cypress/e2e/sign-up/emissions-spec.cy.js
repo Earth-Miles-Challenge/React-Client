@@ -37,7 +37,7 @@ describe('The Sign Up Page - Emissions', () => {
           .contains('h2', 'Savings by activity');
 
         cy.get('.emissions-savings-by-activity')
-          .contains('a.toggle-all', 'Show non-commute activities');
+          .contains('button.toggle-all', 'Show non-commute activities');
 
         cy.get('table.activity-table')
           .contains('thead th:nth-child(1)', 'Activity')
@@ -60,5 +60,12 @@ describe('The Sign Up Page - Emissions', () => {
           .contains('tr:nth-child(2) td:nth-child(2)', '2.48km')
           .contains('tr:nth-child(2) td:nth-child(3)', 'March 1, 2022')
           .contains('tr:nth-child(2) td:nth-child(4)', '0.425kg CO2e');
+    });
+
+    it('shows a toggle for showing non-commute activities', () => {
+        cy.get('.emissions-savings-by-activity')
+          .contains('button.toggle', 'Show non-commute activities')
+          .click('button.toggle-all')
+          .contains('button.toggle', 'Show only commute activites');
     });
 });

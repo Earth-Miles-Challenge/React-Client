@@ -6,6 +6,6 @@ export const EmissionsByActivitySummary = props => {
 	} = props;
 
 	return (
-		activities.map((activity) => <EmissionsByActivitySummaryItem activity={activity} />)
+		activities.map((activity) => <EmissionsByActivitySummaryItem key={activity.id} activity={activity} />)
 	);
 }

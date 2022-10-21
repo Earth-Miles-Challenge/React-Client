@@ -18,6 +18,11 @@ export const en = {
 				"emailRequired": "Please provide your email address.",
 				"emailInvalid": "Please provide a valid email address."
 			}
+		},
+		"emissions": {
+			"activityHeader": "Savings by activity",
+			"toggleAll": "Show non-commute activities",
+			"toggleSavers": "Show only commute activites"
 		}
 	}
 }
