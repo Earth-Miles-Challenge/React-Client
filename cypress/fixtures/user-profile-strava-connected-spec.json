@@ -3,5 +3,6 @@
   "last_name": "Daams",
   "email": "",
   "picture": "",
-  "strava_id": "abc123def456"
+  "strava_id": "abc123def456",
+  "total_emissions_avoided": 2349
 }
