@@ -37,35 +37,32 @@ describe('The Sign Up Page - Emissions', () => {
           .contains('h2', 'Savings by activity');
 
         cy.get('.emissions-savings-by-activity')
-          .contains('button.toggle-all', 'Show non-commute activities');
+          .contains('button.toggle', 'Show non-commute activities');
 
-        cy.get('table.activity-table')
-          .contains('thead th:nth-child(1)', 'Activity')
-          .contains('thead th:nth-child(2)', 'Distance')
-          .contains('thead th:nth-child(3)', 'Date')
-          .contains('thead th:nth-child(4)', 'Emissions Avoided');
+        cy.contains('table.activity-table thead th:nth-child(1)', 'Activity');
+        cy.contains('table.activity-table thead th:nth-child(2)', 'Distance');
+        cy.contains('table.activity-table thead th:nth-child(3)', 'Date');
+        cy.contains('table.activity-table thead th:nth-child(4)', 'Emissions Avoided');
     });
 
     it('shows two activities with expected details', () => {
         // First activity
-        cy.get('table.activity-table tbody')
-          .contains('tr:nth-child(1) td:nth-child(1)', 'Ride home via shop')
-          .contains('tr:nth-child(1) td:nth-child(2)', '3.29km')
-          .contains('tr:nth-child(1) td:nth-child(3)', 'March 4, 2022')
-          .contains('tr:nth-child(1) td:nth-child(4)', '0.563kg CO2e');
+        cy.contains('table.activity-table tbody tr:nth-child(1) td:nth-child(1)', 'Ride home via shop')
+        cy.contains('table.activity-table tbody tr:nth-child(1) td:nth-child(2)', '3.29km')
+        cy.contains('table.activity-table tbody tr:nth-child(1) td:nth-child(3)', 'March 4, 2022')
+        cy.contains('table.activity-table tbody tr:nth-child(1) td:nth-child(4)', '0.563kg CO2e');
 
         // Second activity
-        cy.get('table.activity-table tbody')
-          .contains('tr:nth-child(2) td:nth-child(1)', 'Ride to work')
-          .contains('tr:nth-child(2) td:nth-child(2)', '2.48km')
-          .contains('tr:nth-child(2) td:nth-child(3)', 'March 1, 2022')
-          .contains('tr:nth-child(2) td:nth-child(4)', '0.425kg CO2e');
+        cy.contains('table.activity-table tbody tr:nth-child(2) td:nth-child(1)', 'Ride to work')
+        cy.contains('table.activity-table tbody tr:nth-child(2) td:nth-child(2)', '2.48km')
+        cy.contains('table.activity-table tbody tr:nth-child(2) td:nth-child(3)', 'March 1, 2022')
+        cy.contains('table.activity-table tbody tr:nth-child(2) td:nth-child(4)', '0.425kg CO2e');
     });
 
     it('shows a toggle for showing non-commute activities', () => {
         cy.get('.emissions-savings-by-activity')
           .contains('button.toggle', 'Show non-commute activities')
-          .click('button.toggle-all')
+          .click('button.toggle')
           .contains('button.toggle', 'Show only commute activites');
     });
 });

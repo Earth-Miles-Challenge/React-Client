@@ -20,7 +20,13 @@ export const en = {
 			}
 		},
 		"emissions": {
+			"totalBlurb": "Your human-powered commutes have helped you avoid approximately <1>{{emissionsAvoided}}</1>",
+			"totalAmount": "{{amount}}kg CO2e savings",
 			"activityHeader": "Savings by activity",
+			"activityTableActivityColumn": "Activity",
+			"activityTableDistanceColumn": "Distance",
+			"activityTableDateColumn": "Date",
+			"activityTableSavingsColumn": "Emissions Avoided",
 			"toggleAll": "Show non-commute activities",
 			"toggleSavers": "Show only commute activites"
 		}
