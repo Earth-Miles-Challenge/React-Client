@@ -18,7 +18,7 @@ textarea {
 }
 
 input[type=submit],
-button {
+button:not(.link) {
 	margin-bottom: 1rem;
 	padding: 1rem 1.5rem;
 	border-radius: 2rem;

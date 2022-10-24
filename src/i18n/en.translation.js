@@ -27,8 +27,8 @@ export const en = {
 			"activityTableDistanceColumn": "Distance",
 			"activityTableDateColumn": "Date",
 			"activityTableSavingsColumn": "Emissions Avoided",
-			"toggleAll": "Show non-commute activities",
-			"toggleSavers": "Show only commute activites"
+			"toggleAll": "Include non-commute activities",
+			"toggleSavers": "Only show commute activities"
 		}
 	}
 }

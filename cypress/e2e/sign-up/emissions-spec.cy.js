@@ -37,7 +37,7 @@ describe('The Sign Up Page - Emissions', () => {
           .contains('h2', 'Savings by activity');
 
         cy.get('.emissions-savings-by-activity')
-          .contains('button.toggle', 'Show non-commute activities');
+          .contains('button.toggle', 'Include non-commute activities');
 
         cy.contains('table.activity-table thead th:nth-child(1)', 'Activity');
         cy.contains('table.activity-table thead th:nth-child(2)', 'Distance');
@@ -60,9 +60,8 @@ describe('The Sign Up Page - Emissions', () => {
     });
 
     it('shows a toggle for showing non-commute activities', () => {
-        cy.get('.emissions-savings-by-activity')
-          .contains('button.toggle', 'Show non-commute activities')
-          .click('button.toggle')
-          .contains('button.toggle', 'Show only commute activites');
+        cy.contains('.emissions-savings-by-activity button.toggle', 'Include non-commute activities')
+          .click();
+        cy.contains('.emissions-savings-by-activity button.toggle', 'Only show commute activities');
     });
 });

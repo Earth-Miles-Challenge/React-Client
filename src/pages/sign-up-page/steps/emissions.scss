@@ -9,3 +9,36 @@
 		font-weight: bold;
 	}
 }
+
+.emissions-savings-by-activity {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	h2 {
+		flex: 1 1 70%;
+	}
+	.toggle {
+		flex: 1 1 30%;
+		font-size: 0.8rem;
+		text-align: center;
+	}
+	.activity-table {
+		flex: 0 0 100%;
+		thead {
+			th {
+				background-color: #d9d9d9;
+				color: #444444;
+				font-weight: bolder;
+				text-transform: uppercase;
+				font-size: 0.8rem;
+			}
+		}
+		td,
+		th {
+			padding: 0.4rem 0.6rem;
+			&:last-child {
+				text-align: right;
+			}
+		}
+	}
+}

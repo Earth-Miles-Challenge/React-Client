@@ -15,8 +15,8 @@ export const Emissions = () => {
 		})();
 	}, []);
 
-	const [ showNonCommuteActivites, setShowNonCommuteActivities ] = useState(false);
-	const toggle = () => setShowNonCommuteActivities(prev => !! prev);
+	const [ showOnlyCommutes, setShowOnlyCommutes ] = useState(true);
+	const toggle = () => setShowOnlyCommutes(prev => !prev);
 
 	const emissionsAvoided = t('signup.emissions.totalAmount', {'amount': 2.3});
 
@@ -29,10 +29,12 @@ export const Emissions = () => {
 			</div>
 			<div className="emissions-savings-by-activity">
 				<h2>{t('signup.emissions.activityHeader')}</h2>
-				{! showNonCommuteActivites && <button className="toggle" onClick={toggle}>{t('signup.emissions.toggleAll')}</button>}
-				{showNonCommuteActivites && <button className="toggle" onClick={toggle}>{t('signup.emissions.toggleSavers')}</button>}
+				{showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.emissions.toggleAll')}</button>}
+				{!showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.emissions.toggleSavers')}</button>}
 				<EmissionsByActivitySummary
 					activities={activities}
+					sortBy='date'
+					filterCommutes={showOnlyCommutes}
 				/>
 			</div>
 		</div>

@@ -4,3 +4,14 @@
 p {
 	margin-bottom: 1rem;
 }
+
+a,
+.link {
+	color: var(--pink);
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.link {
+	border-bottom: 2px solid var(--pink);
+}
