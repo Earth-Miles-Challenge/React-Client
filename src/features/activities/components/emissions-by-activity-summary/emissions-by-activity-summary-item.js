@@ -5,7 +5,7 @@ export const EmissionsByActivitySummaryItem = props => {
 	const kgAvoided = activity.co2_avoided_grams ? activity.co2_avoided_grams / 1000 + 'kg CO2e' : '-';
 	return (
 		<tr>
-			<td>{activity.description}</td>
+			<td><h4>{activity.description}</h4></td>
 			<td>{distance}</td>
 			<td>{date}</td>
 			<td>{kgAvoided}</td>
