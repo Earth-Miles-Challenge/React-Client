@@ -1,7 +1,7 @@
 const getStravaClientId = () => 93532;
 
 export const getStravaAuthorizeUri = (state) => {
-	const redirectUri = 'http://localhost:9000/auth/strava';
+	const redirectUri = 'http://localhost:3000';
 	const approvalPrompt = 'auto';
 	const scope = 'profile:read_all,activity:read_all,activity:write';
 
@@ -17,11 +17,11 @@ export const getStravaAuthorizeUri = (state) => {
 
 export const requestToken = async (url) => {
 	try {
-		const data = { code: url.searchParams.get('code') };
-		const response = await fetch('/auth/strava', {
-			method: 'POST',
+		// const data = { code: url.searchParams.get('code') };
+		const response = await fetch(`/auth/strava${window.location.search}`, {
+			method: 'GET',
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-			body: JSON.stringify(data)
+			// body: JSON.stringify(data)
 		});
 		// if (response.ok) {s}
 		// console.log(response);

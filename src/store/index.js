@@ -13,6 +13,7 @@ export const setupStore = preloadedState => {
 }
 
 const hydrateProfile = async (preloadedState) => {
+
 	const _getProfileData = async () => {
 		const profile = await getProfile();
 		return {
