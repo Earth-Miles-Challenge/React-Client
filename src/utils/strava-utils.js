@@ -17,17 +17,12 @@ export const getStravaAuthorizeUri = (state) => {
 
 export const requestToken = async (url) => {
 	try {
-		// const data = { code: url.searchParams.get('code') };
 		const response = await fetch(`/auth/strava${window.location.search}`, {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-			// body: JSON.stringify(data)
 		});
-		// if (response.ok) {s}
-		// console.log(response);
-		const json = await response.json();
-		// console.log(json);
-		return json;
+
+		return response.success;
 	} catch (err) {
 		console.log(err);
 	}

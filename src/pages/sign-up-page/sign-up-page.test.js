@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { SignUpPage } from './sign-up-page';
 import { server } from 'mocks/server.js';
 import { renderWithProviders } from 'utils/test-utils';
-import { setupStore } from 'store';
-import { updateProfile, selectProfile } from 'features/users';
+// import { setupStore } from 'store';
+// import { updateProfile, selectProfile } from 'features/users';
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen())
@@ -43,8 +43,9 @@ describe('Sign Up Page', () => {
 	test('shows the Complete Profile step', () => {
 		renderWithProviders(<SignUpPage />, {
 			preloadedState: {
-				currentUser: {
-					profile: {
+				authorization: {
+					currentUser: {}
+				}
 						strava_id: 'abc123def456'
 					}
 				}
@@ -58,8 +59,9 @@ describe('Sign Up Page', () => {
 	test('shows the Emissions Savings step', async () => {
 		renderWithProviders(<SignUpPage />, {
 			preloadedState: {
-				currentUser: {
-					profile: {
+				authorization: {
+					currentUser: {}
+				}
 						strava_id: 'abc123def456'
 					}
 				}
@@ -78,8 +80,9 @@ describe('Sign Up Page', () => {
 	test('the Emissions Savings step shows a list of activities', async () => {
 		renderWithProviders(<SignUpPage />, {
 			preloadedState: {
-				currentUser: {
-					profile: {
+				authorization: {
+					currentUser: {}
+				}
 						strava_id: 'abc123def456'
 					}
 				}

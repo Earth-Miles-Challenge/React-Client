@@ -11,13 +11,11 @@ export {
 } from './sign-up-form';
 
 export {
-	default as currentUserReducer,
-	updateProfile,
-	connectStrava,
-	disconnectStrava,
-	addChallenge,
-	updateChallengeDetail,
-	selectProfile,
-	selectStravaConnection,
-	selectChallenge
-} from './current-user';
+	default as authorizationReducer,
+	setAuthenticated,
+	setNonAuthenticated,
+	setAuthenticationStatus,
+	updateCurrentUser,
+	selectCurrentUser,
+	selectIsStravaConnected
+} from './authorization';

@@ -1,6 +1,6 @@
-export const getProfile = async () => {
+export const getProfile = async (userId) => {
 	try {
-		const response = await fetch(`/users/1`, {credentials: 'include'});
+		const response = await fetch(`/users/${userId}`, {credentials: 'include'});
 		const json = await response.json();
 		return json;
 	} catch (error) {

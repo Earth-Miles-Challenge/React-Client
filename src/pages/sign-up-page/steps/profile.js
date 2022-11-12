@@ -1,11 +1,13 @@
 import { useDispatch } from 'react-redux';
-import { ProfileForm, updateProfile } from 'features/users';
+import { ProfileForm, updateCurrentUser } from 'features/users';
 
 export const Profile = (props) => {
 	const { profile, onCompleteStep } = props;
 	const dispatch = useDispatch();
 	const onProfileChange = (field, value) => {
-		dispatch(updateProfile({field, value}))
+		dispatch(updateCurrentUser({
+			[field]: value
+		}))
 	}
 
 	return (
