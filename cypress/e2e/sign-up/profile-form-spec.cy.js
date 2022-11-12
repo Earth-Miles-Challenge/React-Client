@@ -73,7 +73,7 @@ describe('The Sign Up Page - Profile Form', function() {
     it('shows appropriate error message for invalid email address', () => {
         cy.get('input[name=email]')
           .clear()
-          .type('notavalidemail');
+          .type('invali@excom');
 
         cy.get('input[type=submit]')
           .click();
