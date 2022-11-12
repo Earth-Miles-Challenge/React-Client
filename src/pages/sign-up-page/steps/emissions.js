@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
 import { EmissionsByActivitySummary, getAthleteActivities } from 'features/activities';
 import { useTranslation, Trans } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from 'features/users';
 
 import './emissions.scss';
 
 export const Emissions = () => {
 	const { t } = useTranslation();
-
 	const [ activities, setActivities ] = useState([]);
+	const currentUser = useSelector(selectCurrentUser);
 	useEffect(() => {
 		(async () => {
-			const activities = await getAthleteActivities();
+			const activities = await getAthleteActivities(currentUser.id);
 			setActivities(activities);
 		})();
-	}, []);
+	}, [currentUser.id]);
 
 	const [ showOnlyCommutes, setShowOnlyCommutes ] = useState(true);
 	const toggle = () => setShowOnlyCommutes(prev => !prev);

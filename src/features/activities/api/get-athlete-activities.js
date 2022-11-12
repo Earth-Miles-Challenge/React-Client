@@ -1,6 +1,6 @@
-export const getAthleteActivities = async () => {
+export const getAthleteActivities = async (userId) => {
 	try {
-		const response = await fetch(`/user/activities`, {credentials: 'include'});
+		const response = await fetch(`/users/${userId}/activities`, {credentials: 'include'});
 		const json = await response.json();
 		return json;
 	} catch (error) {
