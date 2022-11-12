@@ -1,17 +1,15 @@
 describe('The Sign Up Page - Emissions', () => {
     before(() => {
-        cy.fixture('user-profile-strava-connected-spec.json')
-            .then((json) => {
-                const profileWithEmail = {
-                    ...json,
-                    email: 'eric@example.dev'
-                }
-                cy.intercept('GET', '/user/profile', profileWithEmail);
-            });
-
-        cy.visit('http://localhost:3000');
-        cy.get('input[type=submit]')
-            .click();
+        cy.fixture('user-profile-strava-connected-spec.json').as('profile_data').then(function(profileData) {
+            cy.visit('http://localhost:3000');
+            const payload = {
+                ...profileData,
+                email: 'eric@example.dev'
+            };
+            cy.window().its('store').invoke('dispatch', { type: 'authorization/setAuthenticated', payload });
+            cy.get('input[type=submit]')
+                .click();
+        });
     });
 
     it('displays standard heading', () => {
