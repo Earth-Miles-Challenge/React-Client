@@ -15,7 +15,7 @@ describe('The Sign Up Page - Strava Connect', () => {
 
 	it('shows Strava button with correct link', () => {
 		cy.get('.strava-connect a')
-			.should('have.attr', 'href', 'https://www.strava.com/oauth/authorize?client_id=93532&response_type=code&redirect_uri=http://localhost:9000/auth/strava&approval_prompt=auto&scope=profile:read_all,activity:read_all,activity:write&state=http://localhost:3000/')
+			.should('have.attr', 'href', 'https://www.strava.com/oauth/authorize?client_id=93532&response_type=code&redirect_uri=http://localhost:3000&approval_prompt=auto&scope=profile:read_all,activity:read_all,activity:write&state=http://localhost:3000/')
 			.get('svg')
 			.should('have.attr', 'aria-label', 'Strava Connect button');
 	});

@@ -18,7 +18,7 @@ const authorizationSlice = createSlice({
 			state.currentUser = action.payload;
 		},
 		setNonAuthenticated(state, action) {
-			state = { ...initialState, authChecked: true };
+			state.authChecked = true;
 		},
 		updateCurrentUser(state, action) {
 			state.currentUser = {
@@ -32,7 +32,7 @@ const authorizationSlice = createSlice({
 export function setAuthenticationStatus(dispatch, getState) {
 	const cookies = new Cookies();
 	const token = cookies.get('token');
-	if (token.length) {
+	if (token) {
 		dispatch(setAuthenticated(jwt_decode(token)));
 	} else {
 		dispatch(setNonAuthenticated());
@@ -40,7 +40,9 @@ export function setAuthenticationStatus(dispatch, getState) {
 }
 
 export const selectCurrentUser = state => state.authorization.currentUser
-export const selectIsStravaConnected = state => state.authorization.currentUser.activity_platform && state.authorization.currentUser.activity_platform === 'strava';
+export const selectIsStravaConnected = state => {
+	return state.authorization.currentUser.length && state.authorization.currentUser.activity_platform && state.authorization.currentUser.activity_platform === 'strava';
+}
 
 export const { setAuthenticated, setNonAuthenticated, updateCurrentUser } = authorizationSlice.actions;
 export default authorizationSlice.reducer;

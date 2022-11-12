@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StravaConnectStep, ProfileStep, EmissionsStep } from './steps';
-import { selectCurrentUser } from 'features/users';
+import { selectCurrentUser, selectIsStravaConnected } from 'features/users';
 import { FormProgressBar } from 'components';
 
 export const SignUpPage = () => {
@@ -13,11 +13,7 @@ export const SignUpPage = () => {
 		t('signup.progress-bar-3')
 	];
 	const profile = useSelector(selectCurrentUser);
-	const [ activeStep, setActiveStep ] = useState(0);
-
-	useEffect(() => {
-		if (profile.strava_id !== '') setActiveStep(1);
-	}, [profile]);
+	const [ activeStep, setActiveStep ] = useState(useSelector(selectIsStravaConnected) ? 1 : 0);
 
 	return (
 		<div className="form-container">
