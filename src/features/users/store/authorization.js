@@ -41,7 +41,8 @@ export function setAuthenticationStatus(dispatch, getState) {
 
 export const selectCurrentUser = state => state.authorization.currentUser
 export const selectIsStravaConnected = state => {
-	return state.authorization.currentUser.length && state.authorization.currentUser.activity_platform && state.authorization.currentUser.activity_platform === 'strava';
+	const res = state.authorization.currentUser.hasOwnProperty('activity_platform') && state.authorization.currentUser.activity_platform === 'strava';
+	return res;
 }
 
 export const { setAuthenticated, setNonAuthenticated, updateCurrentUser } = authorizationSlice.actions;

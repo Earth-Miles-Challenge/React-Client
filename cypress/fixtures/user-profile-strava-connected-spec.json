@@ -2,7 +2,7 @@
   "first_name": "Eric",
   "last_name": "Daams",
   "email": "",
-  "picture": "",
-  "strava_id": "abc123def456",
+  "profile_photo": "",
+  "activity_platform": "strava",
   "total_emissions_avoided": 2349
 }

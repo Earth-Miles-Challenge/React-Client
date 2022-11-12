@@ -1,10 +1,10 @@
 describe('The Sign Up Page - Profile Form', function() {
 
     beforeEach(function () {
-        cy.fixture('user-profile-strava-connected-spec.json').as('profile_data').then(function(profileJson) {
-            cy.intercept('GET', '/user/profile', profileJson);
-            cy.visit('http://localhost:3000');
-        })
+      cy.fixture('user-profile-strava-connected-spec.json').as('profile_data').then(function(payload) {
+        cy.visit('http://localhost:3000');
+        cy.window().its('store').invoke('dispatch', { type: 'authorization/setAuthenticated', payload });
+      });
     });
 
     it('displays standard heading', () => {
