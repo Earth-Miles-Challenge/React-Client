@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Cookies from 'universal-cookie';
 import jwt_decode from 'jwt-decode';
+import { getToken } from 'utils/cookie-utils';
 
 const initialState = {
 	authChecked: false,
@@ -30,8 +30,7 @@ const authorizationSlice = createSlice({
 });
 
 export function setAuthenticationStatus(dispatch, getState) {
-	const cookies = new Cookies();
-	const token = cookies.get('token');
+	const token = getToken();
 	if (token) {
 		dispatch(setAuthenticated(jwt_decode(token)));
 	} else {
