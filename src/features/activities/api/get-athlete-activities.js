@@ -1,5 +1,21 @@
 import { getToken } from 'utils/cookie-utils';
 
+export const fetchLatest = async (userId) => {
+	try {
+		const response = await fetch(`/users/${userId}/activities/fetchLatest`, {
+			headers: {
+				'Authorization': `Bearer ${getToken()}`
+			}
+		});
+		const json = await response.json();
+		return json;
+	} catch (error) {
+		console.log(error);
+	}
+
+	return null;
+}
+
 export const getAthleteActivities = async (userId) => {
 	try {
 		const response = await fetch(`/users/${userId}/activities`, {
