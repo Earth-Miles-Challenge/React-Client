@@ -1,1 +1,1 @@
-export { getAthleteActivities } from './get-athlete-activities';
+export { getAthleteActivities, fetchLatest } from './get-athlete-activities';

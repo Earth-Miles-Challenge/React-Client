@@ -22,7 +22,7 @@ export const requestToken = async (url) => {
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
 		});
 
-		return response.success;
+		return response.ok;
 	} catch (err) {
 		console.log(err);
 	}

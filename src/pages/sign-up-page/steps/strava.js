@@ -1,9 +1,10 @@
 import { StravaConnectButton } from 'features/users';
 
-export const StravaConnect = () => {
+export const StravaConnect = ({onConnected}) => {
+
 	return (
 		<div className="strava-connect-wrapper">
-			<StravaConnectButton />
+			<StravaConnectButton onConnected={onConnected} />
 		</div>
 	);
 }
