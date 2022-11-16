@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StravaConnectStep, ProfileStep, EmissionsStep } from './steps';
@@ -15,16 +15,24 @@ export const SignUpPage = () => {
 	];
 	const profile = useSelector(selectCurrentUser);
 	const [ activeStep, setActiveStep ] = useState(useSelector(selectIsStravaConnected) ? 1 : 0);
-	const fetchStravaActivities = () => {
-		fetchLatest(profile.id);
+	const redirectToHome = () => {
+		window.location = window.location.pathname + '?strava-connected';
 	};
+
+	useEffect(() => {
+		if ('?strava-connected' === window.location.search && profile.id) {
+			fetchLatest(profile.id);
+			window.location = window.location.pathname;
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className="form-container">
 			<h1>{t('signup.top-header')}</h1>
 			<FormProgressBar steps={STEPS} activeStep={STEPS[activeStep]} />
 			{
-				( activeStep === 0 && <StravaConnectStep onConnected={fetchStravaActivities} /> )
+				( activeStep === 0 && <StravaConnectStep onConnected={redirectToHome} /> )
 				|| ( activeStep === 1 && <ProfileStep profile={profile} onCompleteStep={() => setActiveStep(2)} /> )
 				|| ( activeStep === 2 && <EmissionsStep /> )
 			}
