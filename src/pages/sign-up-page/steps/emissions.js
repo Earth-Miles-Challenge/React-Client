@@ -12,6 +12,7 @@ export const Emissions = () => {
 	const currentUser = useSelector(selectCurrentUser);
 	const [ activities, setActivities ] = useState([]);
 	useEffect(() => {
+		if (!currentUser.id) return;
 		(async () => {
 			const activities = await getAthleteActivities(currentUser.id);
 			setActivities(activities);
@@ -20,6 +21,7 @@ export const Emissions = () => {
 
 	const [emissionsAvoided, setEmissionsAvoided] = useState(0);
 	useEffect(() => {
+		if (!currentUser.id) return;
 		(async () => {
 			const response = await getEmissionsAvoidedByUser(currentUser.id);
 			if (response.success) {

@@ -1,8 +1,8 @@
 {
+  "id": 123,
   "first_name": "Eric",
   "last_name": "Daams",
   "email": "",
   "profile_photo": "",
-  "activity_platform": "strava",
-  "total_emissions_avoided": 2349
+  "activity_platform": "strava"
 }

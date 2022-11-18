@@ -13,6 +13,8 @@ export const getEmissionsAvoided = async () => {
 }
 
 export const getEmissionsAvoidedByUser = async (userId) => {
+	if (!userId) return null;
+
 	try {
 		const response = await fetch(`/users/${userId}/impact/emissionsAvoided`, {
 			headers: {
