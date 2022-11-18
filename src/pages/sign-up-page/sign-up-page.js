@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StravaConnectStep, ProfileStep, EmissionsStep } from './steps';
 import { selectCurrentUser, selectIsStravaConnected } from 'features/users';
-import { fetchLatest } from 'features/activities';
 import { FormProgressBar } from 'components';
 
 export const SignUpPage = () => {
@@ -15,17 +14,7 @@ export const SignUpPage = () => {
 	];
 	const profile = useSelector(selectCurrentUser);
 	const [ activeStep, setActiveStep ] = useState(useSelector(selectIsStravaConnected) ? 1 : 0);
-	const redirectToHome = () => {
-		window.location = window.location.pathname + '?strava-connected';
-	};
-
-	useEffect(() => {
-		if ('?strava-connected' === window.location.search && profile.id) {
-			fetchLatest(profile.id);
-			window.location = window.location.pathname;
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const redirectToHome = () => window.location = window.location.pathname;
 
 	return (
 		<div className="form-container">

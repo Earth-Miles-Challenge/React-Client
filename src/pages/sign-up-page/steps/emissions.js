@@ -3,13 +3,14 @@ import { EmissionsByActivitySummary, getAthleteActivities } from 'features/activ
 import { useTranslation, Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from 'features/users';
+import { getEmissionsAvoidedByUser } from 'features/impact';
 
 import './emissions.scss';
 
 export const Emissions = () => {
 	const { t } = useTranslation();
-	const [ activities, setActivities ] = useState([]);
 	const currentUser = useSelector(selectCurrentUser);
+	const [ activities, setActivities ] = useState([]);
 	useEffect(() => {
 		(async () => {
 			const activities = await getAthleteActivities(currentUser.id);
@@ -17,16 +18,26 @@ export const Emissions = () => {
 		})();
 	}, [currentUser.id]);
 
+	const [emissionsAvoided, setEmissionsAvoided] = useState(0);
+	useEffect(() => {
+		(async () => {
+			const response = await getEmissionsAvoidedByUser(currentUser.id);
+			if (response.success) {
+				setEmissionsAvoided(parseInt(response.emissionsAvoided));
+			}
+		})();
+	}, [currentUser.id]);
+
 	const [ showOnlyCommutes, setShowOnlyCommutes ] = useState(true);
 	const toggle = () => setShowOnlyCommutes(prev => !prev);
 
-	const emissionsAvoided = t('signup.emissions.totalAmount', {'amount': 2.3});
+	const emissionsAvoidedKg = t('signup.emissions.totalAmount', {'amount': emissionsAvoided / 1000});
 
 	return (
 		<div className="emissions-savings-wrapper">
 			<div className="emissions-savings-summary">
 				<Trans i18nKey="signup.emissions.totalBlurb">
-					Your human-powered commutes have helped you avoid approximately <span className='total-savings'>{{emissionsAvoided}}</span>
+					Your human-powered commutes have helped you avoid approximately <span className='total-savings'>{{emissionsAvoidedKg}}</span>
 				</Trans>
 			</div>
 			<div className="emissions-savings-by-activity">

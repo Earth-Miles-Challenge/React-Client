@@ -7,7 +7,7 @@ const dateSort = (activityA, activityB) => {
 	return -1;
 };
 
-const filterByCommute = (activity) => activity.commute === 1;
+const filterByCommute = (activity) => activity.commute;
 
 const getFilteredAndSortedActivities = (activities, sortBy, filterCommutes) => {
 	const filteredActivities = filterCommutes ? activities.filter(filterByCommute) : activities;
