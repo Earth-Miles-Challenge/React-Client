@@ -1,4 +1,4 @@
-import { ProfileForm, updateCurrentUser } from 'features/users';
+import { ProfileForm } from 'features/users';
 import { useUpdateUserMutation } from 'store/server-api';
 
 export const Profile = (props) => {

@@ -18,13 +18,14 @@ export const SignUpPage = () => {
 	const [ activeStep, setActiveStep ] = useState(null);
 	useEffect(() => {
 		if (!isLoading) {
-			if (data.hasOwnProperty('activity_platform')) {
+			if (data && data.hasOwnProperty('activity_platform')) {
 				setActiveStep(data.email !== '' ? 2 : 1)
 			} else {
 				setActiveStep(0);
 			}
 		}
 	}, [data, isLoading]);
+	
 	const redirectToHome = () => window.location = window.location.pathname;
 
 	return (
