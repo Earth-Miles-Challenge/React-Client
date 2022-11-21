@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { authorizationReducer } from 'features/users'
+import { serverApi } from './server-api';
 
 const rootReducer = combineReducers({
-	authorization: authorizationReducer
+	authorization: authorizationReducer,
+	[serverApi.reducerPath]: serverApi.reducer
 })
 
 export const setupStore = preloadedState => {

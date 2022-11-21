@@ -17,5 +17,6 @@ export {
 	setAuthenticationStatus,
 	updateCurrentUser,
 	selectCurrentUser,
-	selectIsStravaConnected
+	selectIsStravaConnected,
+	// saveUser
 } from './authorization';
