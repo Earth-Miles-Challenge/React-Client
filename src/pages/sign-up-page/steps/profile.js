@@ -3,7 +3,7 @@ import { useUpdateUserMutation } from 'store/server-api';
 
 export const Profile = (props) => {
 	const { profile, onCompleteStep } = props;
-	const [ updateUser, result ] = useUpdateUserMutation();
+	const [ updateUser ] = useUpdateUserMutation();
 
 	const onProfileChange = (field, value) => {
 		updateUser({

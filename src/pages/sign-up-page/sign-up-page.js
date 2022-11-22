@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StravaConnectStep, ProfileStep, EmissionsStep } from './steps';
-import { selectCurrentUser, selectIsStravaConnected } from 'features/users';
+import { selectCurrentUser } from 'features/users';
 import { FormProgressBar } from 'components';
 import { useGetUserQuery } from 'store/server-api';
 
@@ -14,7 +14,7 @@ export const SignUpPage = () => {
 		t('signup.progress-bar-3')
 	];
 	const { id } = useSelector(selectCurrentUser);
-	const { data, error, isLoading } = useGetUserQuery(id);
+	const { data, isLoading } = useGetUserQuery(id);
 	const [ activeStep, setActiveStep ] = useState(null);
 	useEffect(() => {
 		if (!isLoading) {
@@ -25,7 +25,7 @@ export const SignUpPage = () => {
 			}
 		}
 	}, [data, isLoading]);
-	
+
 	const redirectToHome = () => window.location = window.location.pathname;
 
 	return (
