@@ -5,7 +5,7 @@ const ACTIVITY = {
 	description: 'Run to work',
 	distance: 1300,
 	start_date: '2018-02-16T14:52:54Z',
-	start_date_local: '2018-01-16T23:52:54Z',
+	timezone: 'America/Los_Angeles',
 	co2_avoided_grams: 1725
 };
 
@@ -25,7 +25,12 @@ describe('Emissions By Activity Summary Item', () => {
 
 	test('shows the activity date', () => {
 		render(<EmissionsByActivitySummaryItem activity={ACTIVITY} />);
-		const expected = new Date(ACTIVITY.start_date_local).toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'});
+		const expected = new Date(ACTIVITY.start_date).toLocaleDateString('en-US', {
+			timeZone: ACTIVITY.timezone,
+			month: 'long',
+			day: 'numeric',
+			year: 'numeric'
+		});
 		const date = screen.getByText(expected, {selector: 'td'});
 		expect(date).toBeInTheDocument();
 	});
