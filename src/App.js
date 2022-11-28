@@ -1,6 +1,5 @@
-//import { Provider } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { JoinChallengePage, AthletesPage, SignUpPage } from './pages';
+import { JoinChallengePage, SignUpPage } from './pages';
 
 import './assets/style/style.scss';
 
@@ -10,8 +9,7 @@ function App() {
       <header className="header">
         <div className="brand">
           <Link to="/">
-            <img src='/logo54.png' className="logo" alt="logo" />
-            <div className="site-title">Earth Miles Challenge</div>
+            <img src='/logo438x117.png' className="logo" alt="Earth Miles Challenge logo" />
           </Link>
         </div>
         <nav>
@@ -25,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SignUpPage />} />
           {/* <Route path="start" element={<SignUpPage />} /> */}
-          <Route path="athletes" element={<AthletesPage />} />
+          {/* <Route path="athletes" element={<AthletesPage />} /> */}
           <Route path="join-challenge" element={<JoinChallengePage />} />
         </Routes>
       </main>

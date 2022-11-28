@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StravaConnectStep, ProfileStep, EmissionsStep } from './steps';
+import { CommutesFeature } from './commutes';
 import { selectCurrentUser } from 'features/users';
-import { FormProgressBar } from 'components';
+// import { FormProgressBar } from 'components';
 import { useGetUserQuery } from 'store/server-api';
 
 export const SignUpPage = () => {
 	const { t } = useTranslation();
-	const STEPS = [
-		t('signup.progress-bar-1'),
-		t('signup.progress-bar-2'),
-		t('signup.progress-bar-3')
-	];
+	// const STEPS = [
+	// 	t('signup.progress-bar-1'),
+	// 	t('signup.progress-bar-2'),
+	// 	t('signup.progress-bar-3')
+	// ];
 	const { id } = useSelector(selectCurrentUser);
 	const { data, isLoading } = useGetUserQuery(id);
 	const [ activeStep, setActiveStep ] = useState(null);
@@ -29,16 +30,23 @@ export const SignUpPage = () => {
 	const redirectToHome = () => window.location = window.location.pathname;
 
 	return (
-		<div className="form-container">
-			<h1>{t('signup.top-header')}</h1>
-			<FormProgressBar steps={STEPS} activeStep={STEPS[activeStep]} />
+		<>
+			<div className="form-container">
+				<h1>{t('signup.top-header')}</h1>
+				{/* <FormProgressBar steps={STEPS} activeStep={STEPS[activeStep]} /> */}
+				{
+					isLoading
+						? 'loading...'
+						: activeStep === 0
+							? <StravaConnectStep onConnected={redirectToHome} />
+							: activeStep === 1
+								? <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} />
+								: activeStep === 2 && <EmissionsStep />
+				}
+			</div>
 			{
-				isLoading
-					? 'loading...'
-					: ( activeStep === 0 && <StravaConnectStep onConnected={redirectToHome} /> )
-					|| ( activeStep === 1 && <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} /> )
-					|| ( activeStep === 2 && <EmissionsStep /> )
+				activeStep === 0 ? <CommutesFeature /> : ''
 			}
-		</div>
+		</>
 	)
 }

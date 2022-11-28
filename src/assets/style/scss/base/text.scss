@@ -1,6 +1,18 @@
 /*------------------------------------*\
     #TEXT
 \*------------------------------------*/
+html {
+	font-size: 18px;
+}
+
+body {
+	margin: 0;
+	font: 1rem/1.5 'Barlow', sans-serif;
+	color: var(--navy);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 p {
 	margin-bottom: 1rem;
 }

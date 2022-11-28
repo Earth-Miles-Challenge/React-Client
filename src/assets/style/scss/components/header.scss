@@ -35,21 +35,11 @@
 	}
 }
 
-.logo {
-	margin-right: 1rem;
-	pointer-events: none;
+.brand {
+	width: 100%;
+	text-align: center;
 }
 
-.brand {
-	.site-title {
-		font-size: 2rem;
-		font-weight: bold;
-		margin: 0;
-	}
-	a {
-		display: flex;
-		align-items: center;
-		text-decoration: none;
-		color: #333;
-	}
+.logo {
+	width: 219px;
 }
