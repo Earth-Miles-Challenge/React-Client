@@ -10,6 +10,7 @@ const rootReducer = combineReducers({
 export const setupStore = preloadedState => {
 	return configureStore({
 		reducer: rootReducer,
+  		middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(serverApi.middleware),
 		preloadedState
 	})
 }
