@@ -14,8 +14,8 @@ input[type=number],
 textarea {
 	width: 100%;
 	padding: 0.6rem;
-	border: 1px solid var(--borderGray);
-	border-radius: 0.6rem;
+	border: 2px solid var(--navy);
+	border-radius: 0.3rem;
 }
 
 input[type=submit],
@@ -23,11 +23,22 @@ button:not(.link) {
 	margin-bottom: 1rem;
 	padding: 1rem 1.5rem;
 	border-radius: 2rem;
+	border: 2px solid var(--orange);
 	background-color: var(--orange);
 	color: #fff;
 	font-weight: bolder;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	&:hover,
+	&:focus {
+		color: var(--navy);
+		background-color: var(--cream);
+	}
+	&:active {
+		text-decoration: dashed var(--orange) underline;
+		text-underline-offset: 0.3rem;
+		background: #fff;
+	}
 }
 
 fieldset {
@@ -57,16 +68,31 @@ fieldset {
 .form-field {
 	margin: 0 0 2rem;
 	input[aria-invalid=true] {
-		border: 1px solid #ffbebe;
+		border-color: #ba3939;
 	}
 	.error {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
 		padding: 0.5rem;
 		margin-top: 0.3rem;
-		border-radius: 0.5rem;
+		border-radius: 0.3rem;
 		font-size: .8rem;
 		color: #ba3939;
-		background: #ffe0e0;
-		border: 1px solid #ffbebe;
+		background: var(--cream);
+
+		&:before {
+			content: "!";
+			font-size: 1rem;
+			background-color: #ba3939;
+			color: #fff;
+			border-radius: 1.2rem;
+			width: 1.2rem;
+			height: 1.2rem;
+			text-align: center;
+			font-weight: 900;
+			margin-right: 0.3rem;
+			line-height: 1.2rem;
+		}
+		// border: 2px solid #ffbebe;
 	}
 }

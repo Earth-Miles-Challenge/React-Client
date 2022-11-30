@@ -1,6 +1,8 @@
 import { ProfileForm } from 'features/users';
 import { useUpdateUserMutation } from 'store/server-api';
 
+import './profile.scss';
+
 export const Profile = (props) => {
 	const { profile, onCompleteStep } = props;
 	const [ updateUser ] = useUpdateUserMutation();

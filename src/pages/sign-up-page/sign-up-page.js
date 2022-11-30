@@ -38,7 +38,7 @@ export const SignUpPage = () => {
 		if (isLoading) return 'loading...';
 		switch (activeStep) {
 			case 0: return <StravaConnectStep onConnected={redirectToHome} />;
-			case 1: return <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} />;
+			case 1: return <p>{t('signup.profile.teaser')}</p>
 			case 2: return <EmissionsImpact />;
 			default: return '';
 		}
@@ -47,6 +47,7 @@ export const SignUpPage = () => {
 	const getPageSupplementaryContent = () => {
 		switch (activeStep) {
 			case 0: return <CommutesFeature />;
+			case 1: return <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} />;
 			case 2: return <EmissionsByActivity />
 			default: return '';
 		}

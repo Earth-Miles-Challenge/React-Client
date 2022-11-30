@@ -18,6 +18,7 @@ export const en = {
 		},
 		"profile": {
 			"header": "Create your profile",
+			"teaser": "Set up your account to receive notifications whenever you run, ride or walk a commute.",
 			"continueButton": "Continue",
 			"fieldLabels": {
 				"name": "Your name",

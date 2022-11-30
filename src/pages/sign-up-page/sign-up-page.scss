@@ -2,12 +2,10 @@
 	h1 {
 		color: #fff;
 	}
-
-	input[type=text],
-	input[type=email],
-	input[type=number],
-	textarea {
-		background-color: #fff;
-		color: var(--navy);
+	p {
+		font-size: 1.2rem;
+		line-height: 1.4;
+		margin-bottom: 2rem;
+    	text-align: center;
 	}
 }
