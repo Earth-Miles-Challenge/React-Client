@@ -1,0 +1,29 @@
+.activity-list {
+	width: 100%;
+	.activity {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		padding: 1rem;
+
+		h4,
+		.activity-impact {
+			flex: 1 1 75%;
+		}
+
+		.activity-distance,
+		.activity-date {
+			flex: 1 0 25%;
+			text-align: right;
+			font-size: .9rem;
+		}
+
+		.activity-impact {
+			font-size: 1.3rem;
+		}
+
+		&:nth-child(2n+1) {
+			background-color: var(--cream);
+		}
+	}
+}

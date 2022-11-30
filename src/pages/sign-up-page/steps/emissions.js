@@ -7,18 +7,9 @@ import { getEmissionsAvoidedByUser } from 'features/impact';
 
 import './emissions.scss';
 
-export const Emissions = () => {
+export const EmissionsImpact = () => {
 	const { t } = useTranslation();
 	const currentUser = useSelector(selectCurrentUser);
-	const [ activities, setActivities ] = useState([]);
-	useEffect(() => {
-		if (!currentUser.id) return;
-		(async () => {
-			const activities = await getAthleteActivities(currentUser.id);
-			setActivities(activities);
-		})();
-	}, [currentUser.id]);
-
 	const [emissionsAvoided, setEmissionsAvoided] = useState(0);
 	useEffect(() => {
 		if (!currentUser.id) return;
@@ -30,30 +21,42 @@ export const Emissions = () => {
 		})();
 	}, [currentUser.id]);
 
-	const [ showOnlyCommutes, setShowOnlyCommutes ] = useState(true);
-	const toggle = () => setShowOnlyCommutes(prev => !prev);
-
 	const emissionsAvoidedKg = t('signup.impact.totalAmount', {'amount': emissionsAvoided / 1000});
-
 	return (
-		<div className="emissions-savings-wrapper">
-			<div className="emissions-savings-summary">
-				<Trans i18nKey="signup.impact.totalBlurb">
-					Your human-powered commutes have helped you avoid approximately <span className='total-savings'>{{emissionsAvoidedKg}}</span>
-				</Trans>
-			</div>
-			<div className="emissions-savings-by-activity">
-				<h2>{t('signup.impact.activityHeader')}</h2>
-				{showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.impact.toggleAll')}</button>}
-				{!showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.impact.toggleSavers')}</button>}
-				<EmissionsByActivitySummary
-					activities={activities}
-					sortBy='date'
-					filterCommutes={showOnlyCommutes}
-				/>
-			</div>
+		<div className="emissions-savings-summary">
+			<Trans i18nKey="signup.impact.totalBlurb">
+				Your human-powered commutes have helped you avoid approximately <span className='total-savings'>{{emissionsAvoidedKg}}</span>
+			</Trans>
 		</div>
 	)
 }
 
-export default Emissions;
+export const EmissionsByActivity = () => {
+	const { t } = useTranslation();
+	const currentUser = useSelector(selectCurrentUser);
+
+	const [ activities, setActivities ] = useState([]);
+	useEffect(() => {
+		if (!currentUser.id) return;
+		(async () => {
+			const activities = await getAthleteActivities(currentUser.id);
+			setActivities(activities);
+		})();
+	}, [currentUser.id]);
+
+	const [ showOnlyCommutes, setShowOnlyCommutes ] = useState(true);
+	const toggle = () => setShowOnlyCommutes(prev => !prev);
+
+	return (
+		<div className="emissions-savings-by-activity">
+			<h2>{t('signup.impact.activityHeader')}</h2>
+			{showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.impact.toggleAll')}</button>}
+			{!showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.impact.toggleSavers')}</button>}
+			<EmissionsByActivitySummary
+				activities={activities}
+				sortBy='date'
+				filterCommutes={showOnlyCommutes}
+			/>
+		</div>
+	)
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { StravaConnectStep, ProfileStep, EmissionsStep } from './steps';
+import { StravaConnectStep, ProfileStep, EmissionsImpact, EmissionsByActivity } from './steps';
 import { CommutesFeature } from './commutes';
 import { selectCurrentUser } from 'features/users';
 // import { FormProgressBar } from 'components';
@@ -39,7 +39,7 @@ export const SignUpPage = () => {
 		switch (activeStep) {
 			case 0: return <StravaConnectStep onConnected={redirectToHome} />;
 			case 1: return <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} />;
-			case 2: return <EmissionsStep />;
+			case 2: return <EmissionsImpact />;
 			default: return '';
 		}
 	}
@@ -47,6 +47,7 @@ export const SignUpPage = () => {
 	const getPageSupplementaryContent = () => {
 		switch (activeStep) {
 			case 0: return <CommutesFeature />;
+			case 2: return <EmissionsByActivity />
 			default: return '';
 		}
 	}
