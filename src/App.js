@@ -1,9 +1,11 @@
 import { Routes, Route, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { JoinChallengePage, SignUpPage } from './pages';
 
 import './assets/style/style.scss';
 
 function App() {
+  const { t } = useTranslation();
   return (
     <div className="App">
       <header className="header">
@@ -27,6 +29,9 @@ function App() {
           <Route path="join-challenge" element={<JoinChallengePage />} />
         </Routes>
       </main>
+      <footer>
+        {t('footer.about')}
+      </footer>
     </div>
   );
 }

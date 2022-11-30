@@ -1,4 +1,7 @@
 export const en = {
+	"footer": {
+		"about": "Earth Miles Challenge was created by Eric Daams."
+	},
 	"signup": {
 		"progress-bar-1": "Connect Strava",
 		"progress-bar-2": "Complete Profile",
