@@ -1,10 +1,10 @@
 export const en = {
 	"signup": {
-		"top-header": "Calculate Your Emissions Savings",
 		"progress-bar-1": "Connect Strava",
 		"progress-bar-2": "Complete Profile",
 		"progress-bar-3": "Your Emissions Savings",
 		"start": {
+			"header": "Calculate Your Emissions Savings",
 			"teaser": "Connect your Strava account to start tracking the emissions you swap your fossil-powered commute for a human-powered one.",
 			"commutesFeature": {
 				"header": "How it works",
@@ -17,6 +17,7 @@ export const en = {
 			}
 		},
 		"profile": {
+			"header": "Create your profile",
 			"continueButton": "Continue",
 			"fieldLabels": {
 				"name": "Your name",
@@ -31,7 +32,8 @@ export const en = {
 				"emailInvalid": "Please provide a valid email address."
 			}
 		},
-		"emissions": {
+		"impact": {
+			"header": "Your impact",
 			"totalBlurb": "Your human-powered commutes have helped you avoid approximately <1>{{emissionsAvoidedKg}}</1>",
 			"totalAmount": "{{amount}}kg CO2e savings",
 			"activityHeader": "Savings by activity",

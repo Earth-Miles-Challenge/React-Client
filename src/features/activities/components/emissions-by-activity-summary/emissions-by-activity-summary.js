@@ -25,10 +25,10 @@ export const EmissionsByActivitySummary = props => {
 		<table className="activity-table">
 			<thead>
 				<tr>
-					<th>{t("signup.emissions.activityTableActivityColumn")}</th>
-					<th>{t("signup.emissions.activityTableDistanceColumn")}</th>
-					<th>{t("signup.emissions.activityTableDateColumn")}</th>
-					<th>{t("signup.emissions.activityTableSavingsColumn")}</th>
+					<th>{t("signup.impact.activityTableActivityColumn")}</th>
+					<th>{t("signup.impact.activityTableDistanceColumn")}</th>
+					<th>{t("signup.impact.activityTableDateColumn")}</th>
+					<th>{t("signup.impact.activityTableSavingsColumn")}</th>
 				</tr>
 			</thead>
 			<tbody>

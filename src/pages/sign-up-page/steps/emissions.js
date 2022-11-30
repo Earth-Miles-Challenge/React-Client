@@ -33,19 +33,19 @@ export const Emissions = () => {
 	const [ showOnlyCommutes, setShowOnlyCommutes ] = useState(true);
 	const toggle = () => setShowOnlyCommutes(prev => !prev);
 
-	const emissionsAvoidedKg = t('signup.emissions.totalAmount', {'amount': emissionsAvoided / 1000});
+	const emissionsAvoidedKg = t('signup.impact.totalAmount', {'amount': emissionsAvoided / 1000});
 
 	return (
 		<div className="emissions-savings-wrapper">
 			<div className="emissions-savings-summary">
-				<Trans i18nKey="signup.emissions.totalBlurb">
+				<Trans i18nKey="signup.impact.totalBlurb">
 					Your human-powered commutes have helped you avoid approximately <span className='total-savings'>{{emissionsAvoidedKg}}</span>
 				</Trans>
 			</div>
 			<div className="emissions-savings-by-activity">
-				<h2>{t('signup.emissions.activityHeader')}</h2>
-				{showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.emissions.toggleAll')}</button>}
-				{!showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.emissions.toggleSavers')}</button>}
+				<h2>{t('signup.impact.activityHeader')}</h2>
+				{showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.impact.toggleAll')}</button>}
+				{!showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.impact.toggleSavers')}</button>}
 				<EmissionsByActivitySummary
 					activities={activities}
 					sortBy='date'
