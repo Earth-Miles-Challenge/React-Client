@@ -1,3 +1,5 @@
+import { ActivityMap } from 'features/activities';
+
 export const EmissionsByActivitySummaryItem = props => {
 	const { activity } = props;
 	const distance = (activity.distance / 1000).toFixed(2) + 'km';
@@ -14,6 +16,9 @@ export const EmissionsByActivitySummaryItem = props => {
 			<span className="activity-distance">{distance}</span>
 			<span className="activity-impact">{kgAvoided}</span>
 			<span className="activity-date">{date}</span>
+			<div className="activity-detail">
+				<ActivityMap activity={activity} />
+			</div>
 		</div>
 	)
 }

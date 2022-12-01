@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:9000",
   "dependencies": {
+    "@mapbox/polyline": "^1.1.1",
     "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -18,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.7",
     "react-i18next": "^12.0.0",
+    "react-leaflet": "^4.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",

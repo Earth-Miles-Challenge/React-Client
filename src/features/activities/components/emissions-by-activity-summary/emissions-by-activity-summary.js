@@ -20,7 +20,6 @@ const getFilteredAndSortedActivities = (activities, sortBy, filterCommutes) => {
 
 export const EmissionsByActivitySummary = props => {
 	const { activities, sortBy, filterCommutes } = props;
-
 	return (
 		<div className="activity-list">
 			{getFilteredAndSortedActivities(activities, sortBy, filterCommutes).map(
