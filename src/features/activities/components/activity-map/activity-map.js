@@ -23,7 +23,9 @@ const getMapBounds = coordinates => {
 
 export const ActivityMap = ({activity}) => {
 	const getActivityMap = useCallback(() => {
-		const fossilCoordinates = polyline.decode(activity.fossil_alternative_polyline);
+		if (!activity.activity_impact.fossil_alternative_polyline) return;
+
+		const fossilCoordinates = polyline.decode(activity.activity_impact.fossil_alternative_polyline);
 		const actualCoordinates = polyline.decode(activity.map_polyline);
 
 		const mapBounds = getMapBounds([
@@ -46,7 +48,7 @@ export const ActivityMap = ({activity}) => {
 				/>
 			</MapContainer>
 		);
-	}, [activity.fossil_alternative_polyline, activity.map_polyline]);
+	}, [activity.activity_impact.fossil_alternative_polyline, activity.map_polyline]);
 
 	return useMemo(getActivityMap, [getActivityMap]);
 }

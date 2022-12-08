@@ -9,7 +9,7 @@ export const EmissionsByActivitySummaryItem = props => {
 		day: 'numeric',
 		year: 'numeric'
 	});
-	const kgAvoided = activity.co2_avoided_grams ? activity.co2_avoided_grams / 1000 + 'kg CO2e' : '-';
+	const kgAvoided = activity.activity_impact.fossil_alternative_co2 ? activity.activity_impact.fossil_alternative_co2 / 1000 + 'kg CO2e' : '-';
 	return (
 		<div className="activity">
 			<h4>{activity.description}</h4>
