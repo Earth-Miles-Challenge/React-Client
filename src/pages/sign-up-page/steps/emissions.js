@@ -3,6 +3,7 @@ import { EmissionsByActivitySummary, getAthleteActivities } from 'features/activ
 import { useTranslation, Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from 'features/users';
+import { useGetEmissionsAvoidedByUserQuery } from 'store/server-api';
 import { getEmissionsAvoidedByUser } from 'features/impact';
 
 import './emissions.scss';
@@ -10,18 +11,22 @@ import './emissions.scss';
 export const EmissionsImpact = () => {
 	const { t } = useTranslation();
 	const currentUser = useSelector(selectCurrentUser);
-	const [emissionsAvoided, setEmissionsAvoided] = useState(0);
-	useEffect(() => {
-		if (!currentUser.id) return;
-		(async () => {
-			const response = await getEmissionsAvoidedByUser(currentUser.id);
-			if (response.success) {
-				setEmissionsAvoided(parseInt(response.emissionsAvoided));
-			}
-		})();
-	}, [currentUser.id]);
+	// const [emissionsAvoided, setEmissionsAvoided] = useState(0);
+	const [data, isLoading ] = useGetEmissionsAvoidedByUserQuery(currentUser.id);
 
-	const emissionsAvoidedKg = t('signup.impact.totalAmount', {'amount': emissionsAvoided / 1000});
+	// useEffect(() => {
+	// 	if (!currentUser.id) return;
+	// 	(async () => {
+	// 		const response = await getEmissionsAvoidedByUser(currentUser.id);
+	// 		if (response.success) {
+	// 			setEmissionsAvoided(parseInt(response.emissionsAvoided));
+	// 		}
+	// 	})();
+	// }, [currentUser.id]);
+
+	if (isLoading) return null;
+
+	const emissionsAvoidedKg = t('signup.impact.totalAmount', {'amount': data / 1000});
 	return (
 		<div className="emissions-savings-summary">
 			<Trans i18nKey="signup.impact.totalBlurb">

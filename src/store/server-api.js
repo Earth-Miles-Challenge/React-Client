@@ -5,7 +5,7 @@ import { getToken } from 'utils/cookie-utils';
 export const serverApi = createApi({
 	reducerPath: 'serverApi',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:9000/',
+		baseUrl: 'http://127.0.0.1:9000/',
 		prepareHeaders: (headers) => {
 			const token = getToken();
 			if (token) {
@@ -28,8 +28,11 @@ export const serverApi = createApi({
 				dispatch({type: 'authorization/updateCurrentUser', payload: arg});
 			}
 		}),
-		requestStravaToken: builder.query({
-			query: () => `auth/strava/${window.location.search}`
+		getEmissionsAvoided: builder.query({
+			query: () => `/impact/emissionsAvoided`
+		}),
+		getEmissionsAvoidedByUser: builder.query({
+			query: (userId) => `users/${userId}/impact/emissionsAvoided`
 		}),
 	}),
 });
@@ -37,5 +40,6 @@ export const serverApi = createApi({
 export const {
 	useGetUserQuery,
 	useUpdateUserMutation,
-	useRequestStravaTokenQuery
+	useGetEmissionsAvoidedQuery,
+	useGetEmissionsAvoidedByUserQuery,
 } = serverApi;

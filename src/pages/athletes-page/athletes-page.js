@@ -8,12 +8,12 @@ export const AthletesPage = () => {
 	const [search, setSearch] = useState('');
 	const [athletes, setAthletes] = useState([]);
 
-	useEffect(() => {
-		return async () => {
-			const athletes = await getAthletes(search);
-			setAthletes(athletes);
-		}
-	}, [search])
+	// useEffect(() => {
+	// 	return async () => {
+	// 		const athletes = await getAthletes(search);
+	// 		setAthletes(athletes);
+	// 	}
+	// }, [search])
 
 	return (
 		<>

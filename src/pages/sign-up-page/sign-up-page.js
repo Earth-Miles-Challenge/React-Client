@@ -12,7 +12,7 @@ import './sign-up-page.scss';
 export const SignUpPage = () => {
 	const { t } = useTranslation();
 	const { id } = useSelector(selectCurrentUser);
-	const { data, isLoading } = useGetUserQuery(id);
+	const { data, isLoading } = useGetUserQuery(id || 1);
 	const [ activeStep, setActiveStep ] = useState(null);
 	useEffect(() => {
 		if (!isLoading) {
