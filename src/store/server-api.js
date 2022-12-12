@@ -27,11 +27,15 @@ export const serverApi = createApi({
 			async onCacheEntryAdded(arg, {dispatch}) {
 				dispatch({type: 'authorization/updateCurrentUser', payload: arg});
 			}
-		})
+		}),
+		requestStravaToken: builder.query({
+			query: () => `auth/strava/${window.location.search}`
+		}),
 	}),
 });
 
 export const {
 	useGetUserQuery,
-	useUpdateUserMutation
+	useUpdateUserMutation,
+	useRequestStravaTokenQuery
 } = serverApi;

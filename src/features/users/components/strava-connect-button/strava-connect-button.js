@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { ReactComponent as StravaConnectSvg } from './strava-connect.svg'
 import { requestToken, getStravaAuthorizeUri } from 'utils/strava-utils';
+import { useRequestStravaTokenQuery } from 'store/server-api';
 
 export const StravaConnectButton = props => {
 	const { onConnected } = props;
