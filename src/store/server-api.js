@@ -5,7 +5,7 @@ import { getToken } from 'utils/cookie-utils';
 export const serverApi = createApi({
 	reducerPath: 'serverApi',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://backend:9000/',
+		baseUrl: 'http://localhost:9000/',
 		prepareHeaders: (headers) => {
 			const token = getToken();
 			if (token) {
