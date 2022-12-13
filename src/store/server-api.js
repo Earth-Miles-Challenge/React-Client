@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getToken } from 'utils/cookie-utils';
 
 // Define a service using a base URL and expected endpoints
-export const serverApi = createApi({
-	reducerPath: 'serverApi',
+export const api = createApi({
+	reducerPath: 'api',
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'http://localhost:9000/',
 		prepareHeaders: (headers) => {
@@ -42,4 +42,4 @@ export const {
 	useUpdateUserMutation,
 	useGetEmissionsAvoidedQuery,
 	useGetEmissionsAvoidedByUserQuery,
-} = serverApi;
+} = api;

@@ -9,25 +9,47 @@ import { useGetUserQuery } from 'store/server-api';
 
 import './sign-up-page.scss';
 
+export const SignUpPageContent = (props) => {
+	const { pageHeader, mainContent, supplementaryContent } = props;
+	return (
+		<>
+			<div className="form-container">
+				<h1>{pageHeader}</h1>
+				{mainContent}
+			</div>
+			{supplementaryContent}
+		</>
+	)
+}
+
 export const SignUpPage = () => {
 	const { t } = useTranslation();
 	const { id } = useSelector(selectCurrentUser);
-	const { data, isLoading } = useGetUserQuery(id || 1);
-	const [ activeStep, setActiveStep ] = useState(null);
-	useEffect(() => {
-		if (!isLoading) {
-			if (data && data.hasOwnProperty('activity_platform')) {
-				setActiveStep(!data.email ? 1 : 2)
-			} else {
-				setActiveStep(0);
-			}
-		}
-	}, [data, isLoading]);
+
+	if (id) return <SignUpPageAuthenticated userId={id} />
 
 	const redirectToHome = () => window.location = window.location.pathname;
+
+	return <SignUpPageContent
+		pageHeader={t('signup.start.header')}
+		mainContent={<StravaConnectStep onConnected={redirectToHome} />}
+		supplementaryContent={<CommutesFeature />}
+	/>
+}
+
+
+export const SignUpPageAuthenticated = (props) => {
+	const { userId } = props;
+	const { t } = useTranslation();
+	const { data, isLoading } = useGetUserQuery(userId);
+	const [ activeStep, setActiveStep ] = useState(null);
+
+	useEffect(() => {
+		setActiveStep((!isLoading && data && data.hasOwnProperty('activity_platform') && data.email) ? 2 : 1);
+	}, [data, isLoading]);
+
 	const getPageHeader = () => {
 		switch (activeStep) {
-			case 0: return t('signup.start.header');
 			case 1: return t('signup.profile.header');
 			case 2: return t('signup.impact.header');
 			default: return '';
@@ -37,7 +59,6 @@ export const SignUpPage = () => {
 	const getPageMainContent = () => {
 		if (isLoading) return 'loading...';
 		switch (activeStep) {
-			case 0: return <StravaConnectStep onConnected={redirectToHome} />;
 			case 1: return <p>{t('signup.profile.teaser')}</p>
 			case 2: return <EmissionsImpact />;
 			default: return '';
@@ -46,20 +67,15 @@ export const SignUpPage = () => {
 
 	const getPageSupplementaryContent = () => {
 		switch (activeStep) {
-			case 0: return <CommutesFeature />;
 			case 1: return <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} />;
 			case 2: return <EmissionsByActivity />
 			default: return '';
 		}
 	}
 
-	return (
-		<>
-			<div className="form-container">
-				<h1>{getPageHeader()}</h1>
-				{getPageMainContent()}
-			</div>
-			{getPageSupplementaryContent()}
-		</>
-	)
+	return <SignUpPageContent
+		pageHeader={getPageHeader()}
+		mainContent={getPageMainContent()}
+		supplementaryContent={getPageSupplementaryContent()}
+	/>
 }
