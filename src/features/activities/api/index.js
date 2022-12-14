@@ -1,1 +1,0 @@
-export { getAthleteActivities, fetchLatest } from './get-athlete-activities';

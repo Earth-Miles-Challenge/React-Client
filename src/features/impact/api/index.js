@@ -1,1 +1,0 @@
-export { getEmissionsAvoided, getEmissionsAvoidedByUser } from './get-emissions-avoided';
