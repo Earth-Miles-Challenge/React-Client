@@ -67,7 +67,7 @@ export const SignUpPageAuthenticated = (props) => {
 
 	const getPageSupplementaryContent = () => {
 		switch (activeStep) {
-			case 1: return <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} />;
+			case 1: return !!data ? <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} /> : '';
 			case 2: return <EmissionsByActivity />
 			default: return '';
 		}

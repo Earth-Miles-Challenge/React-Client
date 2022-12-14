@@ -1,32 +1,23 @@
-import { useEffect, useState } from 'react';
-import { EmissionsByActivitySummary, getAthleteActivities } from 'features/activities';
+import { useState } from 'react';
+import { EmissionsByActivitySummary } from 'features/activities';
 import { useTranslation, Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from 'features/users';
-import { useGetEmissionsAvoidedByUserQuery } from 'store/server-api';
-import { getEmissionsAvoidedByUser } from 'features/impact';
+import {
+	useGetEmissionsAvoidedByUserQuery,
+	useGetUserActivitiesQuery,
+} from 'store/server-api';
 
 import './emissions.scss';
 
 export const EmissionsImpact = () => {
 	const { t } = useTranslation();
 	const currentUser = useSelector(selectCurrentUser);
-	// const [emissionsAvoided, setEmissionsAvoided] = useState(0);
-	const [data, isLoading ] = useGetEmissionsAvoidedByUserQuery(currentUser.id);
-
-	// useEffect(() => {
-	// 	if (!currentUser.id) return;
-	// 	(async () => {
-	// 		const response = await getEmissionsAvoidedByUser(currentUser.id);
-	// 		if (response.success) {
-	// 			setEmissionsAvoided(parseInt(response.emissionsAvoided));
-	// 		}
-	// 	})();
-	// }, [currentUser.id]);
+	const { data, isLoading } = useGetEmissionsAvoidedByUserQuery(currentUser.id);
 
 	if (isLoading) return null;
 
-	const emissionsAvoidedKg = t('signup.impact.totalAmount', {'amount': data / 1000});
+	const emissionsAvoidedKg = t('signup.impact.totalAmount', {'amount': data.emissionsAvoided / 1000});
 	return (
 		<div className="emissions-savings-summary">
 			<Trans i18nKey="signup.impact.totalBlurb">
@@ -39,18 +30,11 @@ export const EmissionsImpact = () => {
 export const EmissionsByActivity = () => {
 	const { t } = useTranslation();
 	const currentUser = useSelector(selectCurrentUser);
-
-	const [ activities, setActivities ] = useState([]);
-	useEffect(() => {
-		if (!currentUser.id) return;
-		(async () => {
-			const activities = await getAthleteActivities(currentUser.id);
-			setActivities(activities);
-		})();
-	}, [currentUser.id]);
-
+	const { data, isLoading } = useGetUserActivitiesQuery(currentUser.id);
 	const [ showOnlyCommutes, setShowOnlyCommutes ] = useState(true);
 	const toggle = () => setShowOnlyCommutes(prev => !prev);
+
+	if (isLoading) return null;
 
 	return (
 		<div className="emissions-savings-by-activity">
@@ -58,7 +42,7 @@ export const EmissionsByActivity = () => {
 			{showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.impact.toggleAll')}</button>}
 			{!showOnlyCommutes && <button className="toggle link" onClick={toggle}>{t('signup.impact.toggleSavers')}</button>}
 			<EmissionsByActivitySummary
-				activities={activities}
+				activities={data}
 				sortBy='date'
 				filterCommutes={showOnlyCommutes}
 			/>

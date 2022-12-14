@@ -28,11 +28,14 @@ export const api = createApi({
 				dispatch({type: 'authorization/updateCurrentUser', payload: arg});
 			}
 		}),
-		getEmissionsAvoided: builder.query({
-			query: () => `/impact/emissionsAvoided`
+		getUserActivities: builder.query({
+			query: (userId) => `/users/${userId}/activities`
 		}),
 		getEmissionsAvoidedByUser: builder.query({
 			query: (userId) => `users/${userId}/impact/emissionsAvoided`
+		}),
+		getEmissionsAvoided: builder.query({
+			query: () => `/impact/emissionsAvoided`
 		}),
 	}),
 });
@@ -40,6 +43,7 @@ export const api = createApi({
 export const {
 	useGetUserQuery,
 	useUpdateUserMutation,
+	useGetUserActivitiesQuery,
 	useGetEmissionsAvoidedQuery,
 	useGetEmissionsAvoidedByUserQuery,
 } = api;
