@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { ReactComponent as StravaConnectSvg } from './strava-connect.svg'
 import { requestToken, getStravaAuthorizeUri } from 'utils/strava-utils';
-import { useRequestStravaTokenQuery } from 'store/server-api';
 
 export const StravaConnectButton = props => {
 	const { onConnected } = props;
@@ -28,7 +27,3 @@ export const StravaConnectButton = props => {
 		</div>
 	)
 }
-
-
-//https://www.strava.com/oauth/authorize?client_id=93532&redirect_uri=https://earthmileschallenge.com/auth/strava&approval_prompt=auto&scope=profile:read_all,activity:read_all
-//https://www.strava.com/oauth/authorize?client_id=6414&response_type=code&redirect_uri=https://www.strafforts.com/auth/exchange-token&approval_prompt=auto&scope=read,profile:read_all,activity:read,activity:read_all

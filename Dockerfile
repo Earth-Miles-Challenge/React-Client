@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1.4
 
-FROM node:lts AS development
+FROM node:19-alpine3.16 AS development
 
 ENV CI=true
-ENV PORT=3000
+ENV PORT=8080
 
 WORKDIR /code
 COPY package.json /code/package.json
@@ -32,6 +32,6 @@ EOF
 COPY --from=gloursdocker/docker / /
 CMD [ "npm", "start" ]
 
-FROM nginx:1.13-alpine
+FROM nginx:1.23.3-alpine
 
 COPY --from=builder /code/build /usr/share/nginx/html
