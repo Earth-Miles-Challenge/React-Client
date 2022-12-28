@@ -5,7 +5,7 @@ import { getToken } from 'utils/cookie-utils';
 export const api = createApi({
 	reducerPath: 'api',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:9000/',
+		baseUrl: process.env.REACT_APP_API_URL,
 		prepareHeaders: (headers) => {
 			const token = getToken();
 			if (token) {

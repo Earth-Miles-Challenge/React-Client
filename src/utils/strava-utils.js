@@ -17,7 +17,7 @@ export const getStravaAuthorizeUri = (state) => {
 
 export const requestToken = async (url) => {
 	try {
-		const response = await fetch(`http://localhost:9000/auth/strava${window.location.search}`, {
+		const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/strava${window.location.search}`, {
 			method: 'GET',
 			credentials: 'include',
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },
