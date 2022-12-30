@@ -1,7 +1,7 @@
 const getStravaClientId = () => 93532;
 
 export const getStravaAuthorizeUri = (state) => {
-	const redirectUri = 'http://localhost:3000';
+	const redirectUri = process.env.REACT_APP_URL;
 	const approvalPrompt = 'auto';
 	const scope = 'profile:read_all,activity:read_all,activity:write';
 
@@ -17,7 +17,7 @@ export const getStravaAuthorizeUri = (state) => {
 
 export const requestToken = async (url) => {
 	try {
-		const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/strava${window.location.search}`, {
+		const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/strava${window.location.search}`, {
 			method: 'GET',
 			credentials: 'include',
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' },

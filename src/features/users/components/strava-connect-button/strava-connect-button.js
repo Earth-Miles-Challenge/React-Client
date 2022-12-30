@@ -6,7 +6,7 @@ export const StravaConnectButton = props => {
 	const { onConnected } = props;
 
 	useEffect(() => {
-		return async () => {
+		const handleStravaRedirect = async () => {
 			const url = new URL(window.location);
 
 			// Missing code and scope.
@@ -17,6 +17,9 @@ export const StravaConnectButton = props => {
 				}
 			}
 		}
+
+		handleStravaRedirect()
+			.catch(console.error);
 	}, [onConnected]);
 
 	return (
