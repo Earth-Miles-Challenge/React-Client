@@ -1,36 +1,31 @@
 # syntax=docker/dockerfile:1.4
 
 # ################### ###################
-# STAGE 1: Base
+# STAGE 1: Development
 # ################### ###################
-FROM node:19-alpine3.16 AS base
-
+FROM node:19-alpine3.16 AS development
 WORKDIR /app
-
 COPY package*.json ./
 
-# Expose the port the app runs in
-ARG PORT
+# Set PORT config (3000 is the default for development)
+ARG PORT=3000
 ENV PORT $PORT
 EXPOSE $PORT
 
 # Set React App environment values
-ARG REACT_APP_API_URL
-ENV REACT_APP_API_URL=$REACT_APP_API_URL
+ARG REACT_APP_BACKEND_URL=http://localhost/api
+ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
 
-# ################### ###################
-# STAGE 2: Development
-# ################### ###################
-FROM base AS development
+ARG REACT_APP_URL=http://localhost
+ENV REACT_APP_URL=$REACT_APP_URL
 
 RUN npm ci
 COPY . /app
-
-# Serve the app
+RUN npm run build
 CMD ["npm", "run", "start"]
 
 # ################### ###################
-# STAGE 3: Dev-envs
+# STAGE 2: Dev-envs
 # ################### ###################
 FROM development as dev-envs
 
@@ -49,20 +44,11 @@ EOF
 COPY --from=gloursdocker/docker / /
 
 # ################### ###################
-# STAGE 4: Production
+# STAGE 3: Production
 # ################### ###################
 
-# Pre-production
-FROM base as pre-production
-
-RUN npm ci --omit=dev
-
-COPY . /app
-RUN npm run build
-
-# Production
 FROM nginx:1.23.3-alpine
 WORKDIR /usr/share/nginx/html
 RUN rm -rf *
-COPY --from=pre-production /app/build /usr/share/nginx/html
+COPY --from=development /app/build /usr/share/nginx/html
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
