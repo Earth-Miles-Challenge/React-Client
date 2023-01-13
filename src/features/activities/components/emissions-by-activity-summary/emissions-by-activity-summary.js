@@ -12,9 +12,7 @@ const filterByCommute = (activity) => activity.commute;
 
 const getFilteredAndSortedActivities = (activities, sortBy, filterCommutes) => {
 	const filteredActivities = filterCommutes ? activities.filter(filterByCommute) : activities;
-	if ('date' === sortBy) {
-		return filteredActivities.sort(dateSort);
-	}
+	if ('date' === sortBy) return [...filteredActivities].sort(dateSort);
 	return filteredActivities;
 }
 

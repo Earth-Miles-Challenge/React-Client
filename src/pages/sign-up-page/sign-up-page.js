@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { StravaConnectStep, ProfileStep, EmissionsImpact, EmissionsByActivity } from './steps';
 import { CommutesFeature } from './commutes';
 import { selectCurrentUser } from 'features/users';
-// import { FormProgressBar } from 'components';
 import { useGetUserQuery } from 'store/server-api';
 
 import './sign-up-page.scss';
@@ -41,12 +40,14 @@ export const SignUpPage = () => {
 export const SignUpPageAuthenticated = (props) => {
 	const { userId } = props;
 	const { t } = useTranslation();
-	const { data, isLoading } = useGetUserQuery(userId);
+	const { data, error, isLoading } = useGetUserQuery(userId);
 	const [ activeStep, setActiveStep ] = useState(null);
 
 	useEffect(() => {
 		setActiveStep((!isLoading && data && data.hasOwnProperty('activity_platform') && data.email) ? 2 : 1);
 	}, [data, isLoading]);
+
+	if (error) return 'Error...';
 
 	const getPageHeader = () => {
 		switch (activeStep) {
@@ -57,7 +58,7 @@ export const SignUpPageAuthenticated = (props) => {
 	}
 
 	const getPageMainContent = () => {
-		if (isLoading) return 'loading...';
+		if (isLoading) return 'Loading...';
 		switch (activeStep) {
 			case 1: return <p>{t('signup.profile.teaser')}</p>
 			case 2: return <EmissionsImpact />;
