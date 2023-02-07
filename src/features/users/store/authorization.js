@@ -43,7 +43,10 @@ export const { setAuthenticated, setNonAuthenticated, updateCurrentUser } = auth
 export async function setAuthenticationStatus(dispatch, getState) {
 	const token = getToken();
 	if (token) {
-		dispatch(setAuthenticated(jwt_decode(token)));
+		const decoded = jwt_decode(token);
+		if (decoded.exp > Date.now()/1000) {
+			dispatch(setAuthenticated(decoded));
+		}
 	} else {
 		dispatch(setNonAuthenticated());
 	}
