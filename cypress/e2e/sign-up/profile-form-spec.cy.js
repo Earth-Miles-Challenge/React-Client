@@ -4,7 +4,7 @@ describe('The Sign Up Page - Profile Form', function() {
       cy.intercept('GET', '**/users/*/impact/emissionsAvoided', {fixture: 'user-impact-emissions-avoided.json'});
 
       cy.fixture('user-profile-strava-connected.json').as('profile_data').then(function(payload) {
-        cy.visit('http://localhost:3000');
+        cy.visit('http://localhost');
         cy.window().its('store').invoke('dispatch', { type: 'authorization/setAuthenticated', payload });
       });
     });
