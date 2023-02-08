@@ -1,8 +1,10 @@
 {
-  "id": 123,
-  "first_name": "Eric",
-  "last_name": "Daams",
-  "email": "",
-  "profile_photo": "",
-  "activity_platform": "strava"
+  "id":1,
+  "email":"",
+  "first_name":"Eric",
+  "last_name":"Daams",
+  "profile_photo":"",
+  "activity_platform":"strava",
+  "activity_platform_id":"123123123",
+  "created_at":"2022-12-30T03:15:54.696Z"
 }

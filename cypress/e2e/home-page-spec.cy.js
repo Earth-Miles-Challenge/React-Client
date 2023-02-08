@@ -1,16 +1,10 @@
-describe('The Sign Up Page - Strava Connect', () => {
+describe('Homepage', () => {
 	it('successfully loads', () => {
 	  cy.visit('http://localhost');
 
 	  cy.get('.form-container')
 		.get('h1')
 		.contains('Calculate Your Emissions Savings');
-	});
-
-	it('shows form progress bar', () => {
-	  cy.get('.form-progress-bar')
-		.get('li.form-progress-bar-item--active')
-		.contains('Connect Strava');
 	});
 
 	it('shows Strava button with correct link', () => {

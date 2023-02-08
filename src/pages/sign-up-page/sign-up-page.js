@@ -36,7 +36,6 @@ export const SignUpPage = () => {
 	/>
 }
 
-
 export const SignUpPageAuthenticated = (props) => {
 	const { userId } = props;
 	const { t } = useTranslation();
