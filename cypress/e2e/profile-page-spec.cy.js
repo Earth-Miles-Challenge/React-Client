@@ -1,9 +1,9 @@
-import profileData from '../fixtures/user-profile-strava-connected.json';
+import profileData from '../fixtures/user-profile-strava-connected-no-email.json';
 
 beforeEach(function() {
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoyNTI0NjA3OTk5fQ.0owJNR4zt4q85hgbma0uhMtVa9lLM3vo0cVQWE3SXpA';
   cy.setCookie('token', token);
-  cy.intercept({ method: 'GET', url: '**/users/*' }, {fixture: 'user-profile-strava-connected.json'})
+  cy.intercept({ method: 'GET', url: '**/users/*' }, {fixture: 'user-profile-strava-connected-no-email.json'})
   cy.intercept({ method: 'PUT', url: '**/users/*' }, {fixture: 'user-profile-strava-connected.json'})
   cy.intercept({ method: 'GET', url: '**/users/*/activities' }, {fixture: 'user-activities.json'});
   cy.intercept({ method: 'GET', url: '**/users/*/impact/emissionsAvoided' }, {fixture: 'user-impact-emissions-avoided.json'});
