@@ -13,10 +13,10 @@ ENV PORT $PORT
 EXPOSE $PORT
 
 # Set React App environment values
-ARG REACT_APP_BACKEND_URL=http://localhost/api
+ARG REACT_APP_BACKEND_URL=https://earthmileschallenge.com/api
 ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
 
-ARG REACT_APP_URL=http://localhost
+ARG REACT_APP_URL=https://earthmileschallenge.com
 ENV REACT_APP_URL=$REACT_APP_URL
 
 RUN npm ci
