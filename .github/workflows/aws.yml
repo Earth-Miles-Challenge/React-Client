@@ -27,8 +27,9 @@
 name: Deploy Image to Amazon ECR
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - '*'
 
 env:
   AWS_REGION: ap-southeast-2
@@ -62,7 +63,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ github.ref }}
+        IMAGE_TAG: ${{ github.ref_name }}
       run: |
         # Build a docker container and
         # push it to ECR so that it can
