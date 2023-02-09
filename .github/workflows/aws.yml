@@ -81,4 +81,5 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         script: |
           cd /app
-          docker compose -f docker-compose.prod.yml up -d frontend
+          docker compose -f docker-compose.prod.yml pull frontend
+          docker compose -f docker-compose.prod.yml up --build --force-recreate -d frontend
