@@ -70,10 +70,3 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
-        
-    - name: Pull the latest Docker image from ECR
-      uses: docker/pull-action@v2
-      with:
-        registry: ${{ steps.login-ecr.outputs.registry }}
-        image-name: my-app
-        tag: latest
