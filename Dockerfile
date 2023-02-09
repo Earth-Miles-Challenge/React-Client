@@ -25,26 +25,7 @@ RUN npm run build
 CMD ["npm", "run", "start"]
 
 # ################### ###################
-# STAGE 2: Dev-envs
-# ################### ###################
-FROM development as dev-envs
-
-RUN <<EOF
-apt-get update
-apt-get install -y --no-install-recommends git
-EOF
-
-RUN <<EOF
-useradd -s /bin/bash -m vscode
-groupadd docker
-usermod -aG docker vscode
-EOF
-
-# install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
-
-# ################### ###################
-# STAGE 3: Production
+# STAGE 2: Production
 # ################### ###################
 
 FROM nginx:1.23.3-alpine
