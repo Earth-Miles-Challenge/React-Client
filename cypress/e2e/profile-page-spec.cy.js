@@ -14,7 +14,7 @@ describe('Sign Up - Profile Page', function() {
   it('displays expected header and form', () => {
     cy.get('.form-container')
       .get('h1')
-      .contains('Incorrect header');
+      .contains('Create your profile');
     cy.get('input#firstName')
       .should('have.value', profileData.first_name);
     cy.get('input[name=lastName]')
