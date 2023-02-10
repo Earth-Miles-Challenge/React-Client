@@ -39,6 +39,8 @@ permissions:
   contents: read
 
 jobs:
+  call-tests-workflow:
+    uses: ./.github/workflows/tests.yml
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
