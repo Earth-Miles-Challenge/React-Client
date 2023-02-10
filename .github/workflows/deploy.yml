@@ -40,8 +40,10 @@ permissions:
 
 jobs:
   call-tests-workflow:
+    name: Tests
     uses: ./.github/workflows/tests.yml
   deploy:
+    needs: call-tests-workflow
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
