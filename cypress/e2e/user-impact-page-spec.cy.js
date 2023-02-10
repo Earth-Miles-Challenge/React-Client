@@ -4,7 +4,7 @@ beforeEach(function() {
   cy.intercept({ method: 'GET', url: '**/users/*' }, {fixture: 'user-profile-strava-connected.json'})
   cy.intercept({ method: 'GET', url: '**/users/*/activities' }, {fixture: 'user-activities.json'});
   cy.intercept({ method: 'GET', url: '**/users/*/impact/emissionsAvoided' }, {fixture: 'user-impact-emissions-avoided.json'});
-  cy.visit('http://localhost/')
+  cy.visit('/')
 });
 
 describe('The Sign Up Page - Emissions', () => {

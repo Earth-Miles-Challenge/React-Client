@@ -28,6 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "cypress:openDocker": "CYPRESS_BASE_URL=http://localhost cypress open",
     "cypress:open": "cypress open",
     "cypress": "cypress run"
   },
