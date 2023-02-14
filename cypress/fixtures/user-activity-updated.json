@@ -1,0 +1,20 @@
+{
+	"id":39,
+	"user_id":1,
+	"activity_platform":"strava",
+	"activity_platform_activity_id":"123123123",
+	"activity_type":"run",
+	"description":"Evening Run",
+	"start_date":"2022-03-03T09:59:29.000Z",
+	"timezone":"Australia/Darwin",
+	"distance":5329.6,
+	"commute":true,
+	"start_latlng":"{\"-12.380466191098094\",\"130.85192603990436\"}",
+	"end_latlng":"{\"-12.380287824198604\",\"130.85181958973408\"}",
+	"map_polyline":"bkqjA{ht}WRQp@u@`@UzAyAr@k@^MtAeAZGZe@`A{@n@o@v@e@HCbD?\\BpA@C?VAp@?RKTYTMJGBE@a@Ow@Sq@{BoD_@]]e@OM?CFQx@}@Ei@k@{@cAaAw@WYWKc@C]EOABGg@O}@Oe@My@{@eDk@_DA[Og@u@eDE[EIKMiEj@eA?_@BSAe@LgANe@Bo@L]Bq@Cc@Fa@H_An@w@t@_@d@u@p@u@tAgAtCWf@UPe@J_@?i@Jc@AMC[?_@CoAAc@DsCjCM\\EV@PGf@G|@ApADf@Jb@F^@`@AxBY`BQ|AKb@a@lAId@?l@G`@Md@SjBKJ[PKBIAs@Fm@JOJWXWLSRCHKp@Ed@A\\@ZDLp@zAd@d@LZNTf@h@d@n@d@ZRZb@f@d@x@FVPJRh@`@x@^xBJv@Lb@AXE`@Mj@Jv@[jAEZDXDFTPPFx@Jd@N`@RNPVPZEZSBKKYA[CUy@{Au@eBW_@IWBOZc@h@c@r@[|AaA^M\\UVKhBwAj@S",
+	"activity_impact":{
+		"fossil_alternative_distance":5329,
+		"fossil_alternative_polyline":null,
+		"fossil_alternative_co2":913
+	}
+}

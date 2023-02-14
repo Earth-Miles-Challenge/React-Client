@@ -14,9 +14,11 @@ export const api = createApi({
 			return headers;
 		}
 	}),
+	tagTypes: ['User', 'Activity'],
 	endpoints: (builder) => ({
 		getUser: builder.query({
-			query: (userId) => `users/${userId}`
+			query: (userId) => `users/${userId}`,
+			providesTags: (result, error, userId) => [{type: 'User', id: userId}]
 		}),
 		updateUser: builder.mutation({
 			query: ({id, ...data}) => ({
@@ -29,7 +31,26 @@ export const api = createApi({
 			}
 		}),
 		getUserActivities: builder.query({
-			query: (userId) => `/users/${userId}/activities`
+			query: (userId) => `/users/${userId}/activities`,
+			providesTags: [{type: 'Activity', id: 'LIST'}]
+		}),
+		updateUserActivity: builder.mutation({
+			query: ({userId, activityId, ...data}) => ({
+				url: `users/${userId}/activities/${activityId}`,
+				method: `PUT`,
+				body: data
+			}),
+			async onQueryStarted({ userId, activityId }, { dispatch, queryFulfilled }) {
+				try {
+					const { data: updatedActivity } = await queryFulfilled;
+					dispatch(
+						api.util.updateQueryData('getUserActivities', userId, (draft) => {
+							const activityIndex = draft.findIndex((activity) => activity.id === activityId)
+							draft[activityIndex] = updatedActivity;
+						})
+					)
+				} catch {}
+			}
 		}),
 		getEmissionsAvoidedByUser: builder.query({
 			query: (userId) => `users/${userId}/impact/emissionsAvoided`
@@ -44,6 +65,7 @@ export const {
 	useGetUserQuery,
 	useUpdateUserMutation,
 	useGetUserActivitiesQuery,
+	useUpdateUserActivityMutation,
 	useGetEmissionsAvoidedQuery,
 	useGetEmissionsAvoidedByUserQuery,
 } = api;

@@ -37,16 +37,14 @@ export const en = {
 			}
 		},
 		"impact": {
-			"header": "Your impact!!!",
+			"header": "Your impact",
 			"totalBlurb": "Your human-powered commutes have helped you avoid approximately <1>{{emissionsAvoidedKg}}</1>",
 			"totalAmount": "{{amount}}kg CO2e savings",
 			"activityHeader": "Savings by activity",
-			"activityTableActivityColumn": "Activity",
-			"activityTableDistanceColumn": "Distance",
-			"activityTableDateColumn": "Date",
-			"activityTableSavingsColumn": "Emissions Avoided",
 			"toggleAll": "Include non-commute activities",
-			"toggleSavers": "Only show commute activities"
+			"toggleSavers": "Only show commute activities",
+			"activityNonCommuteDescription": "Not counted.",
+			"activityCommuteToggle": "Mark as a commute."
 		}
 	}
 }

@@ -4,6 +4,7 @@ beforeEach(function() {
   cy.intercept({ method: 'GET', url: '**/users/*' }, {fixture: 'user-profile-strava-connected.json'})
   cy.intercept({ method: 'GET', url: '**/users/*/activities' }, {fixture: 'user-activities.json'});
   cy.intercept({ method: 'GET', url: '**/users/*/impact/emissionsAvoided' }, {fixture: 'user-impact-emissions-avoided.json'});
+  cy.intercept({ method: 'PUT', url: '**/users/*/activities/**' }, {fixture: 'user-activity-updated.json'});
   cy.visit('/')
 });
 
@@ -41,6 +42,14 @@ describe('The Sign Up Page - Emissions', () => {
     cy.get('.activity-list .activity:nth-child(2) h4').contains('Evening Run')
     cy.get('.activity-list .activity:nth-child(2) .activity-distance').contains('5.33km');
     cy.get('.activity-list .activity:nth-child(2) .activity-date').contains('March 3, 2022')
-    cy.get('.activity-list .activity:nth-child(2) .activity-impact').contains('-');
+    cy.get('.activity-list .activity:nth-child(2) .activity-impact').contains('Not counted')
+      .should('have.class', 'non-commute');
+
+    // Test for marking as commute
+    cy.get('.activity-list .activity:nth-child(2) .activity-impact button').click();
+    cy.get('.activity-list .activity:nth-child(2) .activity-impact').contains('0.913kg CO2e');
+    cy.get('.emissions-savings-by-activity button.toggle').contains('Only show commute activities')
+      .click()
+    cy.get('.activity-list .activity').should('have.length', 3);
   });
 });
