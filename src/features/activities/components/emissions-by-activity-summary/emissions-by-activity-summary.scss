@@ -20,6 +20,12 @@
 
 		.activity-impact {
 			font-size: 1.3rem;
+			&.non-commute {
+				font-size: 0.9rem;
+				button {
+					color: var(--orange);
+				}
+			}
 		}
 
 		&:nth-child(2n+1) {

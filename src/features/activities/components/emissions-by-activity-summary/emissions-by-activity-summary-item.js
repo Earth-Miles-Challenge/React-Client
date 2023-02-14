@@ -28,7 +28,7 @@ export const EmissionsByActivitySummaryItem = props => {
 			return activity.activity_impact.fossil_alternative_co2 / 1000 + 'kg CO2e';
 		} else {
 			return <>
-				{t('signup.impact.activityNonCommuteDescription')}&nbsp;<button onClick={onClickMarkCommute}>{t('signup.impact.activityCommuteToggle')}</button>
+				{t('signup.impact.activityNonCommuteDescription')}&nbsp;<button className="link" onClick={onClickMarkCommute}>{t('signup.impact.activityCommuteToggle')}</button>
 			</>
 		}
 	}

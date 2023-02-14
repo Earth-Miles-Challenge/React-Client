@@ -49,6 +49,7 @@ describe('The Sign Up Page - Emissions', () => {
     cy.get('.activity-list .activity:nth-child(2) .activity-impact button').click();
     cy.get('.activity-list .activity:nth-child(2) .activity-impact').contains('0.913kg CO2e');
     cy.get('.emissions-savings-by-activity button.toggle').contains('Only show commute activities')
+      .should('have.class', 'link')
       .click()
     cy.get('.activity-list .activity').should('have.length', 3);
   });
