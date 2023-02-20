@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useUpdateUserActivityMutation } from 'store/server-api';
 
 export const EmissionsByActivitySummaryItem = props => {
-	const { activity } = props;
+	const { activity, onUpdateActivity } = props;
 	const { t } = useTranslation();
 	const [ updateActivity ] = useUpdateUserActivityMutation();
 	const distance = (activity.distance / 1000).toFixed(2) + 'km';
@@ -21,6 +21,8 @@ export const EmissionsByActivitySummaryItem = props => {
 			activityId: activity.id,
 			commute: true
 		})
+
+		onUpdateActivity();
 	}
 
 	const getActivityImpact = () => {

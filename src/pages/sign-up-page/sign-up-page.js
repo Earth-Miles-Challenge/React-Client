@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { StravaConnectStep, ProfileStep, EmissionsImpact, EmissionsByActivity } from './steps';
 import { CommutesFeature } from './commutes';
 import { selectCurrentUser } from 'features/users';
-import { useGetUserQuery } from 'store/server-api';
+import { useGetUserQuery, useGetEmissionsAvoidedByUserQuery } from 'store/server-api';
 
 import './sign-up-page.scss';
 
@@ -39,14 +39,19 @@ export const SignUpPage = () => {
 export const SignUpPageAuthenticated = (props) => {
 	const { userId } = props;
 	const { t } = useTranslation();
-	const { data, error, isLoading } = useGetUserQuery(userId);
+	const { data: userData, error: userDataError, isLoading: userDataIsLoading } = useGetUserQuery(userId);
 	const [ activeStep, setActiveStep ] = useState(null);
 
 	useEffect(() => {
-		setActiveStep((!isLoading && data && data.hasOwnProperty('activity_platform') && data.email) ? 2 : 1);
-	}, [data, isLoading]);
+		setActiveStep((!userDataIsLoading && userData && userData.hasOwnProperty('activity_platform') && userData.email) ? 2 : 1);
+	}, [userData, userDataIsLoading]);
 
-	if (error) return 'Error...';
+	const { data: impactData, refetch: refetchImpactData } = useGetEmissionsAvoidedByUserQuery(userId);
+	const handleActivityUpdate = () => {
+		refetchImpactData();
+	}
+
+	if (userDataError) return 'Error...';
 
 	const getPageHeader = () => {
 		switch (activeStep) {
@@ -57,18 +62,18 @@ export const SignUpPageAuthenticated = (props) => {
 	}
 
 	const getPageMainContent = () => {
-		if (isLoading) return 'Loading...';
+		if (userDataIsLoading) return 'Loading...';
 		switch (activeStep) {
 			case 1: return <p>{t('signup.profile.teaser')}</p>
-			case 2: return <EmissionsImpact />;
+			case 2: return !!impactData ? <EmissionsImpact emissionsAvoided={impactData.emissionsAvoided} /> : '';
 			default: return '';
 		}
 	}
 
 	const getPageSupplementaryContent = () => {
 		switch (activeStep) {
-			case 1: return !!data ? <ProfileStep profile={data} onCompleteStep={() => setActiveStep(2)} /> : '';
-			case 2: return <EmissionsByActivity />
+			case 1: return !!userData ? <ProfileStep profile={userData} onCompleteStep={() => setActiveStep(2)} /> : '';
+			case 2: return !!impactData ? <EmissionsByActivity onUpdateActivity={handleActivityUpdate} /> : '';
 			default: return '';
 		}
 	}

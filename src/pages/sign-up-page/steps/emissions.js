@@ -3,21 +3,13 @@ import { EmissionsByActivitySummary } from 'features/activities';
 import { useTranslation, Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from 'features/users';
-import {
-	useGetEmissionsAvoidedByUserQuery,
-	useGetUserActivitiesQuery,
-} from 'store/server-api';
+import { useGetUserActivitiesQuery } from 'store/server-api';
 
 import './emissions.scss';
 
-export const EmissionsImpact = () => {
+export const EmissionsImpact = ({emissionsAvoided}) => {
 	const { t } = useTranslation();
-	const currentUser = useSelector(selectCurrentUser);
-	const { data, isLoading } = useGetEmissionsAvoidedByUserQuery(currentUser.id);
-
-	if (isLoading) return null;
-
-	const emissionsAvoidedKg = t('signup.impact.totalAmount', {'amount': data.emissionsAvoided / 1000});
+	const emissionsAvoidedKg = t('signup.impact.totalAmount', {'amount': emissionsAvoided / 1000});
 	return (
 		<div className="emissions-savings-summary">
 			<Trans i18nKey="signup.impact.totalBlurb">
@@ -27,7 +19,7 @@ export const EmissionsImpact = () => {
 	)
 }
 
-export const EmissionsByActivity = () => {
+export const EmissionsByActivity = ({onUpdateActivity}) => {
 	const { t } = useTranslation();
 	const currentUser = useSelector(selectCurrentUser);
 	const { data, isLoading } = useGetUserActivitiesQuery(currentUser.id);
@@ -45,6 +37,7 @@ export const EmissionsByActivity = () => {
 				activities={data}
 				sortBy='date'
 				filterCommutes={showOnlyCommutes}
+				onUpdateActivity={onUpdateActivity}
 			/>
 		</div>
 	)

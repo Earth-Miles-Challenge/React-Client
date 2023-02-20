@@ -17,11 +17,11 @@ const getFilteredAndSortedActivities = (activities, sortBy, filterCommutes) => {
 }
 
 export const EmissionsByActivitySummary = props => {
-	const { activities, sortBy, filterCommutes } = props;
+	const { activities, sortBy, filterCommutes, onUpdateActivity } = props;
 	return (
 		<div className="activity-list">
 			{getFilteredAndSortedActivities(activities, sortBy, filterCommutes).map(
-				activity => <EmissionsByActivitySummaryItem key={activity.id} activity={activity} />
+				activity => <EmissionsByActivitySummaryItem key={activity.id} activity={activity} onUpdateActivity={onUpdateActivity} />
 			)}
 		</div>
 	);

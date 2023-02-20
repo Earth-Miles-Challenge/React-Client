@@ -53,10 +53,12 @@ export const api = createApi({
 			}
 		}),
 		getEmissionsAvoidedByUser: builder.query({
-			query: (userId) => `users/${userId}/impact/emissionsAvoided`
+			query: (userId) => `users/${userId}/impact/emissionsAvoided`,
+			providesTags: (result, error, userId) => [{type: 'Impact', id: userId}]
 		}),
 		getEmissionsAvoided: builder.query({
-			query: () => `/impact/emissionsAvoided`
+			query: () => `/impact/emissionsAvoided`,
+			providesTags: [{type: 'Impact', id: 'GLOBAL'}]
 		}),
 	}),
 });
