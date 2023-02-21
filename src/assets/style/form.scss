@@ -1,3 +1,5 @@
+@import "scss/mixins.scss";
+
 /*------------------------------------*\
     #FORM
 \*------------------------------------*/
@@ -11,6 +13,7 @@ label {
 input[type=text],
 input[type=email],
 input[type=number],
+input[type=password],
 textarea {
 	width: 100%;
 	padding: 0.6rem;
@@ -20,25 +23,7 @@ textarea {
 
 input[type=submit],
 button:not(.link) {
-	margin-bottom: 1rem;
-	padding: 1rem 1.5rem;
-	border-radius: 2rem;
-	border: 2px solid var(--orange);
-	background-color: var(--orange);
-	color: #fff;
-	font-weight: bolder;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	&:hover,
-	&:focus {
-		color: var(--navy);
-		background-color: var(--cream);
-	}
-	&:active {
-		text-decoration: dashed var(--orange) underline;
-		text-underline-offset: 0.3rem;
-		background: #fff;
-	}
+	@include button;
 }
 
 fieldset {

@@ -1,0 +1,47 @@
+import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import { FormField } from 'components';
+
+export const LoginForm = props => {
+	const { onContinue } = props;
+	const { t } = useTranslation();
+	const { register, handleSubmit, formState: { errors } } = useForm();
+
+	const onSubmit = data => onContinue();
+
+	const displayErrors = (errors, field) => {
+		const MESSAGES = {
+			'email': t("startPage.loginForm.notices.emailRequired"),
+			'password': t("startPage.loginForm.notices.passwordRequired")
+		}
+
+		return errors[field] && <p className="error">{MESSAGES[field][errors[field].type] || MESSAGES[field]}</p>;
+	}
+
+	return (
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<FormField label={t('startPage.loginForm.fieldLabels.email')} id="email">
+				<input type="email"
+					id="email"
+					{...register('email', {
+						pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+						required: true
+					} ) }
+					aria-invalid={errors.email ? true : false}
+				/>
+				{displayErrors(errors, 'email')}
+			</FormField>
+			<FormField label={t('startPage.loginForm.fieldLabels.password')} id="password">
+				<input type="password"
+					id="password"
+					{...register('password', {
+						required: true,
+					} ) }
+					aria-invalid={errors.password ? true : false}
+				/>
+				{displayErrors(errors, 'password')}
+			</FormField>
+			<input type="submit" value={t('startPage.loginForm.button')} />
+		</form>
+	)
+}

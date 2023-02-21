@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { JoinChallengePage, SignUpPage } from './pages';
+import { HomePage, StartPage, JoinChallengePage, SignUpPage } from './pages';
 
 import './assets/style/style.scss';
 
@@ -23,7 +23,8 @@ function App() {
       </header>
       <main className="main">
         <Routes>
-          <Route path="/" element={<SignUpPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/start" element={<StartPage />} />
           {/* <Route path="start" element={<SignUpPage />} /> */}
           {/* <Route path="athletes" element={<AthletesPage />} /> */}
           <Route path="join-challenge" element={<JoinChallengePage />} />

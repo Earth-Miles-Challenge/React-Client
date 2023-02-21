@@ -1,0 +1,21 @@
+@mixin button {
+	margin-bottom: 1rem;
+	padding: 1rem 1.5rem;
+	border-radius: 2rem;
+	border: 2px solid var(--orange);
+	background-color: var(--orange);
+	color: #fff;
+	font-weight: bolder;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	&:hover,
+	&:focus {
+		color: var(--navy);
+		background-color: var(--cream);
+	}
+	&:active {
+		text-decoration: dashed var(--orange) underline;
+		text-underline-offset: 0.3rem;
+		background: #fff;
+	}
+}

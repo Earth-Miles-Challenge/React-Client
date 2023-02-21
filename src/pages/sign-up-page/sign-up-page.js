@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { StravaConnectStep, ProfileStep, EmissionsImpact, EmissionsByActivity } from './steps';
-import { CommutesFeature } from './commutes';
+import { CommutesFeature } from '../home-page/commutes';
 import { selectCurrentUser } from 'features/users';
 import { useGetUserQuery, useGetEmissionsAvoidedByUserQuery } from 'store/server-api';
 
