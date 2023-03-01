@@ -1,26 +1,26 @@
 import { useEffect } from 'react';
 import { ReactComponent as StravaConnectSvg } from './strava-connect.svg'
-import { requestToken, getStravaAuthorizeUri } from 'utils/strava-utils';
+import { getStravaAuthorizeUri } from 'utils/strava-utils';
 
 export const StravaConnectButton = props => {
-	const { onConnected } = props;
+	// const { onConnected } = props;
 
-	useEffect(() => {
-		const handleStravaRedirect = async () => {
-			const url = new URL(window.location);
+	// useEffect(() => {
+	// 	const handleStravaRedirect = async () => {
+	// 		const url = new URL(window.location);
 
-			// Missing code and scope.
-			if (url.searchParams.has('code') && url.searchParams.has('scope')) {
-				const connected = await requestToken(url);
-				if (connected) {
-					onConnected(connected);
-				}
-			}
-		}
+	// 		// Missing code and scope.
+	// 		if (url.searchParams.has('code') && url.searchParams.has('scope')) {
+	// 			const connected = await requestToken(url);
+	// 			if (connected) {
+	// 				onConnected(connected);
+	// 			}
+	// 		}
+	// 	}
 
-		handleStravaRedirect()
-			.catch(console.error);
-	}, [onConnected]);
+	// 	handleStravaRedirect()
+	// 		.catch(console.error);
+	// }, [onConnected]);
 
 	return (
 		<div className="strava-connect">

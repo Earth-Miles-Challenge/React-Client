@@ -1,11 +1,17 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { HomePage, StartPage, JoinChallengePage, SignUpPage } from './pages';
+import {
+  HomePage,
+  StartPage,
+  JoinChallengePage,
+  SignUpPage,
+  StravaConnectPage } from './pages';
 
 import './assets/style/style.scss';
 
 function App() {
   const { t } = useTranslation();
+  const onStravaConnected = () => window.location = window.location.pathname;
   return (
     <div className="App">
       <header className="header">
@@ -27,7 +33,8 @@ function App() {
           <Route path="/start" element={<StartPage />} />
           {/* <Route path="start" element={<SignUpPage />} /> */}
           {/* <Route path="athletes" element={<AthletesPage />} /> */}
-          <Route path="join-challenge" element={<JoinChallengePage />} />
+          <Route path="/join-challenge" element={<JoinChallengePage />} />
+          <Route path="/connect-strava" element={<StravaConnectPage />} />
         </Routes>
       </main>
       <footer>

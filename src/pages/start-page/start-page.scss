@@ -1,0 +1,42 @@
+.authenticate-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	margin: 2rem auto;
+    max-width: 96%;
+    width: 40rem;
+	p {
+		font-size: 0.875rem;
+	}
+	> div {
+		width: 100%;
+	}
+	.login-container {
+		padding: 1rem 0;
+	}
+	.connect-container {
+		padding: 1rem 0;
+	}
+	@media screen and (min-width:800px) {
+		// border-top: 0.2rem solid var(--cream);
+		// border-radius: 0.3rem 0.3rem 0 0;
+		> div {
+			flex: 1 1 50%;
+			width: auto;
+		}
+		.login-container {
+			padding-right: 1rem;
+			// border-color: var(--cream);
+			// border-radius: 0 0 0.3rem 0.3rem;
+			// border-width: 0 0.2rem 0.2rem 0.2rem;
+			// border-style: solid;
+		}
+		.connect-container {
+			padding: 1rem;
+			// border-color: var(--cream) var(--cream) var(--cream) transparent;
+			// border-radius: 0 0.3rem 0.3rem 0;
+			// border-width: 0 0.2rem 0.2rem 0.2rem;
+			// border-style: solid;
+		}
+	}
+}

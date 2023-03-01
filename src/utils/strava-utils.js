@@ -1,7 +1,7 @@
 const getStravaClientId = () => 93532;
 
 export const getStravaAuthorizeUri = (state) => {
-	const redirectUri = process.env.REACT_APP_URL;
+	const redirectUri = process.env.REACT_APP_URL + '/connect-strava';
 	const approvalPrompt = 'auto';
 	const scope = 'profile:read_all,activity:read_all,activity:write';
 
