@@ -7,7 +7,7 @@ describe('Homepage', () => {
 
     cy.get('.form-container .button')
       .contains('Get Started')
-      .should('have.attr', 'href', '/start');
+      .should('have.attr', 'href', '/login');
 
     cy.get('.commutes-intro h2')
       .contains('How it works');

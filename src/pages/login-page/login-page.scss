@@ -1,0 +1,30 @@
+.authenticate-container {
+	p {
+		font-size: 0.875rem;
+	}
+	> div {
+		width: 100%;
+	}
+	// .login-container {
+	// 	padding: 1rem;
+	// 	border: 2px solid var(--orange);
+	// 	border-radius: 0.25rem;
+	// 	box-shadow: 2px 2px 0 var(--orange);
+	// 	background: #fff0e4;
+	// 	input[type=email],
+	// 	input[type=password] {
+	// 		background-color: #fff;
+	// 	}
+	// }
+	.connect-container {
+		padding: 2rem 0;
+	}
+	@media screen and (min-width:800px) {
+		// .login-container {
+		// 	padding: 1rem 2rem;
+		// }
+		.connect-container {
+			padding: 1rem 2rem;
+		}
+	}
+}

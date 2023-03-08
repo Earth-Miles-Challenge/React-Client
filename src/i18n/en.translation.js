@@ -16,7 +16,7 @@ export const en = {
 			"step3Details": "Earth Miles Challenge automatically estimates how much CO2e would have been produced by the equivalent fossil-powered journey to show the impact of your human-powered commute."
 		}
 	},
-	"startPage": {
+	"loginPage": {
 		"header": "Get Started",
 		"teaser": "Log in to your existing account or connect Strava to get started.",
 		"loginForm": {
@@ -36,6 +36,49 @@ export const en = {
 		"connectForm": {
 			"header": "Connect Strava",
 			"teaser": "First time here? Connect Strava to get started."
+		}
+	},
+	"profilePage": {
+		"header": "Create your profile",
+		"teaser": "Set up your account to receive notifications whenever you run, ride or walk a commute.",
+		"profileForm": {
+			"button": "Save settings",
+			"fieldLabels": {
+				"name": "Your name",
+				"firstName": "First name",
+				"lastName": "Last name",
+				"email": "Email"
+			},
+			"notices": {
+				"firstNameRequired": "Please provide your first name.",
+				"lastNameRequired": "Please provide your last name.",
+				"emailRequired": "Please provide your email address.",
+				"emailInvalid": "Please provide a valid email address."
+			}
+		}
+	},
+	"registrationPage": {
+		"header": "Finish registration",
+		"teaser": "Set up your account to receive notifications whenever you run, ride or walk a commute.",
+		"registrationForm": {
+			"header": "Register",
+			"button": "Save & continue",
+			"fieldLabels": {
+				"name": "Your name",
+				"firstName": "First name",
+				"lastName": "Last name",
+				"email": "Email",
+				"password": "Password",
+				"passwordRepeat": "Password (again)"
+			},
+			"notices": {
+				"firstNameRequired": "Please provide your first name.",
+				"lastNameRequired": "Please provide your last name.",
+				"emailRequired": "Please provide your email address.",
+				"emailInvalid": "Please provide a valid email address.",
+				"passwordRequired": "Please set a password",
+				"passwordMismatch": "The password does not match"
+			}
 		}
 	},
 	"signup": {

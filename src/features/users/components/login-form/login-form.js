@@ -11,8 +11,8 @@ export const LoginForm = props => {
 
 	const displayErrors = (errors, field) => {
 		const MESSAGES = {
-			'email': t("startPage.loginForm.notices.emailRequired"),
-			'password': t("startPage.loginForm.notices.passwordRequired")
+			'email': t("loginPage.loginForm.notices.emailRequired"),
+			'password': t("loginPage.loginForm.notices.passwordRequired")
 		}
 
 		return errors[field] && <p className="error">{MESSAGES[field][errors[field].type] || MESSAGES[field]}</p>;
@@ -20,7 +20,7 @@ export const LoginForm = props => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<FormField label={t('startPage.loginForm.fieldLabels.email')} id="email">
+			<FormField label={t('loginPage.loginForm.fieldLabels.email')} id="email">
 				<input type="email"
 					id="email"
 					{...register('email', {
@@ -31,7 +31,7 @@ export const LoginForm = props => {
 				/>
 				{displayErrors(errors, 'email')}
 			</FormField>
-			<FormField label={t('startPage.loginForm.fieldLabels.password')} id="password">
+			<FormField label={t('loginPage.loginForm.fieldLabels.password')} id="password">
 				<input type="password"
 					id="password"
 					{...register('password', {
@@ -41,7 +41,7 @@ export const LoginForm = props => {
 				/>
 				{displayErrors(errors, 'password')}
 			</FormField>
-			<input type="submit" value={t('startPage.loginForm.button')} />
+			<input type="submit" value={t('loginPage.loginForm.button')} />
 		</form>
 	)
 }

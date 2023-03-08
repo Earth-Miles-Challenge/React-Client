@@ -12,7 +12,7 @@ export const SignUpPageContent = (props) => {
 	const { pageHeader, mainContent, supplementaryContent } = props;
 	return (
 		<>
-			<div className="form-container">
+			<div className="banner-container">
 				<h1>{pageHeader}</h1>
 				{mainContent}
 			</div>

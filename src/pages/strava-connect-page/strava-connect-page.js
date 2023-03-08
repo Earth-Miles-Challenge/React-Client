@@ -10,8 +10,7 @@ export const StravaConnectPage = () => {
 			if (url.searchParams.has('code') && url.searchParams.has('scope')) {
 				const connected = await requestToken(url);
 				if (connected) {
-					window.location = process.env.REACT_APP_URL + '/profile';
-					// onConnected(connected);
+					window.location = process.env.REACT_APP_URL + '/registration';
 				}
 			}
 		}

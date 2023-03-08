@@ -8,9 +8,9 @@ export const HomePage = () => {
 	const { t } = useTranslation();
 	return (
 		<>
-			<div className="form-container">
+			<div className="banner-container">
 				<h1>{t('homePage.header')}</h1>
-				<Link to="/start" className="button">{t('homePage.button')}</Link>
+				<Link to="/login" className="button">{t('homePage.button')}</Link>
 			</div>
 			<CommutesFeature />
 		</>
