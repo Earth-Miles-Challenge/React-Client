@@ -1,14 +1,34 @@
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { FormField, Fieldset } from 'components';
+import { useGetUserQuery } from 'store/server-api';
 
 export const RegistrationForm = props => {
-	const { profile = {}, onChange, onContinue } = props;
+	const { userId, onSubmit } = props;
 	const { t } = useTranslation();
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { register, handleSubmit, formState: { errors }, setValue, getValues, setError, clearErrors } = useForm();
+	const { data: userData, error: userDataError, isLoading: userDataIsLoading } = useGetUserQuery(userId);
+	const [ checkPasswordMatch, setCheckPasswordMatch ] = useState(false);
 
-	const onSubmit = data => onContinue();
-	const handleChange = (field, event) => onChange(field, event.target.value);
+	useEffect(() => {
+		if (!userDataIsLoading && !userDataError) {
+			setValue('firstName', userData?.first_name);
+			setValue('lastName', userData?.last_name);
+			setValue('email', userData?.email);
+		}
+	}, [userData, userDataError, userDataIsLoading])
+
+	const handlePasswordChange = (e) => {
+		if (!checkPasswordMatch && e.target.name === 'passwordRepeat') setCheckPasswordMatch(true);
+		if (checkPasswordMatch) {
+			if (getValues('password') !== getValues('passwordRepeat')) {
+				setError('passwordRepeat', { type: 'mismatch' })
+			} else {
+				clearErrors('passwordRepeat');
+			}
+		}
+	}
 
 	const displayErrors = (errors, field) => {
 		const MESSAGES = {
@@ -20,11 +40,16 @@ export const RegistrationForm = props => {
 			},
 			'password': {
 				'required': t("registrationPage.registrationForm.notices.passwordRequired")
+			},
+			'passwordRepeat': {
+				'mismatch': t("registrationPage.registrationForm.notices.passwordMismatch")
 			}
 		}
 
 		return errors[field] && <p className="error">{MESSAGES[field][errors[field].type] || MESSAGES[field]}</p>;
 	}
+
+	if (userDataIsLoading) return null;
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -34,8 +59,6 @@ export const RegistrationForm = props => {
 						id="firstName"
 						{...register('firstName', {
 							required: true,
-							value: profile.first_name,
-							onChange: event => handleChange('first_name', event)
 						} ) }
 						aria-invalid={errors.firstName ? true : false}
 					/>
@@ -46,8 +69,6 @@ export const RegistrationForm = props => {
 						id="lastName"
 						{...register('lastName', {
 							required: true,
-							value: profile.last_name,
-							onChange: event => handleChange('last_name', event)
 						} ) }
 						aria-invalid={errors.lastName ? true : false}
 					/>
@@ -60,8 +81,6 @@ export const RegistrationForm = props => {
 					{...register('email', {
 						pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 						required: true,
-						value: profile.email,
-						onChange: event => handleChange('email', event)
 					} ) }
 					aria-invalid={errors.email ? true : false}
 				/>
@@ -71,10 +90,8 @@ export const RegistrationForm = props => {
 				<input type="password"
 					id="password"
 					{...register('password', {
-						pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 						required: true,
-						value: profile.password,
-						onChange: event => handleChange('password', event)
+						onChange: handlePasswordChange
 					} ) }
 					aria-invalid={errors.password ? true : false}
 				/>
@@ -82,16 +99,14 @@ export const RegistrationForm = props => {
 			</FormField>
 			<FormField label={t('registrationPage.registrationForm.fieldLabels.passwordRepeat')} id="password">
 				<input type="password"
-					id="password-repeat"
-					{...register('password-repeat', {
-						pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+					id="passwordRepeat"
+					{...register('passwordRepeat', {
 						required: true,
-						value: profile.password,
-						onChange: event => handleChange('password-repeat', event)
+						onChange: handlePasswordChange
 					} ) }
 					aria-invalid={errors.passwordRepeat ? true : false}
 				/>
-				{displayErrors(errors, 'password-repeat')}
+				{displayErrors(errors, 'passwordRepeat')}
 			</FormField>
 			<input type="submit" value={t('registrationPage.registrationForm.button')} />
 		</form>

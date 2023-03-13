@@ -11,7 +11,7 @@ export const ProfilePage = () => {
 
 	if (!id) redirectToLogin().catch(console.error);
 
-	const { data: userData, error: userDataError, isLoading: userDataIsLoading } = useGetUserQuery(userId);
+	const { data: userData, error: userDataError, isLoading: userDataIsLoading } = useGetUserQuery(id);
 
 	if (userDataIsLoading) return;
 	if (!userData || userDataError) redirectToLogin().catch(console.error);
