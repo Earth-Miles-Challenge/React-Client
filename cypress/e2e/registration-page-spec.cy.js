@@ -1,10 +1,4 @@
-import profileData from '../fixtures/user-profile-strava-connected-no-email.json';
-
 beforeEach(function() {
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoyNTI0NjA3OTk5fQ.0owJNR4zt4q85hgbma0uhMtVa9lLM3vo0cVQWE3SXpA';
-  cy.setCookie('token', token);
-  cy.intercept({ method: 'GET', url: '**/users/*' }, {fixture: 'user-profile-strava-connected-no-email.json'})
-  cy.intercept({ method: 'PUT', url: '**/users/*' }, {fixture: 'user-profile-strava-connected.json'})
   cy.visit('/registration');
 });
 
@@ -17,9 +11,12 @@ describe('Registration Page', function() {
     cy.get('input[name=lastName]')
       .should('have.value', '');
     cy.get('input[name=email]')
-      .should('have.value', profileData.email);
+      .should('have.value', '');
     cy.get('input[name=password]')
       .should('have.value', '');
+    cy.get('.form-container a')
+      .contains('Signed up already? Log in instead.')
+      .should('have.attr', 'href', '/login');
 
     // Test submission behaviour
     cy.get('input[name=email]')
@@ -43,12 +40,18 @@ describe('Registration Page', function() {
     cy.get('input[name=email]')
       .clear()
       .type('invali@excom');
-
     cy.get('input[type=submit]')
       .click();
-
     cy.get('.registration-form-container')
       .contains('Please provide a valid email address.');
+
+    // shows appropriate error message for mismatched password
+    cy.get('input[name=password')
+      .type('password');
+    cy.get('input[name=passwordRepeat]')
+      .type('differentpassword');
+    cy.get('.registration-form-container')
+      .contains('The password does not match');
   });
 
   it('page progresses on form submission with enter keystroke', () => {

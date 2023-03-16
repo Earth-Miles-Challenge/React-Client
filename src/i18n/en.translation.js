@@ -81,6 +81,11 @@ export const en = {
 			}
 		}
 	},
+	"emailConfirmationPage": {
+		"header": "Confirm your email address",
+		"teaser": "Click on the link in your email to confirm you address.",
+		"button": "Resend your confirmation email."
+	},
 	"signup": {
 		"progress-bar-1": "Connect Strava",
 		"progress-bar-2": "Complete Profile",
