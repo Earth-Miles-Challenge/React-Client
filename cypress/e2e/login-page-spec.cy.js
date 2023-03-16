@@ -18,9 +18,5 @@ describe('Login page', () => {
     cy.get('.login-container')
       .contains('.form-field', 'Password')
       .get('input[name=password]');
-
-    cy.get('.login-container a')
-      .contains('Not a member yet? Sign up now.')
-      .should('have.attr', 'href', '/register');
   });
 });

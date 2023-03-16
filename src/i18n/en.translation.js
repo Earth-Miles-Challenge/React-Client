@@ -86,6 +86,10 @@ export const en = {
 		"teaser": "Click on the link in your email to confirm you address.",
 		"button": "Resend your confirmation email."
 	},
+	"connectPage": {
+		"header": "Connect Strava",
+		"teaser": "Connect your Strava account to start tracking the emissions savings of your runs, rides, or walks.",
+	},
 	"signup": {
 		"progress-bar-1": "Connect Strava",
 		"progress-bar-2": "Complete Profile",
