@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Routes, Route, Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -5,14 +6,21 @@ import {
   LoginPage,
   ProfilePage,
   RegistrationPage,
-  JoinChallengePage,
-  SignUpPage,
+  DashboardPage,
+  // JoinChallengePage,
+  // SignUpPage,
   StravaConnectPage } from './pages';
+import { selectCurrentUser } from 'features/users';
 
 import './assets/style/style.scss';
 
 function App() {
   const { t } = useTranslation();
+  const { id } = useSelector(selectCurrentUser);
+  const getUserNavLink = (userId) => userId
+    ? <li><NavLink to="dashboard" className={({isActive}) => isActive ? 'active' : ''}>{t("nav.dashboard")}</NavLink></li>
+    : <li><NavLink to="login" className={({isActive}) => isActive ? 'active' : ''}>{t("nav.login")}</NavLink></li>
+
   return (
     <div className="App">
       <header className="header">
@@ -23,7 +31,7 @@ function App() {
         </div>
         <nav>
           <ul>
-            <li><NavLink to="login" className={({isActive}) => isActive ? 'active' : ''}>{t("nav.login")}</NavLink></li>
+            {getUserNavLink(id)}
             {/* <li><NavLink to="athletes" className={({isActive}) => isActive ? 'active' : ''}>Athletes</NavLink></li> */}
             {/* <li><NavLink to="start" className={({isActive}) => isActive ? 'active' : ''}>Sign Up</NavLink></li> */}
           </ul>
@@ -35,6 +43,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           {/* <Route path="start" element={<SignUpPage />} /> */}
           {/* <Route path="athletes" element={<AthletesPage />} /> */}
           {/* <Route path="/join-challenge" element={<JoinChallengePage />} /> */}

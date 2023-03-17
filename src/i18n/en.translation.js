@@ -1,6 +1,7 @@
 export const en = {
 	"nav": {
-		"login": "Login"
+		"login": "Login",
+		"dashboard": "Dashboard"
 	},
 	"footer": {
 		"about": "Earth Miles Challenge was created by Eric Daams."
@@ -92,6 +93,16 @@ export const en = {
 	"connectPage": {
 		"header": "Connect Strava",
 		"teaser": "Connect your Strava account to start tracking the emissions savings of your runs, rides, or walks.",
+	},
+	"dashboardPage": {
+		"header": "Your impact",
+		"totalBlurb": "Your human-powered commutes have helped you avoid approximately <1>{{emissionsAvoidedKg}}</1>",
+		"totalAmount": "{{amount}}kg CO2e savings",
+		"activityHeader": "Savings by activity",
+		"toggleAll": "Include non-commute activities",
+		"toggleSavers": "Only show commute activities",
+		"activityNonCommuteDescription": "Not counted.",
+		"activityCommuteToggle": "Mark as a commute."
 	},
 	"signup": {
 		"progress-bar-1": "Connect Strava",
