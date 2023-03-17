@@ -1,4 +1,7 @@
 export const en = {
+	"nav": {
+		"login": "Login"
+	},
 	"footer": {
 		"about": "Earth Miles Challenge was created by Eric Daams."
 	},

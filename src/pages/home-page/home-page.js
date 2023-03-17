@@ -10,7 +10,7 @@ export const HomePage = () => {
 		<>
 			<div className="banner-container">
 				<h1>{t('homePage.header')}</h1>
-				<Link to="/login" className="button">{t('homePage.button')}</Link>
+				<Link to="/register" className="button">{t('homePage.button')}</Link>
 			</div>
 			<CommutesFeature />
 		</>

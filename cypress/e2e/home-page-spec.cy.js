@@ -6,10 +6,10 @@ describe('Homepage', () => {
       .contains('Login')
       .should('have.attr', 'href', '/login');
 
-    cy.get('.form-container h1')
+    cy.get('.banner-container h1')
       .contains('Calculate Your Emissions Savings');
 
-    cy.get('.form-container .button')
+    cy.get('.banner-container .button')
       .contains('Get Started')
       .should('have.attr', 'href', '/register');
 

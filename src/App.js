@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   HomePage,
@@ -23,6 +23,7 @@ function App() {
         </div>
         <nav>
           <ul>
+            <li><NavLink to="login" className={({isActive}) => isActive ? 'active' : ''}>{t("nav.login")}</NavLink></li>
             {/* <li><NavLink to="athletes" className={({isActive}) => isActive ? 'active' : ''}>Athletes</NavLink></li> */}
             {/* <li><NavLink to="start" className={({isActive}) => isActive ? 'active' : ''}>Sign Up</NavLink></li> */}
           </ul>
@@ -36,8 +37,8 @@ function App() {
           <Route path="/registration" element={<RegistrationPage />} />
           {/* <Route path="start" element={<SignUpPage />} /> */}
           {/* <Route path="athletes" element={<AthletesPage />} /> */}
-          <Route path="/join-challenge" element={<JoinChallengePage />} />
-          <Route path="/connect-strava" element={<StravaConnectPage />} />
+          {/* <Route path="/join-challenge" element={<JoinChallengePage />} /> */}
+          <Route path="/connect" element={<StravaConnectPage />} />
         </Routes>
       </main>
       <footer>
