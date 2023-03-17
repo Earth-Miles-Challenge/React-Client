@@ -21,11 +21,11 @@ export const en = {
 		}
 	},
 	"loginPage": {
-		"header": "Get Started",
-		"teaser": "Log in to your existing account or connect Strava to get started.",
+		"header": "Get started",
+		"teaser": "Log in to your existing account below.",
 		"loginForm": {
 			"header": "Log in",
-			"teaser": "If you have connected your account previously, sign in below.",
+			"teaser": "New here? <1>Click here to register a new account.</1>",
 			"button": "Sign in",
 			"fieldLabels": {
 				"email": "Email",
@@ -62,7 +62,7 @@ export const en = {
 		}
 	},
 	"registrationPage": {
-		"header": "Finish registration",
+		"header": "Get started",
 		"teaser": "Set up your account to receive notifications whenever you run, ride or walk a commute.",
 		"registrationForm": {
 			"header": "Register",
@@ -91,7 +91,7 @@ export const en = {
 		"button": "Resend your confirmation email."
 	},
 	"connectPage": {
-		"header": "Connect Strava",
+		"header": "Connect your platform",
 		"teaser": "Connect your Strava account to start tracking the emissions savings of your runs, rides, or walks.",
 	},
 	"dashboardPage": {

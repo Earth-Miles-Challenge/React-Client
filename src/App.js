@@ -9,7 +9,7 @@ import {
   DashboardPage,
   // JoinChallengePage,
   // SignUpPage,
-  StravaConnectPage } from './pages';
+  ConnectPage } from './pages';
 import { selectCurrentUser } from 'features/users';
 
 import './assets/style/style.scss';
@@ -32,8 +32,6 @@ function App() {
         <nav>
           <ul>
             {getUserNavLink(id)}
-            {/* <li><NavLink to="athletes" className={({isActive}) => isActive ? 'active' : ''}>Athletes</NavLink></li> */}
-            {/* <li><NavLink to="start" className={({isActive}) => isActive ? 'active' : ''}>Sign Up</NavLink></li> */}
           </ul>
         </nav>
       </header>
@@ -42,12 +40,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          {/* <Route path="start" element={<SignUpPage />} /> */}
-          {/* <Route path="athletes" element={<AthletesPage />} /> */}
-          {/* <Route path="/join-challenge" element={<JoinChallengePage />} /> */}
-          <Route path="/connect" element={<StravaConnectPage />} />
+          <Route path="/connect" element={<ConnectPage />} />
         </Routes>
       </main>
       <footer>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { requestToken } from 'utils/strava-utils';
 
-export const StravaConnectPage = () => {
+export const ConnectPage = () => {
 	useEffect(() => {
 		const handleStravaRedirect = async () => {
 			const url = new URL(window.location);

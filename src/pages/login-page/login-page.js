@@ -1,5 +1,5 @@
 import { LoginForm } from 'features/users';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { StravaConnectButton } from 'features/users';
 
 import './login-page.scss';
@@ -12,17 +12,14 @@ export const LoginPage = () => {
 				<h1>{t('loginPage.header')}</h1>
 				<p>{t('loginPage.teaser')}</p>
 			</div>
-			<section className="authenticate-container column-container two">
-				<div className="login-container form-container">
-					<h2>{t('loginPage.loginForm.header')}</h2>
-					<p>{t('loginPage.loginForm.teaser')}</p>
-					<LoginForm />
-				</div>
-				<div className="connect-container">
-					<h2>{t('loginPage.connectForm.header')}</h2>
-					<p>{t('loginPage.connectForm.teaser')}</p>
-					<StravaConnectButton />
-				</div>
+			<section className="login-container form-container main-container">
+				<h2>{t('loginPage.loginForm.header')}</h2>
+				<p>
+					<Trans i18nKey="loginPage.loginForm.teaser">
+						New here? <a href="/register">Click here to register a new account.</a>
+					</Trans>
+				</p>
+				<LoginForm />
 			</section>
 		</>
 	)
