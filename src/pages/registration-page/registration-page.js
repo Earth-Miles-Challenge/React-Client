@@ -1,12 +1,10 @@
 import { useTranslation, Trans } from 'react-i18next';
 import { RegistrationForm } from 'features/users';
-
+import { useCreateUserMutation } from 'store/server-api';
 
 export const RegistrationPage = () => {
 	const { t } = useTranslation();
-	const handleRegistration = (data) => {
-		console.log(data);
-	}
+	const [ createUser ] = useCreateUserMutation();
 
 	return (
 		<>
@@ -22,7 +20,7 @@ export const RegistrationPage = () => {
 							Signed up already? <a href="/login">Log in instead.</a>
 						</Trans>
 					</p>
-					<RegistrationForm onSubmit={handleRegistration} />
+					<RegistrationForm onSubmit={createUser} />
 				</div>
 			</section>
 		</>

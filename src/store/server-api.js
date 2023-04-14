@@ -30,6 +30,16 @@ export const api = createApi({
 			query: (userId) => `users/${userId}`,
 			providesTags: (result, error, userId) => [{type: 'User', id: userId}]
 		}),
+		createUser: builder.mutation({
+			query: (data) => ({
+				url: '/users/',
+				method: 'POST',
+				body: data
+			}),
+			async onCacheEntryAdded(arg, {dispatch}) {
+				dispatch({type: 'authorization/updateCurrentUser', payload: arg});
+			}
+		}),
 		updateUser: builder.mutation({
 			query: ({id, ...data}) => ({
 				url: `users/${id}`,
@@ -76,6 +86,7 @@ export const api = createApi({
 export const {
 	useLoginMutation,
 	useGetUserQuery,
+	useCreateUserMutation,
 	useUpdateUserMutation,
 	useGetUserActivitiesQuery,
 	useUpdateUserActivityMutation,
