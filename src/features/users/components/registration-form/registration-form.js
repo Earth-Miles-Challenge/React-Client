@@ -6,7 +6,7 @@ import { FormField, Fieldset } from 'components';
 export const RegistrationForm = props => {
 	const { onSubmit } = props;
 	const { t } = useTranslation();
-	const { register, handleSubmit, formState: { errors }, getValues, setError, clearErrors, watch } = useForm();
+	const { register, handleSubmit, formState: { errors }, setError, clearErrors, watch } = useForm();
 	const [ checkPasswordMatch, setCheckPasswordMatch ] = useState(false);
 
 	const password = watch('password');
