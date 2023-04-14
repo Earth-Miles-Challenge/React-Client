@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-export const dashboardPage = () => {
-	// const { t } = useTranslation();
+export const DashboardPage = () => {
+	const { t } = useTranslation();
 	return (
 		<>
 			<div className="banner-container">

@@ -66,6 +66,7 @@ export const en = {
 		"teaser": "Set up your account to receive notifications whenever you run, ride or walk a commute.",
 		"registrationForm": {
 			"header": "Register",
+			"teaser": "Signed up already? <1>Log in instead.</1>",
 			"button": "Save & continue",
 			"fieldLabels": {
 				"name": "Your name",

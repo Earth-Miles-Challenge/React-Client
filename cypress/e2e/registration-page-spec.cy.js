@@ -1,11 +1,16 @@
 beforeEach(function() {
-  cy.visit('/registration');
+  cy.visit('/register');
 });
 
 describe('Registration Page', function() {
   it('displays form', () => {
-    cy.get('.form-container')
-      .contains('h1', 'Finish registration');
+    cy.get('.banner-container h1')
+      .contains('Get started');
+    cy.get('.banner-container h1 + p')
+      .contains('Set up your account to receive notifications whenever you run, ride or walk a commute.');
+
+    cy.get('.form-container h2')
+      .contains('Register');
     cy.get('input#firstName')
       .should('have.value', '');
     cy.get('input[name=lastName]')
@@ -14,8 +19,10 @@ describe('Registration Page', function() {
       .should('have.value', '');
     cy.get('input[name=password]')
       .should('have.value', '');
+    cy.get('input[name=passwordRepeat]')
+      .should('have.value', '');
     cy.get('.form-container a')
-      .contains('Signed up already? Log in instead.')
+      .contains('Log in instead.')
       .should('have.attr', 'href', '/login');
 
     // Test submission behaviour
@@ -24,16 +31,13 @@ describe('Registration Page', function() {
     cy.get('input[type=submit]')
       .click();
 
-    cy.get('.form-container')
-      .contains('h1', 'Finish registration');
-
-    cy.get('.registration-form-container')
+    cy.get('.registration-container')
       .contains('Please provide your first name.')
-    cy.get('.registration-form-container')
+    cy.get('.registration-container')
       .contains('Please provide your last name.')
-    cy.get('.registration-form-container')
+    cy.get('.registration-container')
       .contains('Please provide your email address.');
-    cy.get('.registration-form-container')
+    cy.get('.registration-container')
       .contains('Please set a password.');
 
     // shows appropriate error message for invalid email address
@@ -42,7 +46,7 @@ describe('Registration Page', function() {
       .type('invali@excom');
     cy.get('input[type=submit]')
       .click();
-    cy.get('.registration-form-container')
+    cy.get('.registration-container')
       .contains('Please provide a valid email address.');
 
     // shows appropriate error message for mismatched password
@@ -50,7 +54,7 @@ describe('Registration Page', function() {
       .type('password');
     cy.get('input[name=passwordRepeat]')
       .type('differentpassword');
-    cy.get('.registration-form-container')
+    cy.get('.registration-container')
       .contains('The password does not match');
   });
 

@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { RegistrationForm, selectCurrentUser } from 'features/users';
+import { useTranslation, Trans } from 'react-i18next';
+import { RegistrationForm } from 'features/users';
+
 
 export const RegistrationPage = () => {
 	const { t } = useTranslation();
-	const { id } = useSelector(selectCurrentUser);
+	const handleRegistration = (data) => {
+		console.log(data);
+	}
 
 	return (
 		<>
@@ -15,7 +17,12 @@ export const RegistrationPage = () => {
 			<section className="main-container">
 				<div className="registration-container form-container">
 					<h2>{t('registrationPage.registrationForm.header')}</h2>
-					<RegistrationForm userId={id} />
+					<p>
+						<Trans i18nKey="registrationPage.registrationForm.teaser">
+							Signed up already? <a href="/login">Log in instead.</a>
+						</Trans>
+					</p>
+					<RegistrationForm onSubmit={handleRegistration} />
 				</div>
 			</section>
 		</>

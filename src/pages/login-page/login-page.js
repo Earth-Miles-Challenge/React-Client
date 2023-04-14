@@ -1,8 +1,5 @@
 import { LoginForm } from 'features/users';
 import { useTranslation, Trans } from 'react-i18next';
-import { StravaConnectButton } from 'features/users';
-
-import './login-page.scss';
 
 export const LoginPage = () => {
 	const { t } = useTranslation();

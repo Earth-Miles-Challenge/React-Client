@@ -1,23 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { FormField, Fieldset } from 'components';
-import { useGetUserQuery } from 'store/server-api';
 
 export const RegistrationForm = props => {
-	const { userId, onSubmit } = props;
+	const { onSubmit } = props;
 	const { t } = useTranslation();
-	const { register, handleSubmit, formState: { errors }, setValue, getValues, setError, clearErrors } = useForm();
-	const { data: userData, error: userDataError, isLoading: userDataIsLoading } = useGetUserQuery(userId);
+	const { register, handleSubmit, formState: { errors }, getValues, setError, clearErrors } = useForm();
 	const [ checkPasswordMatch, setCheckPasswordMatch ] = useState(false);
-
-	useEffect(() => {
-		if (!userDataIsLoading && !userDataError) {
-			setValue('firstName', userData?.first_name);
-			setValue('lastName', userData?.last_name);
-			setValue('email', userData?.email);
-		}
-	}, [userData, userDataError, userDataIsLoading])
 
 	const handlePasswordChange = (e) => {
 		if (!checkPasswordMatch && e.target.name === 'passwordRepeat') setCheckPasswordMatch(true);
@@ -48,8 +38,6 @@ export const RegistrationForm = props => {
 
 		return errors[field] && <p className="error">{MESSAGES[field][errors[field].type] || MESSAGES[field]}</p>;
 	}
-
-	if (userDataIsLoading) return null;
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>

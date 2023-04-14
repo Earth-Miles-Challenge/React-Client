@@ -1,13 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { FormField } from 'components';
+import { useLoginMutation } from 'store/server-api';
 
-export const LoginForm = props => {
-	const { onContinue } = props;
+export const LoginForm = () => {
 	const { t } = useTranslation();
 	const { register, handleSubmit, formState: { errors } } = useForm();
-
-	const onSubmit = data => onContinue();
+	const [ login ] = useLoginMutation();
 
 	const displayErrors = (errors, field) => {
 		const MESSAGES = {
@@ -19,7 +18,7 @@ export const LoginForm = props => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form onSubmit={handleSubmit(login)}>
 			<FormField label={t('loginPage.loginForm.fieldLabels.email')} id="email">
 				<input type="email"
 					id="email"

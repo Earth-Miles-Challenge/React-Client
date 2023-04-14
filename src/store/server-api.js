@@ -14,8 +14,18 @@ export const api = createApi({
 			return headers;
 		}
 	}),
-	tagTypes: ['User', 'Activity'],
+	tagTypes: ['Auth', 'User', 'Activity'],
 	endpoints: (builder) => ({
+		login: builder.mutation({
+			query: (data) => ({
+				url: `auth/login`,
+				method: `POST`,
+				body: data
+			}),
+			async onCacheEntryAdded(arg, {dispatch}) {
+				dispatch({type: 'authorization/updateCurrentUser', payload: arg});
+			}
+		}),
 		getUser: builder.query({
 			query: (userId) => `users/${userId}`,
 			providesTags: (result, error, userId) => [{type: 'User', id: userId}]
@@ -64,6 +74,7 @@ export const api = createApi({
 });
 
 export const {
+	useLoginMutation,
 	useGetUserQuery,
 	useUpdateUserMutation,
 	useGetUserActivitiesQuery,
