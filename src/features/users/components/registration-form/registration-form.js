@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { FormField, Fieldset } from 'components';
@@ -6,18 +6,24 @@ import { FormField, Fieldset } from 'components';
 export const RegistrationForm = props => {
 	const { onSubmit } = props;
 	const { t } = useTranslation();
-	const { register, handleSubmit, formState: { errors }, getValues, setError, clearErrors } = useForm();
+	const { register, handleSubmit, formState: { errors }, getValues, setError, clearErrors, watch } = useForm();
 	const [ checkPasswordMatch, setCheckPasswordMatch ] = useState(false);
 
-	const handlePasswordChange = (e) => {
-		if (!checkPasswordMatch && e.target.name === 'passwordRepeat') setCheckPasswordMatch(true);
+	const password = watch('password');
+	const passwordRepeat = watch('passwordRepeat');
+
+	useEffect(() => {
 		if (checkPasswordMatch) {
-			if (getValues('password') !== getValues('passwordRepeat')) {
+			if (password !== passwordRepeat) {
 				setError('passwordRepeat', { type: 'mismatch' })
 			} else {
 				clearErrors('passwordRepeat');
 			}
 		}
+	}, [checkPasswordMatch, password, passwordRepeat, setError, clearErrors])
+
+	const handlePasswordChange = (e) => {
+		if (!checkPasswordMatch && e.target.name === 'passwordRepeat') setCheckPasswordMatch(true);
 	}
 
 	const displayErrors = (errors, field) => {
@@ -79,7 +85,6 @@ export const RegistrationForm = props => {
 					id="password"
 					{...register('password', {
 						required: true,
-						onChange: handlePasswordChange
 					} ) }
 					aria-invalid={errors.password ? true : false}
 				/>
@@ -89,7 +94,6 @@ export const RegistrationForm = props => {
 				<input type="password"
 					id="passwordRepeat"
 					{...register('passwordRepeat', {
-						required: true,
 						onChange: handlePasswordChange
 					} ) }
 					aria-invalid={errors.passwordRepeat ? true : false}

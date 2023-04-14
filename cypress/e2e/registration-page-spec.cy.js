@@ -55,7 +55,7 @@ describe('Registration Page', function() {
     cy.get('input[name=passwordRepeat]')
       .type('differentpassword');
     cy.get('.registration-container')
-      .contains('The password does not match');
+      .contains('The password does not match.');
   });
 
   it('page progresses on form submission with enter keystroke', () => {

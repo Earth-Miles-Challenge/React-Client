@@ -81,8 +81,8 @@ export const en = {
 				"lastNameRequired": "Please provide your last name.",
 				"emailRequired": "Please provide your email address.",
 				"emailInvalid": "Please provide a valid email address.",
-				"passwordRequired": "Please set a password",
-				"passwordMismatch": "The password does not match"
+				"passwordRequired": "Please set a password.",
+				"passwordMismatch": "The password does not match."
 			}
 		}
 	},
